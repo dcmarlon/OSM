@@ -1,0 +1,49 @@
+/* Style for our header texts
+	* --------------------------------------- */
+	h1{
+		font-size: 5em;
+		font-family: helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+
+	h3{
+		font-size: 3em;
+		font-family: helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+	}
+	
+	/* Centered texts in each section
+	* --------------------------------------- */
+	.section{
+		text-align:center;
+	}
+
+
+	/* Backgrounds will cover all the section
+	* --------------------------------------- */
+	#section0,
+	#section1,
+	#section2,
+	#section3{
+		background-size: cover;
+	}
+
+	/* Defining each section background and styles
+	* --------------------------------------- */
+	#section0{
+		background-image: url(../imgs/02.jpg);
+		
+		padding: 20% 0 0 0;
+	}
+	#section1{
+		background-image: url(../imgs/01.jpg);
+		padding: 20% 0 0 0;
+	}
+	#section2{
+		background-image: url(../imgs/staff.jpg);
+		padding: 20% 0 0 0;
+	}
