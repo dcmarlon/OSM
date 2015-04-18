@@ -11,24 +11,18 @@ $(document).ready(function(){
     
 });
 
-	$(document).ready(function() {
-			$('#fullpage').fullpage({
-				verticalCentered: false				
-			});
-			
-		$('#takeSur').on( "click", function() {
-		$('#studSurvey').modal({
-			closable  : false,
-			onApprove : function() {
-				
-			  
-			   
-			  
-			}
-		  })
-		  .modal('show');
-
 	
-	}); 
-			
-		});
+
+
+	$(document).ready(function() {
+			//$('#button_view_results').on("click", function () {
+			//		$('#modal_view_results').modal('show');
+			//	})
+                    //	;
+                    $('#button_view_results').on("click", function () {
+                        $('#modal_view_results').modal('setting', 'transition','vertical flip').modal('show')
+                        })
+                    ;
+       
+            })
+	;

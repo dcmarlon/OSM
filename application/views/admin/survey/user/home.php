@@ -1,4 +1,4 @@
-<?php $this->load->view('admin/components/page_head'); ?>
+<?php $this->load->view('admin/components/login_head'); ?>
 
 <!-- MENU HEADER -->
 <div class= "sixteen wide column">
@@ -114,4 +114,4 @@
 			  </div>
 		
 
-<?php $this->load->view('admin/components/page_tail'); ?>
+<?php $this->load->view('admin/components/login_tail'); ?>
