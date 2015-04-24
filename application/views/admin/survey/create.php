@@ -12,13 +12,13 @@
       
       <div class="row"></div>
       <div class="three wide column"></div>
-      <div class="tiny ui green button">Add Question</div>
+      <div id="addquestion" class="tiny ui green button">Add Question</div>
 
       
 
       
       
-      <form class="ui form">
+      <form class="ui form" id="questionform">
         <div class="field"> 
         <div class="two fields">
           <div class="field">
@@ -69,7 +69,7 @@
           </div>
           <div class="mini ui button">Add Choice</div> <div class="mini ui button">Clear</div>
         </div>
-
+      </form>
       <div class="field"> 
         <div class="two fields">
           <div class="field">
@@ -192,3 +192,10 @@
       
       </div>
         </div>
+
+<!--          
+ <script type="text/javascript">
+     $(document).ready(function(){
+         $('#addquestion').click()
+     })
+ </script>-->

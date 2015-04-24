@@ -26,12 +26,3 @@
 	</tr>
 </table>
 <?php echo form_close();?>
-
-<script>
-    $(function(){
-        
-        $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
- 
-    });     
-    
-</script>

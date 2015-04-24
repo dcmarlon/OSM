@@ -1,6 +1,7 @@
 <?php $this->load->view('admin/components/page_head'); ?>
     <div class="ui grid">
         
+      
         <div class="row"></div>
     		<div class="three wide column"></div>
     		<div class="ten wide column" style="background-color: #BDBDB8">
@@ -9,21 +10,22 @@
     			</h3>
                 </div>
                 
-                
+   
   
-             <div class="ui centered grid">
+             <div class="ui centered grid" id="main">
                     <?php $this->load->view($subview); ?>
              </div>
                 
-                
-         
-          <div class="row"></div>
-    		<div class="three wide column"></div>
-    		<div class="ten wide column" style="background-color: #37d249">
-    				<div class="sub header">(c) Copyright 2015</div>
-    			</h3>
-                </div>       
+
+                     <div class="row"></div>
+                      <div class="three wide column"></div>
+                      <div class="ten wide column" style="background-color: #37d249">
+                          <footer><p>(c) Copyright 2015</p></footer>
+                          
+                      </div>  
             
-        </div>        
+       </div>       
+
+
 
 <?php $this->load->view('admin/components/page_tail'); ?>

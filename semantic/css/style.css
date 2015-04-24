@@ -47,3 +47,7 @@
 		background-image: url(../imgs/staff.jpg);
 		padding: 20% 0 0 0;
 	}
+        .sticky {
+  position: absolute;
+  bottom: 0;
+}

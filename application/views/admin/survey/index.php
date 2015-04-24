@@ -1,8 +1,9 @@
 
 <div class="ten wide column">
+    <div class="row"><h2>Archives of Survey</h2></div>
     			<h4><?php echo $meta_title; ?>
     			&nbsp;&nbsp;&nbsp;&nbsp;
-                        <?php echo anchor('admin/survey/edit', '<button class="tiny ui green button">Add Survey</button> '); ?>
+                        <?php echo anchor('admin/survey/add', '<button class="tiny ui green button">Add Survey</button> '); ?>
                         </h4> 
 
 <table id ="datatables" class="ui very basic table">

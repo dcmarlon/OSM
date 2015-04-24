@@ -25,6 +25,11 @@ function btn_editFour ($uri)
 	return anchor($uri, '<button class="tiny ui green button"></button>');
 }
 
+function btn_back ($uri)
+{
+	return anchor($uri, '<button class="tiny ui button">View</button>');
+}
+
 function btn_survey($uri)
 {
 	return anchor($uri, '<i class="icon-hand-right"></i>');
