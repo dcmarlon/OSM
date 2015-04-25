@@ -1,90 +1,161 @@
-    <html>
-    <head>
-        <title>Create Elements Dynamically using JQuery</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-    <link href="<?php echo base_url('semantic/css/semantic.css'); ?>" rel="stylesheet">
-    <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
-     <link href="<?php echo base_url('assets/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
-    <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Elements Dynamically using JQuery</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<link href="<?php echo base_url('semantic/css/semantic.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
+<link href="<?php echo base_url('assets/css/bootstrap-theme.min.css'); ?>" rel="stylesheet">
+<script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
+</head>
 
 
-    </head>
+<body>
+<div class="container">
+	<div class="col-sm-12">
+
+    <div class="status alert alert-success display-none"></div>
+    <form method="post" action="<?php echo base_url();?>incidentreport/add" role="form">
+    <div class="row clearfix">				
+        <div class="col-md-6 column">
+            <h3>Add Survey</h3>
+            <div class="form-group">
+                <span>Survey Name</span>
+                <input type="text" name="survey_name" class="form-control" required>
+            </div>                    
+        </div>          
+        <div class="col-md-6 column">
+            <div class="questionField">   
+                <div class="questions">
+                    <h3>Summoned</h3>
+                    </br>
+                    <h5>fucking question:</h5>
+        
+                    <input type="text" name="question_name" class="form-group form-control" required placeholder="Question">
+                    
+                    <select class="form-group form-control" name="question_status" required="required">
+                    <option value="" disabled default selected class="display-none">Question Type</option>
+                    <option value="Single">Single</option>
+                    <option value="Multiple">Multiple</option>
+                    <option value="Combination">Combination</option>
+                    </select>
+        
+                    <div class="choices">
+                        <h5>Choices:</h5>                   
+                        <div class="choiceItem">	                            
+                            <input type="text" name="choice_data[]" class="form-group form-control" required placeholder="Choice">
+                        </div>
+                        <button class="add_choiceItem btn btn-info" type="button">Add</button>
+                        <button class="remove_choiceItem btn btn-info" type="button">Clear</button>                           
+                    </div>				 
+                </div>
+             </div>
+            <div class="row clearfix">
+                <label>add question</label>
+                <button id="add_question" type="button"  class="btn btn-info">Add</button>
+                <button id="remove_question" type="button"  class="btn btn-info">Remove</button>
+            <button type="submit" name="addlist" class="btn btn-lg submit-button">Submit Form</button>
+            </div>
+            
+        </div>
+    </div>
+    </form>                   
+
+	</div>
+    
+    
+    
 
 
-    <body>
-<section id="contact-page" class="container">
-	<div class="container">
-		<div class="col-sm-12">
-			
-			<div class="status alert alert-success display-none"></div>
-			<form method="post" action="<?php echo base_url();?>incidentreport/add" role="form">
-				<div class="row clearfix">
-					
-					<div class="col-md-6 column">
-
-			<h3>Add Survey</h3>
-				<div class="form-group">
-							<span>Survey Name</span>
-							<input type="text" name="survey_name" class="form-control" required="required">
-				</div>                    
-		</div>
-
-			<div class="col-md-6 column">
-		<div id="summonedcon">
-			<h3>Summoned</h3>
-							<br>
-							<h5>Enter valid Summoned info. 1:</h5>
-			
-							<input type="text" name="question_name" class="form-group form-control" required="required" placeholder="Question">
-					
-							<select class="form-group form-control" name="question_status" required="required">
-								<option value="" disabled default selected class="display-none">Question Type</option>
-								<option value="Single">Single</option>
-								<option value="Multiple">Multiple</option>
-								<option value="Combination">Combination</option>
-							</select>
-								
-					<div id="summonedchoi">
-
-						<h5>Choices:</h5>
-
-						<div class="summonchoi_try">	
-                                                    <div>
-							<input type="text" name="choice_data[]" class="form-group form-control" required="required" placeholder="Choice">
-                                                    </div>    
-						</div>
-
-                                           <div>				
-					   <button id="add_summonedchoi" type="button"  class="btn btn-info">Add</button>
-					   <button id="rmv_summonedchoi" type="button"  class="btn btn-info">Clear</button>
-                                           <div>
-					
-					</div>				
+<!--hidden field-->
+<div class="questionshid" hidden="hidden">
+    <div class="questions">
+        <h3>Summoned</h3>
+        </br>
+        <h5>fucking question:</h5>
+        
+        <input type="text" name="question_name" class="form-group form-control" required placeholder="Question">
+        
+        <select class="form-group form-control" name="question_status" required="required">
+        <option value="" disabled default selected class="display-none">Question Type</option>
+        <option value="Single">Single</option>
+        <option value="Multiple">Multiple</option>
+        <option value="Combination">Combination</option>
+        </select>
+        
+        <div class="choices">
+       		<h5>Choices:</h5>
+        
+            <div class="choiceItem">	
+            <div>
+            	<input type="text" name="choice_data[]" class="form-group form-control" required placeholder="Choice">
+            </div>    
+   		 </div>
+              
+    <button class="add_choiceItem btn btn-info"  type="button">Add</button>
+    <button class="remove_choiceItem btn btn-info" type="button">Clear</button>  
+    </div>				
+</div>
 
 
-					
-				   <button id="add_summoned" type="button"  class="btn btn-info">Add</button>
-				   <button id="rmv_summoned" type="button"  class="btn btn-info">Remove</button>
-				</div>
-
-			<div class="row clearfix">
-			<button type="submit" name="addlist" class="btn btn-lg submit-button">Submit Form</button>
-			</div>
-		</div>
-		
-	</form>                   
-		 </div>
-		</div>
-</section>
-    </body>
+</div>
+</body>
 
 <script type="text/javascript">
-      ctr =1;   
-  $(document).ready(function(){
+$(document).ready(function(){
+	if( $('.questionField > div[class*="questions"]').length == 1)
+		$('#remove_question').attr("disabled","disabled");
+		
+	$('.remove_choiceItem').attr("disabled","disabled");
+	
+	$('#rr').click(function(){
+		alert($('.cnt > div[id*="re"]').length);
+	});
+	
+	$(document).on("click","#remove_question", function(){
+		if($('.questionField > div[class*="questions"]').length == 50)
+			$('#add_question').removeAttr("disabled");
+		
+		
+		$('.questionField > div.questions').last().remove();
+		if( $('.questionField > div[class*="questions"]').length == 1)
+		    $('#remove_question').attr("disabled","disabled");
+		
+		
+	});
+	
+	$(document).on("click","#add_question", function(){
+		if($('.questionField > div[class*="questions"]').length == 1)
+			$('#remove_question').removeAttr("disabled");
+		
+		var questionItem = $(".questionshid").html();
+		$('.questionField').append(questionItem);
+		
+		if($('.questionField > div[class*="questions"]').length == 50)
+			$('#add_question').attr("disabled","disabled");	
+	});
+	
+	$(document).on("click",".add_choiceItem", function(){
+		 if($(this).siblings(".choiceItem").children().length == 1)
+			$(this).siblings('.remove_choiceItem').removeAttr("disabled");
+		
+		$(this).siblings(".choiceItem").append(' <input type="text" name="choice_data[]" class="form-group form-control" required placeholder="Choice">');
+			
+			 if($(this).siblings(".choiceItem").children().length == 5)
+			$(this).attr("disabled","disabled");	
+	});
+	$(document).on("click",".remove_choiceItem", function(){
+	    if($(this).siblings(".choiceItem").children().length == 5)
+			$(this).siblings('.add_choiceItem').removeAttr("disabled");
+		
+		$(this).siblings(".choiceItem").children().last().remove();
+		if($(this).siblings(".choiceItem").children().length == 1)
+		$(this).attr("disabled","disabled");	
+	});
     
-               var max_fieldsone      = 5; //maximum input boxes allowed
+  /*             var max_fieldsone      = 5; //maximum input boxes allowed
                 //        var wrapper         = $(".input_fields_wrap");    //Fields wrapper
                 //    	var add_button      = $(".add_field_button"); //	Add button ID
                                 //on add input button click 
@@ -199,9 +270,9 @@
 		ctr -= 1;
 	  }
 	});
-  });
+  });*/
 
-
+});
 </script>
 
     </html>
