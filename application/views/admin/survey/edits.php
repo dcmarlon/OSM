@@ -34,24 +34,27 @@
 
 
       <div class="question_main" class="field"> 
+          
+          <?php echo $survs->survey_id; ?>
 					
                     <?php $questions = $this->question_m->get_all_questions($survs->survey_id); 
               
                         $q_num = 0; if(count($questions)): foreach($questions as $quest): $q_num+=1
                             ?>
+          
              <div class="questions">							
                      <div class = "two fields">
                           <div class="field">
                               
                               <input type="hidden" name="q_id<?php echo $q_num;?>" value="<?php echo $quest->question_id; ?>"/>
-                           <label>Q U E S T I O N </label><input name ="q_data<?php echo $q_num ?>" type="text" required="required" placeholder="Question">
+                           <label>Q U E S T I O N </label><input name ="q_data<?php echo $q_num ?>" value="<?php echo $quest->question_data; ?>" type="text" required="required" placeholder="Question">
                           </div>
                           <div class="field">
                             <label>&nbsp;</label>
                             <div>
                                   <select class="form-group form-control" name="q_type<?php echo $q_num;?>" required="required">
                                       <option value="<?php echo $quest->question_type; ?>" disabled default selected class="display-none">
-                                          <?php if($quest->type == 'Active') echo "Active"; elseif ($quest->type == 'Available') echo "Available"; else echo "Combination";?>                          
+                                          <?php if($quest->question_type == 'Single') echo "Single"; elseif ($quest->question_type == 'Multiple') echo "Multiple"; else echo "Combination";?>                          
                                       </option>
                                     <option value="Single">Single</option>
                                     <option value="Multiple">Multiple</option>
@@ -65,28 +68,32 @@
 
                       <div id="choice_main" class="grouped fields">
                           
-                    <?php $choices = $this->question_m->get_all_choices($quest->question_id); 
-              
-                        $c_num = 0; if(count($choices)): foreach($questions as $quest): $c_num+=1
-                                
-                            ?>
-                        <label>Choices:</label>
+                          <?php echo $quest->question_id ?>
+                          
+                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); ?>
 
-                        <div id="choice_sub" class="two fields">
+                                       <?php $c_num = 0; if(count($choices)): foreach($choices as $cho): $c_num+=1
+
+                                            ?>
+                                        <label>Choices:</label>
+
+                                        <div id="choice_sub" class="two fields">
 
 
 
-                          <input type="text" name="c_data[]" class="form-group form-control" required="required" placeholder="Choice">    
+                                          <input type="text" name="c_data<?php echo $c_num ?>" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"/>    
 
-                        </div>
-                        
-                         <?php endforeach; ?>
-                            <?php endif; ?> 
+                                        </div>
+
+                                         <?php endforeach; ?>
+                                            <?php endif; ?> 
 
                       <div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
                       <div id="rmv_choiceItem"class="mini ui red button" type="button">Remove Choice</div>
                       
                       </div>
+                 
+                 </br>
                  
                     </div>
                         

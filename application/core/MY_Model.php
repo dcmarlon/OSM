@@ -282,7 +282,7 @@ class MY_Model extends CI_Model
      * Fetch all the records in the table. Can be used as a generic call
      * to $this->_database->get() with scoped methods.
      */
-    public function get_all_question($primary_value)
+    public function get_all_questions($primary_value)
     {
             $data_survey = 'survey_id';
         $this->trigger('before_get');

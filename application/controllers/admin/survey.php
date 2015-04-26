@@ -183,7 +183,7 @@
                        // $this->data['survey'] = $this->survey_m->get_all();
 //                        $this->data['question'] = $this->question_m->get_all_question($id);
                       //  $this->data['choices'] = $this->choice_m->get_all_choices($this->data['question']->question_id);
-			count($this->data['survey']) || $this->data['errors'][] = 'survey could not be found';
+			count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
                                     //$this->data['surveyID'] = $id;
 		}
 //		else {
