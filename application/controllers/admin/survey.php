@@ -139,13 +139,7 @@
         
                 //function for getting the total number of answers for a given question		
         public function get_total_ans_per_q($q){ 		
-                   $totalperq = $this->results_m->get_total_per_q($q);
-                   /*if($totalperq == false){
-                       echo "you did";
-                   }
-                   echo $totalperq[0]['votes'];*/
-
-            return $totalperq;
+           $cc = $this->results_m->get_total_per_q($q);
         }
                
         public function add(){        

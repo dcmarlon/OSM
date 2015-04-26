@@ -41,13 +41,14 @@ class Results_m extends CI_Model {
     }
     
     public function get_total_per_q($q_id){
-        $query=mysql_query("SELECT COUNT(*) as totalvotes FROM answers WHERE choice_id IN(SELECT choice_id FROM choices WHERE question_id='$q_id')");  
-        while($row=mysql_fetch_assoc($query))  
-        $total=$row['totalvotes']; 
-
+        //$query=mysql_query("SELECT answers.answer_id, COUNT(*) as votes FROM answers, choices WHERE answers.choice_id=choices.choice_id AND answers.choice_id IN(SELECT choice_id FROM choices WHERE choice_id='$q_id') GROUP BY answers.choice_id"); 
+        //$query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") ORDER BY choice_id";
+       
+        $query_str = "SELECT choice_id FROM choices WHERE question_id=$q_id";
+        $queryc = $this->db->query($query_str);
+        $querycs = $queryc->result_array();
+        print_r($querycs);
         
-        //echo $total;
-        return $total;
     }
     
    /* public function get_answers($id)
