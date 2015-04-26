@@ -104,6 +104,7 @@
                     }  
                     $data['choices'] = $this->results_m->get_choices($q_id);
                 }
+                
               //get answers  
                 if($data['choices']!=false){
                     $totalc=count($data['choices']);
@@ -114,21 +115,38 @@
                     }  
                     $data['ans'] = $this->results_m->get_answers($c_id, $college);
                 }
+                
+                
+                
+                $total_a = count($data['ans']); //count the number of answers in the entire survey
+                $tot_ansque = array(); //temporary array for the total number of answers for that question
+                $idkey = array(); //temporary array to hold question_id
+                
+            //loop for getting the total number of answers in each question
+                for($n=0;$n<$total; $n++){
+                    $idkey[$n] = $data['res'][$n]['question_id'];  //put question_id into $idkey array
+                    $tot_ansque[$n] = $this->get_total_ans_per_q($idkey[$n]); //put total answers for a questions into $tot_ansque
+                }
+                
+                $data['ansque'] = array_combine($idkey,$tot_ansque); //make questiion_id as associative array key and tot_ansque as value    
+                
             $data['totalq'] = $total;
             $data['totalc'] = $totalc;  
-            $data['subview'] = 'admin/survey/view_results';
-            $this->load->view('admin/_layout_main', $data); 
+            $this->load->view('admin/survey/view_results, $data');
+            //$data['subview'] = 'admin/survey/view_results';
+            //$this->load->view('admin/_layout_main', $data); 
         }
         
                 //function for getting the total number of answers for a given question		
-               public function get_total_ans_per_q($q,$a,$sum){ 		
-                  $tot = 0;		
-                  for($n=0;$n<$sum;$n++){		
-                       if ($a[$n]['question_id'] == $q)		
-                            $tot++;      		
-                   }		
-                   return $tot;		
-               }
+        public function get_total_ans_per_q($q){ 		
+                   $totalperq = $this->results_m->get_total_per_q($q);
+                   /*if($totalperq == false){
+                       echo "you did";
+                   }
+                   echo $totalperq[0]['votes'];*/
+
+            return $totalperq;
+        }
                
         public function add(){        
                    

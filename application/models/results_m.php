@@ -27,7 +27,7 @@ class Results_m extends CI_Model {
     
     public function get_answers($c_id, $college){
         if(!empty($c_id)){
-            $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).")";
+            $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") ORDER BY choice_id";
             $query = $this->db->query($query_str);
             if( $query->num_rows() > 0 ){
                     return $query->result_array();
@@ -38,6 +38,16 @@ class Results_m extends CI_Model {
          else {
              return false;
          }   
+    }
+    
+    public function get_total_per_q($q_id){
+        $query=mysql_query("SELECT COUNT(*) as totalvotes FROM answers WHERE choice_id IN(SELECT choice_id FROM choices WHERE question_id='$q_id')");  
+        while($row=mysql_fetch_assoc($query))  
+        $total=$row['totalvotes']; 
+
+        
+        //echo $total;
+        return $total;
     }
     
    /* public function get_answers($id)
