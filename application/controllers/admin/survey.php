@@ -109,7 +109,7 @@
         }
         
                 //function for getting the total number of answers for a given question		
-               public function get_total_ans_per_q($q,$a,$sum){		
+               public function get_total_ans_per_q($q,$a,$sum){ 		
                   $tot = 0;		
                   for($n=0;$n<$sum;$n++){		
                        if ($a[$n]['question_id'] == $q)		
@@ -153,24 +153,28 @@
                                     $questid = array();
                                         $questid = $question_id[$quest]; 
 							
-                                          if($this->input->post('c_data'))
+                                          if($this->input->post('choices_item'))
 					{
-						foreach($this->input->post('c_data') as $choice => $c_num) 
+						foreach($this->input->post('choices_item') as $choice => $c_num) 
 						{
+                     
 							$choices_info = array(
 										'question_id' => $questid,
-										'choice_data' => $this->input->post("c_data")[$choice]
-									);
+										'choice_data' => $this->input->post("choices_item")[$questid][$choice]);
 
 							$this->choice_m->insert_choice($choices_info);
-
+                                                    }          
 						}
 					}
+                                        
+                                        
 			}
+                         redirect('/admin/survey', 'location', 301);
+                         
+                         
 		}
                 
-              //redirect('index.php/admin/survey');  
-        }
+            
         
         
         
@@ -224,8 +228,8 @@
                         for($y=1;$y<$cctr; $y++){
                                 
                             $csid = $this->input->post("c_id".$y);
-                                $cur = array('question_id' => $csid,
-						'question_data' => $this->input->post("c_data".$y)
+                                $cur = array('choice_id' => $csid,
+						'choice_data' => $this->input->post("choices_item".$y)
 						);
                                 
                                $this->question_m->update_question($cur,$csid);
@@ -248,13 +252,13 @@
                                     $questid = array();
                                         $questid = $question_id[$quest]; 
 							
-                                          if($this->input->post('c_data'))
+                                          if($this->input->post('choices_item'))
 					{
-						foreach($this->input->post('c_data') as $choice => $c_num) 
+						foreach($this->input->post('choices_item') as $choice => $c_num) 
 						{
 							$choices_info = array(
 										'question_id' => $questid,
-										'choice_data' => $this->input->post("c_data")[$choice]
+										'choice_data' => $this->input->post("choices_item")[$choice]
 									);
 
 							$this->choice_m->insert_choice($choices_info);

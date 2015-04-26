@@ -20,9 +20,9 @@
     <tbody>
         <?php if(count($survey)): foreach($survey as $sur): ?>	
             <tr>
-                     <?php if($sur['status'] =='Unavailable' && $sur['status'] =='Available' ):?>
+                   
                          <td><?php echo btn_editThree('admin/survey/watch/' . $sur->survey_id); ?></td>
-                     <?php endif; ?>
+                   
                     <td><?php echo $sur->survey_id; ?></td>
                     <td><?php echo $sur->survey_name; ?></td>
                     <td><?php echo date("m - d - Y ", strtotime($sur->created_date)); ?></td>

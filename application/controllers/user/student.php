@@ -7,7 +7,7 @@
 		parent::__construct();
                   
                 $this->load->library('form_validation');
-		$this->load->library('session');
+		//$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->helper('html');
@@ -18,8 +18,9 @@
 	{   
                 // Load our view to be displayed
                // to the user
-               $data['msg'] = $msg;
-		$this->load->view('admin/survey/user/login',$data);
+           $msg ="Hello";
+               $this->data['msg'] = $msg;
+		$this->load->view('admin/survey/user/login',  $this->data);
 	}
         
          public function process(){

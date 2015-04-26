@@ -3,23 +3,25 @@
         <div class="row"></div>
         <div class="three wide column"></div>
         <div class="ten wide column">
-          
-
+            
+            <div class="row">
+                <label> <h2>S U R V E Y - C R E A T I O N</h2>   </label>
+                    </div>  
+            
           <form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/add_survey');?>" role="form">
               
-                <h4>Create Survey
+               
                           <div class="ui input"> 
                             <input type="text" name="s_name" class="required field" placeholder="Survey Title" >
-                          </div>
-               </h4> 
-
-
+                          </div> 
 
                     <div class="question_main" class="field"> 
-
+                             </br>   
                         <div class="questions">
-                                        <div class = "two fields">
+                                   <div class = "two fields">
+                                                                   
                           <div class="field">
+   
                            <label>Q U E S T I O N </label><input name ="q_data[]" type="text" required="required" placeholder="Question">
                           </div>
                           <div class="field">
@@ -42,17 +44,13 @@
 
                         <div id="choice_sub" class="two fields">
 
-
-
-                          <input type="text" name="c_data[]" class="form-group form-control" required="required" placeholder="Choice">    
-
-
-
+                          <input type="text" name="choices_item[]" class="form-group form-control" required="required" placeholder="Choice">    
 
                         </div>
 
                       <div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
                       <div id="rmv_choiceItem"class="mini ui red button" type="button">Remove Choice</div>
+                      
                       </div>
                     </div>
                         </br>
@@ -79,6 +77,7 @@
                   
        </div>
 </div>
+        
 
 
 
@@ -113,7 +112,7 @@
             
             
 		<div>
-          <input type="text" name="c_data[]" class="form-group form-control" required="required" placeholder="Choice">    
+          <input type="text" name="choices_item[]" class="form-group form-control" required="required" placeholder="Choice">    
             
         
 		</div>

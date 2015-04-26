@@ -57,7 +57,7 @@ $(document).ready(function(){
 		 if($(this).siblings("#choice_sub").children().length == 1)
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
 		
-		$(this).siblings("#choice_sub").append(' <input type="text" name="choice_data[]" class="form-group form-control" required placeholder="Choice">');
+		$(this).siblings("#choice_sub").append(' <input type="text" name="choices_item[]" class="form-group form-control" required placeholder="Choice">');
 			
 			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	

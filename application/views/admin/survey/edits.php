@@ -9,7 +9,7 @@
               
                 <h4>Create Survey
                     
-						<?php if(count($survs)): ?>
+		<?php if(count($survs)): ?>
 		
 		<div class ="two fields">
                     
@@ -28,7 +28,8 @@
 						</div>
 	
         </div>
-					<?php endif; ?>
+		<?php endif; ?>
+                    
                </h4> 
 
 
@@ -40,6 +41,7 @@
                     <?php $questions = $this->question_m->get_all_questions($survs->survey_id); 
               
                         $q_num = 0; if(count($questions)): foreach($questions as $quest): $q_num+=1
+                       
                             ?>
           
              <div class="questions">							
@@ -69,19 +71,20 @@
                       <div id="choice_main" class="grouped fields">
                           
                           <?php echo $quest->question_id ?>
+                           <label>Choices:</label>
                           
-                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); ?>
+                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
 
-                                       <?php $c_num = 0; if(count($choices)): foreach($choices as $cho): $c_num+=1
+                                      $c_num = 0; if(count($choices)): foreach($choices as $cho): $c_num+=1
 
                                             ?>
-                                        <label>Choices:</label>
+                                       
 
                                         <div id="choice_sub" class="two fields">
-
-
-
-                                          <input type="text" name="c_data<?php echo $c_num ?>" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"/>    
+                                                
+                                           <?php echo print_r($cho->choice_data) ?>
+<!--                                           <input type="hidden" name="c_id<?php echo $c_num;?>" value="<?php echo $cho->choice_id; ?>"/>         -->
+                                          <input type="text" name="choices_item<?php echo $c_num ?>" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"/>    
 
                                         </div>
 
@@ -117,7 +120,7 @@
                         </div>
                                 </br>
                         <div class="left floated column"> 
-                           <?php echo anchor('index.php/admin/survey', '<button class="ui button">Back</button> '); ?>
+                           <?php echo anchor('/admin/survey', '<button class="ui button">Back</button> '); ?>
                         </div>
                       </div>
           
@@ -159,7 +162,7 @@
             
             
 		<div>
-          <input type="text" name="c_data[]" class="form-group form-control" required="required" placeholder="Choice">    
+          <input type="text" name="choices_item[]" class="form-group form-control" required="required" placeholder="Choice">    
             
         
 		</div>
