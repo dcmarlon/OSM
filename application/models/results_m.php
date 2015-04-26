@@ -24,7 +24,22 @@ class Results_m extends CI_Model {
 	}
     }
     
-    public function get_answers($id)
+    public function get_answers($c_id, $college){
+        if(!empty($c_id)){
+            $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).")";
+            $query = $this->db->query($query_str);
+            if( $query->num_rows() > 0 ){
+                    return $query->result_array();
+            } 
+            else
+                return false;
+        }   
+         else {
+             return false;
+         }   
+    }
+    
+   /* public function get_answers($id)
     {
         $this->db->where('survey_id',$id);
             $this->db->from('answers');
@@ -35,7 +50,7 @@ class Results_m extends CI_Model {
             } else {
 		return false;
 	}
-    }
+    }*/
     
     public function get_choices($q_id){
         if(!empty($q_id)){

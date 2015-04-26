@@ -93,6 +93,7 @@
 				'status' =>$row->status
 			);
                 
+               //get choices 
                 if($data['res']!=false){
                 
                     $total=count($data['res']);
@@ -103,7 +104,20 @@
                     }  
                     $data['choices'] = $this->results_m->get_choices($q_id);
                 }
+              //get answers  
+                if($data['choices']!=false){
+                    $totalc=count($data['choices']);
+                    $q_id = array();
+                    //echo $total;
+                    for($n=0;$n<$totalc;$n++){
+                        $c_id[$n] = $data['choices'][$n]['choice_id'];
+                    }  
+                    $data['ans'] = $this->results_m->get_answers($c_id, $college);
+                }
                 
+            print_r($data['choices']);
+            $data['totalq'] = $total;
+            $data['totalc'] = $totalc;  
             $data['subview'] = 'admin/survey/view_results';
             $this->load->view('admin/_layout_main', $data); 
         }

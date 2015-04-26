@@ -1,5 +1,6 @@
+<?php print_r($choices)?>
 <div class="ten wide column">
-   <!-- <h4> <?php echo $surv['name']; ?> </h4>
+    <h4> <?php echo $surv['name']; ?> </h4>
     
     <div class="ui floating labeled icon dropdown button">
     <i class="filter icon"></i>
@@ -18,9 +19,9 @@
         School of Business and Accountancy
       </div>
     </div>
-  </div> !-->
+  </div> 
     
-    <select name="filter"> 
+<select name="filter"> 
     <option selected>
         ALL
     </option>
@@ -41,21 +42,49 @@
     </option> 
 </select> 
     
-    <p> 
-       <?php foreach ($res as $q): 
-           
-            echo $q['question_data'];
-            echo "<br>";
-            foreach ($choices as $c): 
-                
-                echo $c['choice_data'];
-                echo "<br>";
-                endforeach;
-                
+    
+     <p> 
+    <?php 
+      
+      $ndx=0;
+        for($x=0;$x<$totalq;){
+          
+            echo $res[$x]['question_data'];
             echo "<br>";
             
+                for($i=$ndx;$i<$totalc-1;){
+                    if($res[$x]['question_id'] == $choices[$i]['question_id']){
+                        echo $res[$x]['question_id'] ."chice". $choices[$i]['question_id'];
+                        echo $choices[$i]['choice_data'];
+                        $i++;
+                    }
+                    else{
+                        echo "hello";
+                        break;   
+                    }
+                }
+        $ndx=$i;
+        echo "ndx is";
+        echo $ndx;
+        $x++;
+        echo "<br>";
+        }
+    ?>
+        
+            
                 
-        endforeach;?>
+        
+       <!-- <?php
+        for($i=0;$i<$total;){
+            echo $res[$i]['question_data'];
+            $i++;
+        }
+        
+        ?>!-->
+        
+        
     
-    </p>
+    </p> 
+
+   
 </div>
