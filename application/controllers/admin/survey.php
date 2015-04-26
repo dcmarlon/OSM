@@ -79,7 +79,7 @@
             
         }
         
-        public function view_results($id=null){
+        public function view_results($id=null,$college="ALL"){
             
             $row = $this->results_m->get_survey($id);
                 $data['res'] = $this->results_m->get_questions($id);
@@ -92,6 +92,17 @@
 				'date_issued' => $row->issued_date,
 				'status' =>$row->status
 			);
+                
+                if($data['res']!=false){
+                
+                    $total=count($data['res']);
+                    $q_id = array();
+                    //echo $total;
+                    for($n=0;$n<$total;$n++){
+                        $q_id[$n] = $data['res'][$n]['question_id'];
+                    }  
+                    $data['choices'] = $this->results_m->get_choices($q_id);
+                }
                 
             $data['subview'] = 'admin/survey/view_results';
             $this->load->view('admin/_layout_main', $data); 
