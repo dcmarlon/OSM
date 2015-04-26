@@ -160,7 +160,7 @@
                      
 							$choices_info = array(
 										'question_id' => $questid,
-										'choice_data' => $this->input->post("choices_item")[$questid][$choice]);
+										'choice_data' => $this->input->post("choices_item")[$choice]);
 
 							$this->choice_m->insert_choice($choices_info);
                                                     }          
