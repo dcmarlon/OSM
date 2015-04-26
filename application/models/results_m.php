@@ -13,10 +13,11 @@ class Results_m extends CI_Model {
     
     public function get_questions($id)  
     {
-        $this->db->where('survey_id',$id);
-            $this->db->from('questions');
-            $query = $this->db->get();
-		
+        //$this->db->where('survey_id',$id);
+            //$this->db->from('questions');
+            //$query = $this->db->get();
+            $query_str = "SELECT * FROM questions WHERE survey_id=$id ORDER BY question_id";
+            $query = $this->db->query($query_str);
             if( $query->num_rows() > 0 ){
 		return $query->result_array();
             } else {
@@ -54,7 +55,7 @@ class Results_m extends CI_Model {
     
     public function get_choices($q_id){
         if(!empty($q_id)){
-            $query_str = "SELECT * FROM choices WHERE question_id IN(".implode(',',$q_id).")";
+            $query_str = "SELECT * FROM choices WHERE question_id IN(".implode(',',$q_id).") ORDER BY question_id";
             $query = $this->db->query($query_str);
             if( $query->num_rows() > 0 ){
                     return $query->result_array();

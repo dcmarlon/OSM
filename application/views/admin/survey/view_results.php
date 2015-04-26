@@ -48,24 +48,37 @@
       
       $ndx=0;
         for($x=0;$x<$totalq;){
-          
+            echo "<br>";
+            echo "<br>";
+            echo "question id[".$res[$x]['question_id']."]:  ";
             echo $res[$x]['question_data'];
             echo "<br>";
-            
-                for($i=$ndx;$i<$totalc-1;){
+
+               for($i=$ndx;$i<$totalc;){
+                  echo "ndx inside for loop is".$ndx;
+                  echo "<br>";
+                        echo "i is". $i;
+                        echo "<br>";
+                  echo "<br>";
                     if($res[$x]['question_id'] == $choices[$i]['question_id']){
-                        echo $res[$x]['question_id'] ."chice". $choices[$i]['question_id'];
+                        //echo $choices[$i]['question_id'];
+                        echo "choice id[".$choices[$i]['choice_id']."]:  ";
                         echo $choices[$i]['choice_data'];
                         $i++;
+                        
                     }
                     else{
                         echo "hello";
                         break;   
                     }
                 }
+                
         $ndx=$i;
+        echo "<br>";
+        echo "choice loop terminated";
+        echo "<br>";
         echo "ndx is";
-        echo $ndx;
+        echo $ndx; 
         $x++;
         echo "<br>";
         }

@@ -114,8 +114,6 @@
                     }  
                     $data['ans'] = $this->results_m->get_answers($c_id, $college);
                 }
-                
-            print_r($data['choices']);
             $data['totalq'] = $total;
             $data['totalc'] = $totalc;  
             $data['subview'] = 'admin/survey/view_results';
