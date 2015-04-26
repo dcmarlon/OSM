@@ -29,9 +29,35 @@
 		$survey->issued_date = date('Y-m-d');
                 $survey->status = '';
 		return $survey;
+        }
+        
+        
+	function insert_survey($data)	/* insert survey data to db */
+	{
+            
+                        !isset($data[$this->primary_key]) || $data[$this->primary_key] = NULL;
+			$this->db->set($data);
+			$this->db->insert($this->_table);
+			return $this->db->insert_id();
 	}
         
-
+//            public function insert_question($var1)	/* insert survey data to db */
+//	{
+//		$this->db->insert('questions',$var1);
+//		return $this->db->insert_id();
+//	}
+        
+            function update_survey($sdata,$sid)
+            {
+		
+                        $this->db->set($sdata);
+			$this->db->where($this->primary_key, $sid);
+			$this->db->update($this->_table);
+            }
+        
+        
+        
+ 
         
             public function get_status ()
 	{

@@ -31,12 +31,13 @@ class Choice_m extends MY_Model{
 	}
         
         
-        public function get_question_id(){
-            
-            $this->db->where();
-            
-            
-        }
+ 
+        
+                     public function insert_choice($var1)	/* insert survey data to db */
+	{
+		$this->db->insert('choices',$var1);
+	}
+        
         
 //        public function get_question($id){
 //               

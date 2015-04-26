@@ -106,44 +106,59 @@
                    }		
                    return $tot;		
                }
-
-        
-                public function add(){
-//
-//                $this->data['survey'] = $this->survey_m->get_new();
-//                $this->data['question'] = $this->question_m->get_newQuestion();
-//
-//               
-//                // Status for dropdown
-//                $this->data['types'] = $this->question_m->get_types();
-//                
-////                            //Set up the form
-////                $rules = $this->survey_m->rules;
-////                $rulesQuestion = $this->question_m->rules;
-////                
-////
-////                $this->form_validation->set_rules($rules);
-////		$this->form_validation->set_rules($rulesQuestion);
-////                
-//                
-////                if ($this->form_validation->run() == TRUE) {
-//			$data = $this->survey_m->array_from_post(array(
-//				'survey_name'
-//			));
-//                        $dataTwo = $this->question_m->array_from_post(array(
-//				'question_data', 
-//				'question_type'
-//			));
-//                        $this->survey_m->save($data);
-//			$this->question_m->save($dataTwo);
-		//	redirect('admin/survey');
-//		}
-            
-                 //$this->data['subview']='admin/survey/create' ;
-		$this->load->view('admin/survey/createsurvey2');
                
-//            $this->load->view('admin/survey/create', $this->data);
-	//	$this->load->view('admin/_layout_main', $this->data);          
+        public function add(){        
+                   
+            $this->data['subview']='admin/survey/create' ;
+            $this->load->view('admin/_layout_main',$this->data);
+
+              //  redirect('admin/view_hearing');                
+           }
+
+           
+           
+           
+        public function add_survey(){
+            
+            
+            	//$this->data['survey'] = $this->survey_m->get_new();
+                $survey_info = array(
+			'survey_name' => $this->input->post('s_name')
+                       );
+
+		$id = $this->survey_m->insert_survey($survey_info);
+
+		 if($this->input->post('q_data'))
+		{
+			foreach($this->input->post('q_data') as $quest => $q_num) 
+			{
+						 $question_info = array(
+				'survey_id' => $id,
+				'question_data' => $this->input->post("q_data")[$quest],
+				'question_type' => $this->input->post("q_type")[$quest]);
+
+				$question_id[$quest] =$this->question_m->insert_question($question_info);
+                                    
+                                    $questid = array();
+                                        $questid = $question_id[$quest]; 
+							
+                                          if($this->input->post('c_data'))
+					{
+						foreach($this->input->post('c_data') as $choice => $c_num) 
+						{
+							$choices_info = array(
+										'question_id' => $questid,
+										'choice_data' => $this->input->post("c_data")[$choice]
+									);
+
+							$this->choice_m->insert_choice($choices_info);
+
+						}
+					}
+			}
+		}
+                
+              //redirect('index.php/admin/survey');  
         }
         
         
@@ -153,45 +168,96 @@
             
          
 		if ($id) {
-			$this->data['survey'] = $this->survey_m->get($id);
-                        $this->data['question'] = $this->question_m->get_all_question($id);
+			$this->data['survs'] = $this->survey_m->get($id);
+                       // $this->data['survey'] = $this->survey_m->get_all();
+//                        $this->data['question'] = $this->question_m->get_all_question($id);
                       //  $this->data['choices'] = $this->choice_m->get_all_choices($this->data['question']->question_id);
 			count($this->data['survey']) || $this->data['errors'][] = 'survey could not be found';
+                                    //$this->data['surveyID'] = $id;
 		}
 //		else {
 //			$this->data['survey'] = $this->survey_m->get_new();
 //		}
-		
-                
-                  
+   
                 // Status for dropdown
-                $this->data['types'] = $this->question_m->get_types();
-                
-//                // Status for dropdown
-//		$this->data['status'] = $this->survey_m->get_status();
-//                
-//                //Set up the form
-//                $rules = $this->survey_m->rules;
-//		$this->form_validation->set_rules($rules);
-                
-	
-	
-	//	if ($this->form_validation->run() == TRUE) {
-//				$data = $this->survey_m->array_from_post(array(
-//				'survey_name'
-//			));
-//                        $dataTwo = $this->question_m->array_from_post(array(
-//				'question_data', 
-//				'question_type'
-//			));
-//                        $this->survey_m->save($data);
-//			$this->question_m->save($dataTwo);
-//			redirect('admin/survey');
-		//}
+               // $this->data['types'] = $this->question_m->get_types();
 		
-		$this->data['subview'] = 'admin/survey/editTwo';
+		$this->data['subview'] = 'admin/survey/edits';
+//                $this->data['surveyID'] = $id;
 		$this->load->view('admin/_layout_main', $this->data);
         }
+        
+        
+            public function edit_survey(){
+                
+		$sid = $this->input->post("s_id");
+		$qctr = $this->input->post("q_num");
+                $cctr = $this->input->post("c_num");
+		$sur = array('survey_name' => $this->input->post('s_name'),
+					//'issued_date' => $this->input->post("issued_d"),
+					//'status' => $this->input->post("stat_ac")
+                                        );
+
+		$this->survey_m->update_survey($sur,$sid);
+                
+                
+            	for($i=1;$i<=$qctr;$i++){
+			$qsid = $this->input->post("q_id".$i);
+			$qur = array('survey_id' => $sid,
+						'question_data' => $this->input->post("q_data".$i),
+						'question_type' => $this->input->post("q_type".$i),
+						);
+
+			$this->question_m->update_question($qur,$qsid);
+                        
+                        for($y=1;$y<$cctr; $y++){
+                                
+                            $csid = $this->input->post("c_id".$y);
+                                $cur = array('question_id' => $csid,
+						'question_data' => $this->input->post("c_data".$y)
+						);
+                                
+                               $this->question_m->update_question($cur,$csid);
+           
+                        }
+                        
+		}
+                
+                if($this->input->post('q_data'))
+		{
+			foreach($this->input->post('q_data') as $quest => $q_num) 
+			{
+				$question_info = array(
+				'survey_id' => $sid,
+				'question_data' => $this->input->post("q_data")[$quest],
+				'question_type' => $this->input->post("q_type")[$quest]);
+
+				$question_id[$quest] =$this->question_m->insert_question($question_info);
+                                    
+                                    $questid = array();
+                                        $questid = $question_id[$quest]; 
+							
+                                          if($this->input->post('c_data'))
+					{
+						foreach($this->input->post('c_data') as $choice => $c_num) 
+						{
+							$choices_info = array(
+										'question_id' => $questid,
+										'choice_data' => $this->input->post("c_data")[$choice]
+									);
+
+							$this->choice_m->insert_choice($choices_info);
+
+						}
+					}
+			}
+		}
+                
+                
+                
+                
+                
+            }
         
         
     }

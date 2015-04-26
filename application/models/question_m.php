@@ -47,6 +47,13 @@ class Question_m extends MY_Model{
             return $array;
         }
         
+             
+        public function insert_question($var1)	/* insert survey data to db */
+	{
+		$this->db->insert('questions',$var1);
+		return $this->db->insert_id();
+	}
+        
 //        public function get_question($id){
 //               
 //            $this->db->where($this->primary_key_survey,$id);
