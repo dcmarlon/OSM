@@ -17,7 +17,7 @@ function btn_editThree ($uri)
 
 function btn_report ($uri)
 {
-	return anchor($uri, '<button class="tiny ui blue button">Result</button>');
+	return anchor($uri, '<button class="tiny ui blue button"> View Result</button>');
 }
 
 function btn_editFour ($uri)

@@ -30,13 +30,11 @@
         
         
         public function watch($id=null){
-            
-            
 
                 $row = $this->results_m->get_survey($id);
                 $data['res'] = $this->results_m->get_questions($id);
-                $data['choices'] = $this->results_m->get_choices($id);
-                $data['ans'] = $this->results_m->get_answers($id);
+                //$data['choices'] = $this->results_m->get_choices($id);
+                //$data['ans'] = $this->results_m->get_answers($id); 
             
                 //row into array
                 $data['surv'] = array(
@@ -57,12 +55,12 @@
                     for($n=0;$n<$total;$n++){
                         $q_id[$n] = $data['res'][$n]['question_id'];
                     }  
-                    $data['choices'] = $this->results_model->get_choices($q_id);
+                    $data['choices'] = $this->results_m->get_choices($q_id);
                 }*/
                 
                 //echo $row->survey_name; */
                 
-                $total_q = count($data['res']); //count the number of questions in the entire survey
+               /* $total_q = count($data['res']); //count the number of questions in the entire survey
                 $total_a = count($data['ans']); //count the number of answers in the entire survey
                 $tot_ansque = array(); //temporary array for the total number of answers for that question
                 $idkey = array(); //temporary array to hold question_id
@@ -73,12 +71,30 @@
                     $tot_ansque[$n] = $this->get_total_ans_per_q($idkey[$n],$data['ans'],$total_a); //put total answers for a questions into $tot_ansque
                 }
                 
-                $data['ansque'] = array_combine($idkey,$tot_ansque); //make questiion_id as associative array key and tot_ansque as value 
+                $data['ansque'] = array_combine($idkey,$tot_ansque); //make questiion_id as associative array key and tot_ansque as value  
                 
-                //print_r($data['ansque']);
+                //print_r($data['ansque']); */
                 $data['subview'] = 'admin/survey/info';
-		$this->load->view('admin/_layout_main', $data);
+		$this->load->view('admin/_layout_main', $data); 
             
+        }
+        
+        public function view_results($id=null){
+            
+            $row = $this->results_m->get_survey($id);
+                $data['res'] = $this->results_m->get_questions($id);
+
+                //row into array
+                $data['surv'] = array(
+				'id' => $row->survey_id,
+				'name' => $row->survey_name,
+				'date_created' => $row->created_date,
+				'date_issued' => $row->issued_date,
+				'status' =>$row->status
+			);
+                
+            $data['subview'] = 'admin/survey/view_results';
+            $this->load->view('admin/_layout_main', $data); 
         }
         
                 //function for getting the total number of answers for a given question		

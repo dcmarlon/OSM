@@ -38,6 +38,7 @@
                 <tr>
                
                     <td><?php echo btn_editTwo('admin/survey/edit/' . $surv['id']); ?></td>
+                    <td><?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?></td>
                      
                      <?php if($surv['status'] =='Unavailable'):?>
                    <td><button class="tiny ui blue button" id="button_view_results" value="vertical flip">Result</button></td>
