@@ -64,8 +64,12 @@
 			</div>
 			
 			<div class="content">
+			<div class="description">
+      <p>Please enter your ID number and select your college</p>
+    </div>
 			<div class = "ui centered grid">
 			<div class ="five wide centered aligned column">
+			
 				
 				
 		<form class ="ui form" action='<?php echo base_url();?>login/process' method='post' name='process'>
