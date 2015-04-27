@@ -1,11 +1,17 @@
 
-	#foot{
+	#foottext{
 		font-size: 1em;
 		font-family: helvetica;
 		color: #fff;
 		margin:0;
 		padding:0;
 		text-align: center;
+		
+	}
+	
+	#foot{
+	position: absolute;
+	
 	}
 	
 	h2{
