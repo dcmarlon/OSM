@@ -66,7 +66,7 @@
                 $idkey = array(); //temporary array to hold question_id
                 
                 //loop for getting the total number of answers in each question
-                for($n=0;$n<$total_q; $n++){
+                for($n=0;$n<$total_q    ; $n++){
                     $idkey[$n] = $data['res'][$n]['question_id'];  //put question_id into $idkey array
                     $tot_ansque[$n] = $this->get_total_ans_per_q($idkey[$n],$data['ans'],$total_a); //put total answers for a questions into $tot_ansque
                 }
@@ -174,6 +174,7 @@
    
         public function add_survey(){
             
+          
             
             	//$this->data['survey'] = $this->survey_m->get_new();
                 $survey_info = array(
@@ -193,33 +194,37 @@
 
 				$question_id[$quest] =$this->question_m->insert_question($question_info);
                                     
-                                    $questid = array();
-                                        $questid = $question_id[$quest]; 
-							
-                                          if($this->input->post('choices_item'))
-					{
-						foreach($this->input->post('choices_item') as $choice => $c_num) 
-						{
-                     
-							$choices_info = array(
-										'question_id' => $questid,
-										'choice_data' => $this->input->post("choices_item")[$choice]);
 
-							$this->choice_m->insert_choice($choices_info);
-                                                    }          
-						}
-					}
+                                        $questid = array();
+                                        $questid = $question_id[$quest]; 
+                                                           
                                         
+                                        
+                       if($this->input->post('choices_item'))
+                        {
+                        
+                    
+                            
+                            foreach($this->input->post('choices_item') as $choice => $c_num) 
+                            {
+
+                                    $choices_info = array(
+                                                            'question_id' =>  $questid,
+                                                            'choice_data' => $this->input->post("choices_item")[$choice]);
+
+                                    $this->choice_m->insert_choice($choices_info);
+                            }  
+                                
+                      }
+           
                                         
 			}
-                         redirect('/admin/survey', 'location', 301);
-                         
-                         
 		}
                 
-            
-        
-        
+    
+                 redirect('/admin/survey', 'location', 301); 
+        }
+
         
        	public function edit ($id = NULL)
 	{
