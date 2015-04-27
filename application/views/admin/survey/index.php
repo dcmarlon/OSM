@@ -1,5 +1,5 @@
 
-<div class="ten wide column">
+<div class="twelve wide column">
     <div class="row"><h2>Archives of Survey</h2></div>
     			<h4><?php echo $meta_title; ?>
     			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -43,3 +43,4 @@
 </table>
     
   </div>
+  

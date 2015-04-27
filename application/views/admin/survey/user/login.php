@@ -4,7 +4,7 @@
 <div class= "sixteen wide column">
 		<div class = "ui large fixed inverted menu">
 		<div class="title item">	
-			TC Surveys
+			Today's Carolinian Surveys
 		</div>
 		
 		
@@ -44,21 +44,22 @@
 	</div>
 	<div class="section" id="section1">
 	
-				<h1>Today's CAROLINIAN</h1>
-				<h3>The Official Progressive Student Publication of USC</h3>
+				<h2>CAROLINIANS! Be a part of change</h2>
+				<h3>Our surveys won't take much of your time</h3>
 			</div>
 
 	<div class="section" id="section2">
 		
-			<h1>Our Commitment Your Paper</h1>
+			<h1>Today's CAROLINIAN</h1>
+			<h2>Our Commitment Your Paper</h2>
 	</div>
 		</div>
 
 		
 		<!-- MODAL for student login-->
 		
-		<div class="ui modal" id="studSurvey">
-		
+		<div class="ui basic modal" id="studSurvey">
+		<i class="close icon"></i>
 		<div class="header">
 				Student Verification
 			</div>
@@ -68,7 +69,7 @@
 			<div class ="five wide centered aligned column">
 				
 				
-		<form class ="ui form" action='<?php echo base_url();?>login/process' method='post' name='process'>
+		<form class ="ui inverted form" action='<?php echo base_url();?>login/process' method='post' name='process'>
                           <?php if(! is_null($msg)) echo $msg;?>
 				<div class = "required field" id="nm">
 				<label>Enter ID Number:</label>
@@ -81,7 +82,7 @@
 				<div class = "required field">
 				<label>College:</label>
 				<select id ="coll" name='coll' class='form-control' required >
-								<option value=' '> </option>
+								<option value=' '>-Select your college- </option>
 								<option value='cas'>College of Arts and Sciences</option>
 								<option value='coe'>College of Engineering</option>
 								<option value='cafa'>College of Architecture and Fine Arts</option>
@@ -100,15 +101,17 @@
 				
 				<div class = "actions" >
 			
-				
-				  <div class="ui negative labeled button" >
+				<div class="two fluid ui inverted buttons">
+				  <div class="negative ui basic inverted button" >
+				  <i class="remove icon"></i>
 					Cancel
 				  </div>
 				 
-				  <div class="ui positive labeled button" type="Submit" value="Submit">
+				  <div class="positive ui basic inverted button" type="Submit" value="Submit">
+					<i class="checkmark icon"></i>
 					Submit
 				  </div>
-			
+			</div>
 			
 			  </div>
                  

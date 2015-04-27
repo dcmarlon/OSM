@@ -1,0 +1,34 @@
+
+	#foot{
+		font-size: 1em;
+		font-family: helvetica;
+		color: #fff;
+		margin:0;
+		padding:0;
+		text-align: center;
+	}
+	
+	h2{
+		font-size: 4em;
+		font-family: helvetica;
+		color: #000000;
+		margin:0;
+		padding:0;
+	}
+	/* Defining each section background and styles
+	* --------------------------------------- */
+	#menutext{
+		/*color: #8e2323;*/
+		 background-color: #8e2323;
+}
+
+#menutext1{
+		color: #fff;
+}
+	
+	}
+
+        .sticky {
+  position: absolute;
+  bottom: 0;
+}
