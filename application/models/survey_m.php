@@ -31,7 +31,47 @@
 		return $survey;
         }
         
-        
+      
+	  
+		function insert_survey_v2()	/* insert survey data to db */
+		{
+			$data = array(
+				'survey_name' => $this->input->post('s_name')
+			);
+			
+			$query1 = $this->db->insert('survey',$data);
+			$survey_id = $this->db->insert_id();
+			
+			foreach(array_combine($this->input->post('q_data'),$this->input->post('q_type')) as $question => $question_type){
+				$data = array(
+				'survey_id' => $survey_id,
+				'question_data' => $question,
+				'question_type' => $question_type
+				
+				);
+				
+				$this->db->insert('questions',$data);
+				$question_id = $this->db->insert_id();
+				
+				foreach($this->input->post('choices_item') as $choices){
+					$data = array(
+								'question_id' => $question_id,
+								'choice_data' => $choices
+					);
+					
+					$this->db->insert('choices',$data);
+					
+				}
+				
+			
+			}			
+			if($query1){
+				return true;
+				
+			}else
+				return false;
+		}
+	    
 	function insert_survey($data)	/* insert survey data to db */
 	{
             
@@ -41,11 +81,11 @@
 			return $this->db->insert_id();
 	}
         
-//            public function insert_question($var1)	/* insert survey data to db */
-//	{
-//		$this->db->insert('questions',$var1);
-//		return $this->db->insert_id();
-//	}
+           public function insert_question($var1)	/* insert survey data to db */
+	{
+			$this->db->insert('questions',$var1);
+		return $this->db->insert_id();
+	}
         
             function update_survey($sdata,$sid)
             {

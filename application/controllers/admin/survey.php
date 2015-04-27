@@ -151,8 +151,27 @@
            }
 
            
-           
-           
+   	  public function add_v2(){        
+                   
+            $this->data['subview']='admin/survey/create_v2' ;
+            $this->load->view('admin/_layout_main',$this->data);
+
+              //  redirect('admin/view_hearing');                
+           }
+  	    public function add_survey_v2(){
+			/*add validation rules to each of the input pwede ra wala */
+			//insert code here
+			
+			if($this->survey_m->insert_survey_v2() != false){
+				echo" redirect to success page";
+			}else{
+				echo "error";
+			}
+			
+			 
+			 
+		}        
+   
         public function add_survey(){
             
             
