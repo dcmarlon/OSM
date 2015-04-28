@@ -35,6 +35,19 @@
 	  
 		function insert_survey_v2()	/* insert survey data to db */
 		{
+			/*print_r($this->input->post('question'));
+			echo "<br>";
+			$bq= $this->input->post('question');
+			
+			foreach($bq as $index => $quest)
+			{
+				foreach($quest['choices_item'] as $choice){
+					echo  $choice." ";
+					
+				}
+				echo "<br>";
+			}
+		*/
 			$data = array(
 				'survey_name' => $this->input->post('s_name')
 			);
@@ -42,7 +55,31 @@
 			$query1 = $this->db->insert('survey',$data);
 			$survey_id = $this->db->insert_id();
 			
-			foreach(array_combine($this->input->post('q_data'),$this->input->post('q_type')) as $question => $question_type){
+			$question= $this->input->post('question');
+			foreach($question as $index => $quest){
+				$data = array(
+					'survey_id' => $survey_id,
+					'question_data' => $quest['q_data'],
+					'question_type' => $quest['q_type']
+				
+				);
+				
+				$this->db->insert('questions',$data);
+				$question_id = $this->db->insert_id();
+				foreach($quest['choices_item'] as $choice){
+					$data = array(
+								'question_id' => $question_id,
+								'choice_data' => $choice
+					);
+					
+					$this->db->insert('choices',$data);
+					
+				}
+				
+				
+				
+			}
+		/*	foreach(array_combine($this->input->post('q_data'),$this->input->post('q_type')) as $question => $question_type){
 				$data = array(
 				'survey_id' => $survey_id,
 				'question_data' => $question,
@@ -64,7 +101,7 @@
 				}
 				
 			
-			}			
+			}	*/		
 			if($query1){
 				return true;
 				
