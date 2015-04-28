@@ -1,30 +1,30 @@
 <div class="ten wide column">
     			<h2>Survey Information
     			&nbsp;&nbsp;&nbsp;&nbsp;
-                        <?php echo anchor('admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+           
                         </h2> 
 <table class="ui very basic table">
 	<tr>
-		<td>No</td>
+		<td><strong>No.</strong></td>
 		<td><?php echo $surv['id']; ?></td>
 	</tr>
 	<tr>
-		<td>Survey Name</td>
+		<td><strong>Survey Name :</strong></td>
 		<td><?php echo  $surv['name']; ?></td>
 	</tr>
 	<tr>
-		<td>Created Date</td>
+		<td><strong>Created Date :</strong></td>
 		<td><?php echo date("m - d - Y ", strtotime($surv['date_created'])); ?></td>
 	</tr>
 	<tr>
-		<td>Issued Date</td>
+		<td><strong>Issued Date :</strong></td>
 		<td><?php if(date("m - d - Y ", strtotime($surv['date_issued'])) > "01 - 01 - 2000")
                                 echo date("m - d - Y ", strtotime($surv['date_issued']));
                               else
                                   echo "N/A"; ?>  </td>
 	</tr>
 	<tr>
-		<td>Status </td>
+		<td><strong>Status Code :</strong></td>
 		<td><?php echo $surv['status'] ?></td>
 	</tr>
 </table>
@@ -32,19 +32,20 @@
            
        
            
-             
-        
-            <div class="pull-right">
-                <tr>
-               
-                    <td><?php echo btn_editTwo('admin/survey/edit/' . $surv['id']); ?></td>
-                    <td><?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?></td>
+    <div class ="row">   
+          <?php echo anchor('admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+    
+         
+                    <?php if($surv['status'] =='Available'):?>
+                    <?php echo btn_editTwo('admin/survey/edit/' . $surv['id']); ?>
+                    <?php endif; ?>
                      
-                     <?php if($surv['status'] =='Unavailable'):?>
-                   <td><button class="tiny ui blue button" id="button_view_results" value="vertical flip">Result</button></td>
+                     <?php if(($surv['status'] =='Unavailable')|| ($surv['status'] =='Active')):?>
+                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
                      <?php endif; ?>
-                </tr>
-            </div>  
+
+    </div>
+     </div>  
     
     
   <!--------------------               VIEW RESULTS STARTS HERE               -------------------------------------------------------------!-->

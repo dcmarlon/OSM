@@ -26,12 +26,12 @@
              </div>
                 
 
-                     <div class="row"></div>
+<!--                     <div class="row"></div>
                       <div class="three wide column"></div>
                       <div class="sixteen wide centered column" style="background-color: #000000">
                           <footer id="foot"><p style="centered">(c) Copyright 2015</p></footer>
                           
-                      </div>  
+                      </div>  -->
             
        </div>       
 

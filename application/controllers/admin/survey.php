@@ -21,13 +21,6 @@
 	}
         
         
-        public function sample(){
-            
-        
-            $this->load->view('admin/survey/sample');
-            
-        }
-        
         
         public function watch($id=null){
 
@@ -245,7 +238,7 @@
                 // Status for dropdown
                // $this->data['types'] = $this->question_m->get_types();
 		
-		$this->data['subview'] = 'admin/survey/edits';
+		$this->data['subview'] = 'admin/survey/edit';
 //                $this->data['surveyID'] = $id;
 		$this->load->view('admin/_layout_main', $this->data);
         }
@@ -316,11 +309,15 @@
 			}
 		}
                 
-                
-                
-                
-                
             }
+            
+           public function delete_question_with_choices ($id,$id2)
+	{
+                 $this->choice_m->delete_many($id);
+		$this->question_m->delete($id);
+                
+		redirect('admin/article/edit/$id2');
+	}
         
         
     }

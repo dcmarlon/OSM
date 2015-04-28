@@ -20,7 +20,7 @@
                // to the user
            $msg ="Hello";
                $this->data['msg'] = $msg;
-		$this->load->view('admin/survey/user/login',  $this->data);
+		$this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
         
          public function process(){
