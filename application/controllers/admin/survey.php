@@ -154,7 +154,7 @@
    	  public function add_v2(){        
                    
             $this->data['subview']='admin/survey/create_v2' ;
-            $this->load->view('admin/_layout_main',$this->data);
+            $this->load->view('admin/_layout_v2',$this->data);
 
               //  redirect('admin/view_hearing');                
            }
