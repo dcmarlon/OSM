@@ -31,11 +31,27 @@
 		return $survey;
         }
         
+        public function delete_question(){
+
+
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->update('users', $data);
+		
+			if($this->db->affected_rows()>0){
+				return true;
+			}
+			else
+			 return false;
+		
+		
+	}
+        
       
 	  
 		function insert_survey_v2()	/* insert survey data to db */
 		{
-			/*print_r($this->input->post('question'));
+			/*
+                    print_r($this->input->post('question'));
 			echo "<br>";
 			$bq= $this->input->post('question');
 			
@@ -47,8 +63,9 @@
 				}
 				echo "<br>";
 			}
-		*/
-			$data = array(
+                         * */
+                      
+		$data = array(
 				'survey_name' => $this->input->post('s_name')
 			);
 			
@@ -101,28 +118,52 @@
 				}
 				
 			
-			}	*/		
+			}		*/	
+
 			if($query1){
 				return true;
 				
 			}else
 				return false;
+                    
+                      
 		}
-	    
-	function insert_survey($data)	/* insert survey data to db */
-	{
-            
-                        !isset($data[$this->primary_key]) || $data[$this->primary_key] = NULL;
-			$this->db->set($data);
-			$this->db->insert($this->_table);
-			return $this->db->insert_id();
+                
+                
+                
+                function edit_survey_v2() {
+                    
+                    
+                    
+                    
+                }
+                
+                
+       	public function delete_all_questions($id){
+		$this->db->where('question_id',$id);
+                $this->db->delete('choices');
+                $this->db->where('question_id',$id);
+		
+		 $this->db->delete('questions');
+		
+		if($this->db->affected_rows()>0){
+			return true;
+		}else{ return false;}
+
 	}
         
-           public function insert_question($var1)	/* insert survey data to db */
-	{
-			$this->db->insert('questions',$var1);
-		return $this->db->insert_id();
+               	public function delete_choices($id){
+		$this->db->where('question_id',$id);
+                $this->db->delete('choices');
+		
+		if($this->db->affected_rows()>0){
+			return true;
+		}else{ return false;}
+
 	}
+                
+                
+	   
         
             function update_survey($sdata,$sid)
             {

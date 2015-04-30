@@ -65,7 +65,7 @@
                                     <option value="Combination">Combination</option>
                                   </select>
                                 
-                                <div class="row"><?php echo btn_delete('admin/article/delete_question/' . $question->id, $surs->survey_id); ?></div>
+                                <div class="row"><?php echo btn_delete('admin/article/delete_question' . $quest->question_id, $survs->survey_id); ?></div>
 
                             </div>
 
@@ -86,7 +86,7 @@
 
                                         <div id="choice_sub" class="two fields">
                                                 
-                                           <?php echo print_r($cho->choice_data) ?>
+                                         
                                            <input type="hidden" name="c_id<?php echo $c_num;?>" value="<?php echo $cho->choice_id; ?>"/>         
                                           <input type="text" name="choices_item<?php echo $c_num ?>" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"/>    
 

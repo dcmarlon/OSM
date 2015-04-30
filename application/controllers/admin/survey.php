@@ -148,22 +148,47 @@
                    
             $this->data['subview']='admin/survey/create_v2' ;
             $this->load->view('admin/_layout_v2',$this->data);
+            
 
               //  redirect('admin/view_hearing');                
            }
+           
+//             public function edit_v2(){        
+//                   
+//            $this->data['subview']='admin/survey/edit_v2' ;
+//            $this->load->view('admin/_layout_v2',$this->data);
+//             }
+
+              //  redirect('admin/view_hearing');                
+         
   	    public function add_survey_v2(){
 			/*add validation rules to each of the input pwede ra wala */
 			//insert code here
 			
-			if($this->survey_m->insert_survey_v2() != false){
-				echo" redirect to success page";
+			if($this->survey_m->insert_survey_v2() != false){	
+                            
+                                 redirect('/admin/survey', 'location', 301); 
+                 
 			}else{
 				echo "error";
 			}
 			
 			 
 			 
-		}        
+		}    
+                
+                
+                public function edit_survey_v2(){
+                    
+                    	if($this->survey_m->edit_survey_v2() != false){	
+                            
+                                 redirect('/admin/survey', 'location', 301); 
+                 
+			}else{
+				echo "error";
+			}
+                    
+                }
    
         public function add_survey(){
             
@@ -231,17 +256,24 @@
 			count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
                                     //$this->data['surveyID'] = $id;
 		}
-//		else {
-//			$this->data['survey'] = $this->survey_m->get_new();
-//		}
-   
-                // Status for dropdown
-               // $this->data['types'] = $this->question_m->get_types();
 		
-		$this->data['subview'] = 'admin/survey/edit';
-//                $this->data['surveyID'] = $id;
-		$this->load->view('admin/_layout_main', $this->data);
+	           $this->data['subview']='admin/survey/edit_v2' ;
+                     $this->load->view('admin/_layout_v2',$this->data);
         }
+        
+        
+        public function editUserInfo(){
+		
+		$this->load->model('survey_m');
+		
+		if($this->survey_m->edit_user()){
+					echo "success";
+					
+		}else{
+			echo $this->input->post('uiD');
+			echo "error";
+		}	
+	}
         
         
             public function edit_survey(){
@@ -318,6 +350,29 @@
                 
 		redirect('admin/article/edit/$id2');
 	}
+        
+        
+        public function deleteQuestion($id){
+		$this->load->model('survey_m');
+		if($this->survey_m->delete_all_questions($id)){
+			
+				echo "success";
+		}else{
+			echo "invalid id";
+		}	
+	}
+        
+           public function deleteChoices($id){
+		$this->load->model('survey_m');
+		if($this->survey_m->delete_choices($id)){
+			
+				echo "success";
+		}else{
+			echo "invalid id";
+		}	
+	}
+        
+        
         
         
     }
