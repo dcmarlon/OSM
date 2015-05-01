@@ -100,7 +100,7 @@
                         </div>
 
                       <div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
-                      <button id="rmv_choiceItem" value="<?php echo $quest->question_id; ?>"  class="mini ui red button" type="button">Remove Choice</button>
+                      <button id="rmv_choiceItem" class="mini ui red button" type="button" value="<?php echo $quest->question_id; ?>"  >Remove Choice</button>
                       <input type="hidden" name="ctr" id="ctr" value="0" />
                      
                       
@@ -227,6 +227,14 @@ $(document).ready(function(){
       $(document).on("click","#rmv_choiceItem", function(){
 
              alert(this.value);
+             
+              id = this.value;
+             
+                   if($(this).siblings("#choice_sub").children().length == 5)
+                $(this).siblings('#add_choiceItem').removeAttr("disabled");
+            
+            	if($(this).siblings("#choice_sub").children().length == 1)
+		$(this).attr("disabled","disabled");
 
    $.ajax({
 		type: "POST",
@@ -234,13 +242,11 @@ $(document).ready(function(){
 			
 	}).done(function(msg){
 		if(msg=="success"){
-                     
-             if($(this).siblings("#choice_sub").children().length == 5)
-                $(this).siblings('#add_choiceItem').removeAttr("disabled");
+    
 		
 		$(this).siblings("#choice_sub").children().last().remove();
-		if($(this).siblings("#choice_sub").children().length == 1)
-		$(this).attr("disabled","disabled");
+
+
 		}
 				
 	});
@@ -258,7 +264,7 @@ $(document).ready(function(){
                    $(document).on("click","#remove_quest", function(){
                        alert(this.value);
 
-
+                        id = this.value;
 
                    $.ajax({
                                 type: "POST",

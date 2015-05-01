@@ -73,7 +73,7 @@
                           <?php if(! is_null($msg)) echo $msg;?>
 				<div class = "required field" id="nm">
 				<label>Enter ID Number:</label>
-				<input id = "idnum" type="text" class="form-control" placeholder="ID Number" name='idnum' required autofocus><br>
+				<input id = "idnum" type="number" min="1000000" max="99999999" class="form-control" placeholder="ID Number" name='idnum' required autofocus required><br>
 				</div>
 				
 				
@@ -81,8 +81,8 @@
 				
 				<div class = "required field">
 				<label>College:</label>
-				<select id ="coll" name='coll' class='form-control' required >
-								<option value=' '>-Select your college- </option>
+				<select id ="coll" name='coll' class='form-control'  required="required">
+								<option value="" disabled default selected class="display-none">-Select your college- </option>
 								<option value='cas'>College of Arts and Sciences</option>
 								<option value='coe'>College of Engineering</option>
 								<option value='cafa'>College of Architecture and Fine Arts</option>
@@ -92,14 +92,9 @@
 								<option value='sbe'>School of Business and Economics</option>
 				</select><br><br>
 				</div>
-							
-			   </form>  	
-				
-				</div>
-				</div>
-				</div>
-				
-				<div class = "actions" >
+                    
+                    
+                    	<div class = "actions" >
 			
 				<div class="two fluid ui inverted buttons">
 				  <div class="negative ui basic inverted button" >
@@ -107,14 +102,22 @@
 					Cancel
 				  </div>
 				 
-				  <div class="positive ui basic inverted button" type="Submit" value="Submit">
+				  <input  type="Submit" value="Submit"/>
 					<i class="checkmark icon"></i>
-					Submit
-				  </div>
+				
+				
 			</div>
+				</div>			
+			 	
+				
+				
+				</div>
+				</div>
+				
+			
 			
 			  </div>
-                 
+                   </form>  
 			  </div>
 		
 

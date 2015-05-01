@@ -354,7 +354,7 @@
         
         public function deleteQuestion($id){
 		$this->load->model('survey_m');
-		if($this->survey_m->delete_all_questions($id)){
+		if($this->survey_m->deleteUserFromDB($id)){
 			
 				echo "success";
 		}else{
@@ -364,7 +364,7 @@
         
            public function deleteChoices($id){
 		$this->load->model('survey_m');
-		if($this->survey_m->delete_choices($id)){
+		if($this->survey_m->deleteUserFromDBs($id)){
 			
 				echo "success";
 		}else{

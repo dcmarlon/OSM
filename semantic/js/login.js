@@ -6,12 +6,6 @@ $(document).ready(function() {
 			$('#takeSur').on( "click", function() {
 			$('#studSurvey').modal({
 				closable  : false,
-				onApprove : function() {
-					
-				  
-				   
-				  
-				}
 			  })
 			  .modal('show');
 

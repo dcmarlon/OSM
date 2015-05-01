@@ -20,7 +20,7 @@
                // to the user
            $msg ="Hello";
                $this->data['msg'] = $msg;
-		$this->load->view('admin/survey/user/takesurvey',  $this->data);
+		$this->load->view('admin/survey/user/login',  $this->data);
 	}
         
          public function process(){
@@ -62,6 +62,28 @@
         
              // Set subview & Load layout
              $this->load_view('users/login');
+        }
+        
+        public function login_validate(){
+            $id = $this->input->post('idnum');
+            $coll = $this->input->post('coll');
+            
+              $this->load->model('login_model');
+            // Validate the user's credentials
+            $result = $this->login_model->log_validate();
+            
+            if(count($result))
+            {
+               //redirect sa take survey page
+            }
+            
+            else //error ni ses
+            {
+                //redirect sa index page
+            }
+            
+           
+            
         }
 
     }

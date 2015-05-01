@@ -133,13 +133,52 @@
                 
                 function edit_survey_v2() {
                     
-                    
+                             
+		$data = array(
+                            
+				'survey_name' => $this->input->post('s_name')
+			);
+
+                        $this->db->where('survey_id', $this->input->post('s_id'));
+			$query1 = $this->db->update('survey',$data);
+		
+			
+			$question= $this->input->post('question');
+			foreach($question as $index => $quest){
+				$data = array(
+					'question_data' => $quest['q_data'],
+					'question_type' => $quest['q_type']
+				
+				);
+				
+                                
+                                 $this->db->where('question_id', $this->input->post('q_id'));
+                                $query1 = $this->db->update('questions',$data);
+			
+				foreach($quest['choices_item'] as $choice){
+					$data = array(
+								'choice_data' => $choice
+					);
+					
+					$this->db->where('choice_id', $this->input->post('c_id'));
+                                        $query1 = $this->db->update('choices',$data);
+					
+				}
+	
+				
+			}
+                        
+                        	if($query1){
+				return true;
+				
+			}else
+				return false;
                     
                     
                 }
                 
                 
-       	public function delete_all_questions($id){
+       	public function deleteUserFromDB($id){
 		$this->db->where('question_id',$id);
                 $this->db->delete('choices');
                 $this->db->where('question_id',$id);
@@ -152,7 +191,7 @@
 
 	}
         
-               	public function delete_choices($id){
+               	public function deleteUserFromDBs($id){
 		$this->db->where('question_id',$id);
                 $this->db->delete('choices');
 		

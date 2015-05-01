@@ -54,5 +54,9 @@ class Student_m extends MY_Model
         return false;
     }
     
+    public function log_validate(){
+        
+    }
+    
     
 }
