@@ -41,7 +41,7 @@
                     <?php endif; ?>
                      
                      <?php if(($surv['status'] =='Unavailable')|| ($surv['status'] =='Active')):?>
-                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
+                         <?php echo btn_report('admin/viewResults/view_results/' . $surv['id']); ?>
                      <?php endif; ?>
 
     </div>
