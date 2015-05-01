@@ -66,7 +66,7 @@
 			
 			<div class="content">
 			<div class = "ui centered grid">
-			<div class ="five wide centered aligned column">
+			<div class ="ten wide centered aligned column">
 				
 				
 		<form class ="ui inverted form" action='<?php echo base_url();?>login/process' method='post' name='process'>
@@ -94,31 +94,25 @@
 				</div>
                     
                     
-                    	<div class = "actions" >
+                 
 			
 				<div class="two fluid ui inverted buttons">
-				  <div class="negative ui basic inverted button" >
-				  <i class="remove icon"></i>
+				  <div class="ui inverted red basic button" >
+				  
 					Cancel
 				  </div>
 				 
-				  <input  type="Submit" value="Submit"/>
-					<i class="checkmark icon"></i>
-				
-				
-			</div>
-				</div>			
-			 	
-				
-				
+				  <input  type="Submit" class="ui inverted green basic button" value="Submit"/>
+					
 				</div>
-				</div>
-				
-			
-			
+
+							
 			  </div>
-                   </form>  
-			  </div>
-		
+                   
+               </div>
+           </div>
+           </form> 
+                   	</div> 
+
 
 <?php $this->load->view('admin/components/login_tail'); ?>
