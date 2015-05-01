@@ -49,8 +49,8 @@
 								
                         </div>
 
-                      <div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
-                      <div id="rmv_choiceItem"class="mini ui red button" type="button">Remove Choice</div>
+                      <button id="add_choiceItem"class="mini ui button" type="button">Add Choice</button> 
+                      <button id="rmv_choiceItem"class="mini ui red button" type="button">Remove Choice</button>
                       <input type="hidden" name="ctr" id="ctr" value="0" />
                      
                       
@@ -66,8 +66,8 @@
                         <div class="right floated column">
                                         <div class="row"></div>
                             <div class="three wide column"></div>
-                            <div id="add_question" class="tiny ui green button" >Add Question</div>
-                                        <div id="remove_question" class="tiny ui red button">Remove Question</div>
+                            <button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
+                                        <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
                             <button id="submit_form" type="submit" name="addlist" class="ui submit button" onclick="myFunction()">Submit Form</button>
                           <div class="ui button">Clear All</div>
                         </div>
@@ -106,9 +106,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    var q_num =1, c_num = 1;
+    var q_num =1, c_num = 1, minq =1,max=50;
 
-	if( $('.question_main > div[class*="questions"]').length === 1)
+	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
 		
 	$('#remove_choiceItem').attr("disabled","disabled");
@@ -119,12 +119,12 @@ $(document).ready(function(){
 	
 	$(document).on("click","#remove_question", function(){
 		q_num-=1;
-		if($('.question_main > div[class*="questions"]').length === 50)
+		if($('.question_main > div[class*="questions"]').length == 50)
 			$('#add_question').removeAttr("disabled");
 		
 		
 		$('.question_main > div.questions').last().remove();
-		if( $('.question_main > div[class*="questions"]').length === 1)
+		if( $('.question_main > div[class*="questions"]').length == 1)
 		    $('#remove_question').attr("disabled","disabled");
 		
 		
@@ -135,14 +135,14 @@ $(document).ready(function(){
 
 	
 	
-		if($('.question_main > div[class*="questions"]').length === 1)
+		if($('.question_main > div[class*="questions"]').length == 1)
 			$('#remove_question').removeAttr("disabled");
 		
 		var questionItem = field(q_num);
 	   	 q_num +=1;
 		$('.question_main').append(questionItem);
 		
-		if($('.question_main > div[class*="questions"]').length === 50)
+		if($('.question_main > div[class*="questions"]').length == 50)
 			$('#add_question').attr("disabled","disabled");	
 			
 		
@@ -151,21 +151,21 @@ $(document).ready(function(){
 	$(document).on("click", "#add_choiceItem", function(){
        
 		
-		 if($(this).siblings("#choice_sub").children().length === 1)
+		 if($(this).siblings("#choice_sub").children().length == 1)
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
 		 var q_ctr = $(this).siblings("#ctr").val();
 		$(this).siblings("#choice_sub").append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
 		
-			 if($(this).siblings("#choice_sub").children().length === 5)
+			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	
 	});
 	$(document).on("click","#rmv_choiceItem", function(){
        
-	    if($(this).siblings("#choice_sub").children().length === 5)
+	    if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
 		$(this).siblings("#choice_sub").children().last().remove();
-		if($(this).siblings("#choice_sub").children().length === 1)
+		if($(this).siblings("#choice_sub").children().length == 1)
 		$(this).attr("disabled","disabled");	
 	});
 	

@@ -17,12 +17,7 @@
              </div>
                 
 
-                     <div class="row"></div>
-                      <div class="three wide column"></div>
-                      <div class="ten wide column" style="background-color: #37d249">
-                          <footer><p>(c) Copyright 2015</p></footer>
-                          
-                      </div>  
+             
             
        </div>       
 

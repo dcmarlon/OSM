@@ -101,7 +101,13 @@ class Question_m extends MY_Model{
 //            
 //            }
             
-            
+           public function get_max_q(){
+               
+               $this->db->select_max('question_id');
+               $query = $this->db->get('questions');
+               
+               return $query->row();;
+           } 
             
     
 }

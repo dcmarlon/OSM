@@ -180,7 +180,7 @@
                 
                 public function edit_survey_v2(){
                     
-                    	if($this->survey_m->edit_survey_v2() != false){	
+                    	if($this->survey_m->edit_survey_v() != false){	
                             
                                  redirect('/admin/survey', 'location', 301); 
                  
@@ -256,100 +256,100 @@
 			count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
                                     //$this->data['surveyID'] = $id;
 		}
-		
+		$this->data['max_q']= $this->question_m->get_max_q();
 	           $this->data['subview']='admin/survey/edit_v2' ;
                      $this->load->view('admin/_layout_v2',$this->data);
         }
         
+//        
+//        public function editUserInfo(){
+//		
+//		$this->load->model('survey_m');
+//		
+//		if($this->survey_m->edit_user()){
+//					echo "success";
+//					
+//		}else{
+//			echo $this->input->post('uiD');
+//			echo "error";
+//		}	
+//	}
         
-        public function editUserInfo(){
-		
-		$this->load->model('survey_m');
-		
-		if($this->survey_m->edit_user()){
-					echo "success";
-					
-		}else{
-			echo $this->input->post('uiD');
-			echo "error";
-		}	
-	}
         
-        
-            public function edit_survey(){
-                
-		$sid = $this->input->post("s_id");
-		$qctr = $this->input->post("q_num");
-                $cctr = $this->input->post("c_num");
-		$sur = array('survey_name' => $this->input->post('s_name'),
-					//'issued_date' => $this->input->post("issued_d"),
-					//'status' => $this->input->post("stat_ac")
-                                        );
-
-		$this->survey_m->update_survey($sur,$sid);
-                
-                
-            	for($i=1;$i<=$qctr;$i++){
-			$qsid = $this->input->post("q_id".$i);
-			$qur = array('survey_id' => $sid,
-						'question_data' => $this->input->post("q_data".$i),
-						'question_type' => $this->input->post("q_type".$i),
-						);
-
-			$this->question_m->update_question($qur,$qsid);
-                        
-                        for($y=1;$y<$cctr; $y++){
-                                
-                            $csid = $this->input->post("c_id".$y);
-                                $cur = array('choice_id' => $csid,
-						'choice_data' => $this->input->post("choices_item".$y)
-						);
-                                
-                               $this->question_m->update_question($cur,$csid);
-           
-                        }
-                        
-		}
-                
-                if($this->input->post('q_data'))
-		{
-			foreach($this->input->post('q_data') as $quest => $q_num) 
-			{
-				$question_info = array(
-				'survey_id' => $sid,
-				'question_data' => $this->input->post("q_data")[$quest],
-				'question_type' => $this->input->post("q_type")[$quest]);
-
-				$question_id[$quest] =$this->question_m->insert_question($question_info);
-                                    
-                                    $questid = array();
-                                        $questid = $question_id[$quest]; 
-							
-                                          if($this->input->post('choices_item'))
-					{
-						foreach($this->input->post('choices_item') as $choice => $c_num) 
-						{
-							$choices_info = array(
-										'question_id' => $questid,
-										'choice_data' => $this->input->post("choices_item")[$choice]
-									);
-
-							$this->choice_m->insert_choice($choices_info);
-
-						}
-					}
-			}
-		}
-                
-            }
-            
-           public function delete_question_with_choices ($id,$id2)
-	{
-                 $this->choice_m->delete_many($id);
-		$this->question_m->delete($id);
-                
-		redirect('admin/article/edit/$id2');
-	}
+//            public function edit_survey(){
+//                
+//		$sid = $this->input->post("s_id");
+//		$qctr = $this->input->post("q_num");
+//                $cctr = $this->input->post("c_num");
+//		$sur = array('survey_name' => $this->input->post('s_name'),
+//					//'issued_date' => $this->input->post("issued_d"),
+//					//'status' => $this->input->post("stat_ac")
+//                                        );
+//
+//		$this->survey_m->update_survey($sur,$sid);
+//                
+//                
+//            	for($i=1;$i<=$qctr;$i++){
+//			$qsid = $this->input->post("q_id".$i);
+//			$qur = array('survey_id' => $sid,
+//						'question_data' => $this->input->post("q_data".$i),
+//						'question_type' => $this->input->post("q_type".$i),
+//						);
+//
+//			$this->question_m->update_question($qur,$qsid);
+//                        
+//                        for($y=1;$y<$cctr; $y++){
+//                                
+//                            $csid = $this->input->post("c_id".$y);
+//                                $cur = array('choice_id' => $csid,
+//						'choice_data' => $this->input->post("choices_item".$y)
+//						);
+//                                
+//                               $this->question_m->update_question($cur,$csid);
+//           
+//                        }
+//                        
+//		}
+//                
+//                if($this->input->post('q_data'))
+//		{
+//			foreach($this->input->post('q_data') as $quest => $q_num) 
+//			{
+//				$question_info = array(
+//				'survey_id' => $sid,
+//				'question_data' => $this->input->post("q_data")[$quest],
+//				'question_type' => $this->input->post("q_type")[$quest]);
+//
+//				$question_id[$quest] =$this->question_m->insert_question($question_info);
+//                                    
+//                                    $questid = array();
+//                                        $questid = $question_id[$quest]; 
+//							
+//                                          if($this->input->post('choices_item'))
+//					{
+//						foreach($this->input->post('choices_item') as $choice => $c_num) 
+//						{
+//							$choices_info = array(
+//										'question_id' => $questid,
+//										'choice_data' => $this->input->post("choices_item")[$choice]
+//									);
+//
+//							$this->choice_m->insert_choice($choices_info);
+//
+//						}
+//					}
+//			}
+//		}
+//                
+//            }
+//            
+//           public function delete_question_with_choices ($id,$id2)
+//	{
+//                 $this->choice_m->delete_many($id);
+//		$this->question_m->delete($id);
+//                
+//		redirect('admin/article/edit/$id2');
+//	}
         
         
         public function deleteQuestion($id){
