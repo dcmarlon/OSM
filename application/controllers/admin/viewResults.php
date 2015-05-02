@@ -68,18 +68,18 @@
                         $idkey[$n] = $data['res'][$n]['question_id'];  //put question_id into $idkey array
                         $tot_ansque[$n] = $this->get_total_ans_per_q($idkey[$n],$data['ans'],$total_a); //put total answers for a questions into $tot_ansque
                     }
-                echo $college;
+                //echo $college;
                 $data['ansque'] = array_combine($idkey,$tot_ansque); //make questiion_id as associative array key and tot_ansque as value   $data['ansque'] = array_combine($idkey,$tot_ansque); //make questiion_id as associative array key and tot_ansque as value    
-                print_r($data['ansque']);
+                /*print_r($data['ansque']);
                 echo "<br>";
                 echo "choices :   ";
                 print_r($data['choices']);
                 echo "<br>";
-                 print_r($data['ans']);
+                 print_r($data['ans']);*/
                 $data['totalq'] = $total;
                 $data['totalc'] = $totalc; 
                 $data['totala'] = $total_a;
-                //$this->load->view('admin/survey/view_results, $data');
+                //$this->load->view('admin/survey/viewresults2, $data');
                 $data['subview'] = 'admin/survey/viewresults2';
                 $this->load->view('admin/_layout_main', $data); 
             }

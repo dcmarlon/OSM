@@ -28,13 +28,21 @@
   <ol type="1">  
     <?php 
         $ind=0;
-        if($res!==false){
+         if($res == NULL){
+                            echo '<div class="ui inverted segment">
+                                    <p>No results availabe yet</p>
+                                  </div>';
+                        }
+         else{
             foreach($res as $q):
                     echo "<li>".$q['question_data']."</li>";
 
                     echo "<ol type='a'>";
                     
-                    if($choices!==false){
+                    if($choices== NULL){
+                        
+                    }
+                    else{
                         foreach ($choices as $c):
 
                             if($c['question_id'] == $q['question_id']){
