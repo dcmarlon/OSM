@@ -123,7 +123,8 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.confirm.js'); ?>"></script>
+        
+         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -190,7 +191,7 @@ $(document).ready(function(){
                  
                   
                              
-                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value="0" >');  
+                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value=0 >');  
 		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
@@ -201,7 +202,7 @@ $(document).ready(function(){
         
         
 	$(document).on("click","#rmv2_choiceItem", function(){
-      // c_num-=1;
+       
 	    if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
@@ -237,8 +238,6 @@ $(document).ready(function(){
 //                                  alert("You just confirmed.");
                                     alert(this.value);
                                          id = this.value;
-                                         
-                                         		
 
                              $.ajax({
                                             type: "POST",
@@ -246,25 +245,17 @@ $(document).ready(function(){
 
                                     }).done(function(msg){
                                                 if(msg=="success"){
-                                         //            $(this).parent().remove();
+                                                     $(this).parents('.questions').remove();
                                                 }
 
                                 });
-                              //  $('.question_main > div.questions').last().remove();
-                                            $(this).parent().parent().fadeOut("slow", function() {
-                                                
-                                               // $('.question_main > div.questions').parent().remove();
-                                            
-                                                $(this).remove();
-                                             
                    //          },
 //                              cancel: function(button) {
 //                                  alert("You cancelled.");
 //                          }
-                  });
+                //  });
 
             });
-            
             
             $(document).on("click","#remove_cho", function(){ 
 //              
@@ -282,22 +273,10 @@ $(document).ready(function(){
                                     }).done(function(msg){
                                                 if(msg=="success"){
                                                     
-                                                    	//$(this).siblings("#choice_sub").children().last().remove();
+                                                    	$(this).siblings("#choice_sub").children().last().remove();
                                                 }
 
                                 });
-                                
-                                                              $(this).parent().parent().fadeOut("slow", function() {
-                                                
-                                               // $('.question_main > div.questions').parent().remove();
-                                            
-                                                $(this).remove();
-                                             
-                   //          },
-//                              cancel: function(button) {
-//                                  alert("You cancelled.");
-//                          }
-                  });
                      //        },
 //                              cancel: function(button) {
 //                                  alert("You cancelled.");
