@@ -2,13 +2,23 @@
     <div class="ui grid">
         
       
-        <div class="row"></div>
-    		<div class="three wide column"></div>
-    		<div class="ten wide column" style="background-color: #BDBDB8">
-    			<h3 class="ui header">Today's <b style="color:red">Carolinian</b>
-    				<div class="sub header">Administration Area</div>
-    			</h3>
-                </div>
+      <div class= "sixteen wide column">
+		<div class = "ui large menu" id="menutext">
+		<div class="title item" id="menutext1">	
+			Today's CAROLINIAN Surveys
+		</div>
+		
+		
+		
+		<div class="right menu" >
+		<div class="title item" id="menutext1">
+		<i class="browser icon"></i>
+			Administration Panel
+		 </div>
+		</div>
+		
+		</div>
+	</div>
                 
    
   

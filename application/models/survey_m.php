@@ -132,9 +132,14 @@
                 
                 
                 function edit_survey_v() {
-                        echo count($this->input->post('question'))  ;
-                
-                           print_r($this->input->post('question'));
+                    
+//                        echo count($this->input->post('question'))  ;
+//                
+//                          print_r($this->input->post('question'));
+//                          echo "<br>";
+//                          print_r($this->input->post('question_two'));
+//                           echo "<br>";
+//                           
                       $data = array(
                             
 				'survey_name' => $this->input->post('s_name')
@@ -152,10 +157,11 @@
 //                            
 //                        }
                  
-                       $question= $this->input->post('question');
+                      if($this->input->post('question')){
+                        $question =  $this->input->post('question');
 			foreach($question as $index => $quest){
                             
-                             if($index <= $this->input->post('edit_q_count') ){
+                            // if($index <= $this->input->post('edit_q_count') ){
 				
                                     $data = array(
                                                 'question_data' => $quest['q_data'],
@@ -183,43 +189,70 @@
 
                                                 $ctr++;
                                          }
+                        }
 	
-                                }
+                           //     }
                                  
-                                 else
-                                 {
-                                    
-                                    $dataInsert = array(
-                                                        'question_data' => $quest['q_data'],
-                                                        'question_type' => $quest['q_type'],
-                                                        'survey_id' => $this->input->post('s_id') );
-                                    
-                                    $this->db->insert('questions',$dataInsert);
-                                    $question_id = $this->db->insert_id();
-                                    
-                                    //inserting choices to the new question
-                                    
-                                        $ctr=0;
-                                    	foreach($quest['c_id'] as $choice){
+//                                 else
+//                                 {
+//                                    
+//                                    $dataInsert = array(
+//                                                        'question_data' => $quest['q_data'],
+//                                                        'question_type' => $quest['q_type'],
+//                                                        'survey_id' => $this->input->post('s_id') );
+//                                    
+//                                    $this->db->insert('questions',$dataInsert);
+//                                    $question_id = $this->db->insert_id();
+//                                    
+//                                    //inserting choices to the new question
+//                                    
+//                                        $ctr=0;
+//                                    	foreach($quest['c_id'] as $choice){
+//					$data = array(
+//								'question_id' => $question_id,
+//								'choice_data' => $quest['choices_item'][$ctr]
+//					);
+//					
+//					$this->db->insert('choices',$data);
+//                                        $ctr++;
+//                                        }
+//                                 }
+     }
+       if($this->input->post('question_two')){
+
+			
+			$question_two= $this->input->post('question_two');
+			foreach($question_two as $quest_two => $quest2){
+				$data = array(
+					'survey_id' => $this->input->post('s_id'),
+					'question_data' => $quest2['q2_data'],
+					'question_type' => $quest2['q2_type']
+				
+				);
+				
+				$this->db->insert('questions',$data);
+				$question_id = $this->db->insert_id();
+                                
+				foreach($quest2['choices2_item'] as $choice){
 					$data = array(
 								'question_id' => $question_id,
-								'choice_data' => $quest['choices_item'][$ctr]
+								'choice_data' => $choice
 					);
 					
 					$this->db->insert('choices',$data);
-                                        $ctr++;
-                                        }
-                                 }
-          
+					
+				}
+       
+                        } 
                         
+       }
+  // }     
                         	if($query1){
-				return true;
-				
-			}else
+				return true;			
+                                }else
 				return false;
                   
                   
-                         }
                   
          
                 }    

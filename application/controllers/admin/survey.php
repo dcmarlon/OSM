@@ -256,7 +256,7 @@
 			count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
                                     //$this->data['surveyID'] = $id;
 		}
-		$this->data['max_q']= $this->question_m->get_max_q();
+		//$this->data['max_q']= $this->question_m->get_max_q();
 	           $this->data['subview']='admin/survey/edit_v2' ;
                      $this->load->view('admin/_layout_v2',$this->data);
         }
