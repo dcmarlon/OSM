@@ -133,9 +133,9 @@
                 
                 function edit_survey_v() {
                     
-//                        echo count($this->input->post('question'))  ;
+             //          echo count($this->input->post('question'))  ;
 //                
-//                          print_r($this->input->post('question'));
+          //              print_r($this->input->post('question'));
 //                          echo "<br>";
 //                          print_r($this->input->post('question_two'));
 //                           echo "<br>";
@@ -148,7 +148,7 @@
                       $this->db->where('survey_id', $this->input->post('s_id'));
                       $query1 = $this->db->update('survey',$data);
             
-                    
+                  //     print_r($this->input->post('question'));
 //			$question= $this->input->post('question');
 //                        foreach($question as $index => $quest){
 //                            print_r($quest);
@@ -190,20 +190,38 @@
                                                 $query1 = $this->db->update('choices',$data);
 
                                                 $ctr++;
-                                         }elseif($quest['c_id']==0){
+                                        }
+                                        
+                                        
+                                                      
+                            }
+                                        
+                                       if($this->input->post($quest['choices_item'])) {
+                                        foreach($quest['choices_item'] as $chox){
+					$data = array(
+								'question_id' => $quest['q_id'],
+								'choice_data' => $chox
+					);
+					
+					$this->db->insert('choices',$data);
+					
+                                        }
+                                       }
+//                                         
+                                         if($quest['c_id']<=0){
                                              
                                                  
                                             $data = array(
                                                                     'question_id' => $quest['q_id'],
-                                                                    'choice_data' => $choice
+                                                                    'choice_data' => $quest['choices_item'][$ctr]
                                             );
 					
                                                         $this->db->insert('choices',$data);
-                                             
+                                             $ctr++;
                                          }
-                        }
+                           
 	
-                           //     }
+                               }
                                  
 //                                 else
 //                                 {
@@ -229,7 +247,9 @@
 //                                        $ctr++;
 //                                        }
 //                                 }
-     }
+                      //   }
+     
+ }   
        if($this->input->post('question_two')){
 
 			
@@ -258,7 +278,7 @@
                         } 
                         
        }
-  // }     
+ 
                         	if($query1){
 				return true;			
                                 }else
@@ -266,9 +286,8 @@
                   
                   
                   
-         
-                }    
-                }        
+          
+      }        
        	public function deleteUserFromDB($id){
 		$this->db->where('question_id',$id);
                 $this->db->delete('choices');

@@ -69,15 +69,15 @@
                             <button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
                                         <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
                             <button id="submit_form" type="submit" name="addlist" class="ui submit button" onclick="myFunction()">Submit Form</button>
-                          <div class="ui button">Clear All</div>
                         </div>
                                 </br>
-                        <div class="left floated column"> 
-                           <?php echo anchor('admin/survey', '<button class="ui button">Back</button> '); ?>
-                        </div>
+                    
                       </div>
           
             </form>
+                <div class="left floated column"> 
+                           <?php echo anchor('admin/survey', '<button class="ui button">Back</button> '); ?>
+                        </div>
                   
        </div>
 </div>
