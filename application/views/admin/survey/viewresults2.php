@@ -4,22 +4,22 @@
    
 <form method="post" accept-charset="utf-8" action="<?php echo base_url('index.php/admin/viewResults/view_results/'.$surv['id'].'');?>"> 
 <select id="filter" name="filter" onchange="this.form.submit()"> 
-    <option selected>
+    <option <?php if (strcmp($college, "ALL")== 0) echo "selected"; ?>>
         ALL
     </option>
-    <option> 
+    <option <?php if (strcmp($college, "CAS")== 0) echo "selected"; ?>> 
     CAS
     </option> 
-    <option> 
+    <option <?php if (strcmp($college, "SBE")== 0) echo "selected"; ?>> 
     SBE
     </option> 
-    <option> 
+    <option <?php if (strcmp($college, "CAFA")== 0) echo "selected"; ?>> 
     CAFA
     </option> 
-    <option> 
+    <option <?php if (strcmp($college, "COED")== 0) echo "selected"; ?>> 
     COED 
     </option> 
-    <option> 
+    <option <?php if (strcmp($college, "SLG")== 0) echo "selected"; ?>> 
     SLG
     </option> 
 </select> 

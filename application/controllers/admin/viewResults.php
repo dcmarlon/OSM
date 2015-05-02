@@ -39,10 +39,10 @@
 
                     
                    if(empty($this->input->post('filter'))){
-                       $college = "ALL";
+                       $data['college'] = "ALL";
                    }
                    else {
-                       $college = $this->input->post('filter');
+                       $data['college'] = $this->input->post('filter');
                    }
                     
                   //get answers  
@@ -53,7 +53,7 @@
                         for($n=0;$n<$totalc;$n++){
                             $c_id[$n] = $data['choices'][$n]['choice_id'];
                         }  
-                        $data['ans'] = $this->results_m->get_answers($c_id, $college);
+                        $data['ans'] = $this->results_m->get_answers($c_id, $data['college']);
                     }
 
 
