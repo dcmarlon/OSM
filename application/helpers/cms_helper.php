@@ -14,6 +14,10 @@ function btn_editThree ($uri)
 {
 	return anchor($uri, '<button class="tiny ui button">View</button>');
 }
+function btn_backd ($uri)
+{
+	return anchor($uri, '<button class="tiny ui button">Back</button>');
+}
 
 function btn_report ($uri)
 {

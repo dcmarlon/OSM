@@ -1,7 +1,7 @@
-<?php print_r($choices)?>
+
 <div class="ten wide column">
     <h2> <?php echo $surv['name']; ?> </h2>
-   
+  <?php echo btn_backd('admin/survey/watch/' . $surv['id']); ?>
 <form method="post" accept-charset="utf-8" action="<?php echo base_url('index.php/admin/viewResults/view_results/'.$surv['id'].'');?>"> 
 <select id="filter" name="filter" onchange="this.form.submit()"> 
     <option value="ALL" <?php if (strcmp($college, "ALL")== 0) echo "selected"; ?>>
