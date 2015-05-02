@@ -9,10 +9,12 @@
                  $this->load->model('results_m');        
 	}
         
-    public function view_results($id=null,$college="ALL"){
-                $college = $this->input->post('filter');
+    public function view_results($id=null){
+        
+           
+                
                 $row = $this->results_m->get_survey($id);
-                    $data['res'] = $this->results_m->get_questions($id);
+                $data['res'] = $this->results_m->get_questions($id);
 
                     //row into array
                     $data['surv'] = array(
@@ -35,6 +37,14 @@
                         $data['choices'] = $this->results_m->get_choices($q_id);
                     }
 
+                    
+                   if(empty($this->input->post('filter'))){
+                       $college = "ALL";
+                   }
+                   else {
+                       $college = $this->input->post('filter');
+                   }
+                    
                   //get answers  
                     if($data['choices']!=false){
                         $totalc=count($data['choices']);

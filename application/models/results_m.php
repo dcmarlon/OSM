@@ -27,8 +27,22 @@ class Results_m extends CI_Model {
     
     public function get_answers($c_id, $college){
         if(!empty($c_id)){
-            $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") ORDER BY choice_id";
-            $query = $this->db->query($query_str);
+           if(strcmp($college, "ALL") == 0){
+               $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") ORDER BY choice_id";
+               $query = $this->db->query($query_str);
+               
+           }
+           else {
+               //$query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") && student_id = (SELECT student_id FROM students WHERE college = $college )ORDER BY choice_id";
+               $this->db->select('*');
+               $this->db->where('college =', $college);
+               $this->db->from('students');
+               $this->db->join('answers', 'answers.student_id = students.student_id');
+               $this->db->join('choices', 'answers.choice_id = choices.choice_id');
+
+               $query = $this->db->get(); 
+               
+           }
             if( $query->num_rows() > 0 ){
                     return $query->result_array();
             } 
@@ -36,8 +50,8 @@ class Results_m extends CI_Model {
                 return false;
         }   
          else {
-             return false;
-         }   
+             return false;     
+        }   
     }
     
     public function get_total_per_q($q_id){
@@ -91,7 +105,7 @@ class Results_m extends CI_Model {
 	}
     }*/
     
-    public function get_results($id){
+    /*public function get_results($id){
             $this->db->query('SELECT questions.questions_id, choices.choices_id, choices.choice_data
                             FROM questions
                             INNER JOIN choices
@@ -99,7 +113,7 @@ class Results_m extends CI_Model {
                             WHERE
                             questions.survey_id = $id');  
             return  $query->result_array();
-    }
+    }*/
     
     
         
