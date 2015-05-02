@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "admin/survey";
 $route['404_override'] = '';
+$route['take_survey'] = "user/take";
 
 
 /* End of file routes.php */
