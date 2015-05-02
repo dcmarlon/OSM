@@ -5,6 +5,7 @@
 	<!-- Semantic -->
         <link href="<?php echo base_url('semantic/components/table.css'); ?>" rel="stylesheet">
          <link href="<?php echo base_url('semantic/components/modal.css'); ?>" rel="stylesheet">
+
         <link href="<?php echo base_url('semantic/css/semantic.css'); ?>" rel="stylesheet">
 		<link href="<?php echo base_url('semantic/css/adminstyle.css'); ?>" rel="stylesheet">
 
@@ -15,7 +16,9 @@
        <link href="<?php echo base_url('semantic/components/form.css'); ?>" rel="stylesheet/less">
         <link href="<?php echo base_url('semantic/components/grid.css'); ?>" rel="stylesheet/less">
          <link href="<?php echo base_url('semantic/components/dropdown.css'); ?>" rel="stylesheet/less">
-         
+          <link href="<?php echo base_url('semantic/components/bootstrap.min.css'); ?>" rel="stylesheet">
+          
+
          
 </head>
 <body>             

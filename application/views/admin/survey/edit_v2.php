@@ -68,15 +68,19 @@
 
 			
 							<div id="choice_sub" class="two fields">
+                                                            <div id ="choice_info"class="field">
 								<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
 								<input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
-								
+                                                            </div>
+                                                            <div class="field">
+								<button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > x </button>
+                                                             </div>
 							</div>
 							<?php endforeach; ?>
 							<?php endif; ?>    
 
 							<div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
-							<button id="rmv_choiceItem" class="mini ui red button" type="button" value="<?php echo $quest->question_id; ?>"  >Remove Choice</button>
+							<button id="rmv2_choiceItem" class="mini ui red button" type="button"  >Remove Choice</button>
 							<input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
 
 						</div>
@@ -105,20 +109,22 @@
 		</form>
 
 	</div>
+                   
 
 </div>
+
+
+
+<!--- >
+
         
 
       <!--Javascript-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url('semantic/js/app.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/js/testing.js'); ?>"></script> 
-
+        
+         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -168,7 +174,7 @@ $(document).ready(function(){
 			$(this).siblings('#rmv2_choiceItem').removeAttr("disabled");
                     
 		 var x= $(this).siblings("#sctr2").val();
-                 
+               
 		$(this).siblings("#choice_sub").append('<input type="text" name="question_two['+x+'][choices2_item][]" class="form-group form-control" required="required" placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
@@ -182,7 +188,11 @@ $(document).ready(function(){
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                     
 		 var q_ctr = $(this).siblings("#ctr").val();
-		$(this).siblings("#choice_sub").append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
+                 
+                  
+                             
+                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value=0 >');  
+		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	
@@ -204,60 +214,76 @@ $(document).ready(function(){
         
         
       $(document).on("click","#rmv_choiceItem", function(){
-
-             alert(this.value);
-             
-              id = this.value;
-             
-                   if($(this).siblings("#choice_sub").children().length == 5)
-                $(this).siblings('#add_choiceItem').removeAttr("disabled");
-            
-            	if($(this).siblings("#choice_sub").children().length == 1)
-		$(this).attr("disabled","disabled");
-
-   $.ajax({
-		type: "POST",
-		url: "<?php echo base_url('index.php/admin/survey/deleteChoices/')?>/"+id,
-			
-	}).done(function(msg){
-		if(msg=="success"){
+          
     
+          c_num-=1;
+                if($(this).siblings("#choice_sub").children().length == 5)
+			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
 		$(this).siblings("#choice_sub").children().last().remove();
-
-
-		}
+                
+		if($(this).siblings("#choice_sub").children().length == 1)
+		$(this).attr("disabled","disabled");
 				
 	});
-       
-       
-  });
+
   
+
+   
+                   $(document).on("click","#remove_quest", function(){ 
+              
+//                       $.confirm({
+//                                text: "This is a confirmation dialog manually triggered! Please confirm:",
+//                                confirm: function(button) {
+//                                  alert("You just confirmed.");
+                                    alert(this.value);
+                                         id = this.value;
+
+                             $.ajax({
+                                            type: "POST",
+                                            url: "<?php echo base_url('index.php/admin/survey/deleteQuestion/')?>/"+id,
+
+                                    }).done(function(msg){
+                                                if(msg=="success"){
+                                                     $(this).parents('.questions').remove();
+                                                }
+
+                                });
+                   //          },
+//                              cancel: function(button) {
+//                                  alert("You cancelled.");
+//                          }
+                //  });
+
+            });
             
-	
-		function myFunction() {
-			alert("Press OK to submit the Survey Form!");
-		}
-   
-   
-                   $(document).on("click","#remove_quest", function(){
-                       alert(this.value);
+            $(document).on("click","#remove_cho", function(){ 
+//              
+//                       $.confirm({
+//                                text: "This is a confirmation dialog manually triggered! Please confirm:",
+//                                confirm: function(button) {
+//                                  alert("You just confirmed.");
+                                    alert(this.value);
+                                         id = this.value;
 
-                        id = this.value;
+                             $.ajax({
+                                            type: "POST",
+                                            url: "<?php echo base_url('index.php/admin/survey/delete_choiceby_id/')?>/"+id,
 
-                   $.ajax({
-                                type: "POST",
-                                url: "<?php echo base_url('index.php/admin/survey/deleteQuestion/')?>/"+id,
+                                    }).done(function(msg){
+                                                if(msg=="success"){
+                                                    
+                                                    	$(this).siblings("#choice_sub").children().last().remove();
+                                                }
 
-                        }).done(function(msg){
-                                if(msg=="success"){
-                                     $(this).parents('.questions').remove();
-                                }
+                                });
+                     //        },
+//                              cancel: function(button) {
+//                                  alert("You cancelled.");
+//                          }
+               //   });
 
-                        });
-
-
-                  });
+            });
 
 });
 

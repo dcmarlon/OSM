@@ -358,13 +358,23 @@
 			
 				echo "success";
 		}else{
-			echo "invalid id";
+			echo "invalid";
 		}	
 	}
         
            public function deleteChoices($id){
 		$this->load->model('survey_m');
 		if($this->survey_m->deleteUserFromDBs($id)){
+			
+				echo "success";
+		}else{
+			echo "invalid id";
+		}	
+	}
+        
+           public function delete_choiceby_id($id){
+		$this->load->model('survey_m');
+		if($this->survey_m->delete_choice_id($id)){
 			
 				echo "success";
 		}else{

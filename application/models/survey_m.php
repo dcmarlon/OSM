@@ -177,9 +177,11 @@
 
 
                                 //	print_r($quest['c_id']);
-
+                                        
                                         $ctr=0;
                                         foreach($quest['c_id'] as $choice){
+                                            
+                                            if($quest['c_id']!=0){
 
                                                 $data = array(
                                                                 'choice_data' => $quest['choices_item'][$ctr]
@@ -188,6 +190,16 @@
                                                 $query1 = $this->db->update('choices',$data);
 
                                                 $ctr++;
+                                         }elseif($quest['c_id']==0){
+                                             
+                                                 
+                                            $data = array(
+                                                                    'question_id' => $quest['q_id'],
+                                                                    'choice_data' => $choice
+                                            );
+					
+                                                        $this->db->insert('choices',$data);
+                                             
                                          }
                         }
 	
@@ -256,7 +268,7 @@
                   
          
                 }    
-                
+                }        
        	public function deleteUserFromDB($id){
 		$this->db->where('question_id',$id);
                 $this->db->delete('choices');
@@ -272,6 +284,17 @@
         
                	public function deleteUserFromDBs($id){
 		$this->db->where('question_id',$id);
+                $this->db->delete('choices');
+		
+		if($this->db->affected_rows()>0){
+			return true;
+		}else{ return false;}
+
+	}
+        
+        
+         public function delete_choice_id($id){
+		$this->db->where('choice_id',$id);
                 $this->db->delete('choices');
 		
 		if($this->db->affected_rows()>0){
