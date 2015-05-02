@@ -46,7 +46,7 @@
                    }
                     
                   //get answers  
-                    if($data['choices']!=false){
+                    if($data['choices']!= false){
                         $totalc=count($data['choices']);
                         $q_id = array();
                         //echo $total;
