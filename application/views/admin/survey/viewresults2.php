@@ -4,24 +4,31 @@
    
 <form method="post" accept-charset="utf-8" action="<?php echo base_url('index.php/admin/viewResults/view_results/'.$surv['id'].'');?>"> 
 <select id="filter" name="filter" onchange="this.form.submit()"> 
-    <option <?php if (strcmp($college, "ALL")== 0) echo "selected"; ?>>
+    <option value="ALL" <?php if (strcmp($college, "ALL")== 0) echo "selected"; ?>>
         ALL
     </option>
-    <option <?php if (strcmp($college, "CAS")== 0) echo "selected"; ?>> 
-    CAS
+    <option value ="cas" <?php if (strcmp($college, "cas")== 0) echo "selected"; ?>> 
+    College of Arts and Sciences
+    </option>
+    <option value="cafa" <?php if (strcmp($college, "cafa")== 0) echo "selected"; ?>> 
+    College of Architecture and Fine Arts
+    </option>
+    <option value="coed" <?php if (strcmp($college, "coed")== 0) echo "selected"; ?>> 
+    College of Education 
     </option> 
-    <option <?php if (strcmp($college, "SBE")== 0) echo "selected"; ?>> 
-    SBE
+    <option value="coe" <?php if (strcmp($college, "coe")== 0) echo "selected"; ?>> 
+    College of Engineering
+    </option>
+    <option value="sbe" <?php if (strcmp($college, "sbe")== 0) echo "selected"; ?>> 
+    School of Business and Economics
     </option> 
-    <option <?php if (strcmp($college, "CAFA")== 0) echo "selected"; ?>> 
-    CAFA
+    <option value="shcp" <?php if (strcmp($college, "shcp")== 0) echo "selected"; ?>> 
+    School of Health Care Professions
     </option> 
-    <option <?php if (strcmp($college, "COED")== 0) echo "selected"; ?>> 
-    COED 
+    <option value="slg" <?php if (strcmp($college, "slg")== 0) echo "selected"; ?>> 
+    School of Law and Governance
     </option> 
-    <option <?php if (strcmp($college, "SLG")== 0) echo "selected"; ?>> 
-    SLG
-    </option> 
+     
 </select> 
 </form>
     
