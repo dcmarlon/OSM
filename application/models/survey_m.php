@@ -178,10 +178,10 @@
 
                                 //	print_r($quest['c_id']);
                                         
-                                        $ctr=0;
+                                        $ctr=0; $sctr=0;
                                         foreach($quest['c_id'] as $choice){
                                             
-                                            if($quest['c_id']!=0){
+                                            if($quest['c_id']!=NULL){
 
                                                 $data = array(
                                                                 'choice_data' => $quest['choices_item'][$ctr]
@@ -191,34 +191,38 @@
 
                                                 $ctr++;
                                         }
-                                        
-                                        
-                                                      
-                            }
-                                        
-                                       if($this->input->post($quest['choices_item'])) {
-                                        foreach($quest['choices_item'] as $chox){
-					$data = array(
-								'question_id' => $quest['q_id'],
-								'choice_data' => $chox
-					);
-					
-					$this->db->insert('choices',$data);
-					
-                                        }
-                                       }
-//                                         
-                                         if($quest['c_id']<=0){
-                                             
+//                                    
+                                              if($quest['c_id'][$sctr] == NULL){
+                                                  foreach($quest['choices_item'] as $chox)
                                                  
                                             $data = array(
                                                                     'question_id' => $quest['q_id'],
-                                                                    'choice_data' => $quest['choices_item'][$ctr]
+                                                                    'choice_data' => $chox
                                             );
 					
                                                         $this->db->insert('choices',$data);
-                                             $ctr++;
+                                                        $sctr++;
                                          }
+                                        
+//                                         if($this->input->post($quest['choices_item'])) {
+//                                             $ctr=0;
+//                                            foreach($quest['choices_item'][ctr] as $chox){
+//                                            $data = array(
+//                                                                    'question_id' => $quest['q_id'],
+//                                                                    'choice_data' => $chox
+//                                            );
+//
+//                                            $this->db->insert('choices',$data);
+//                                            $ctr++;
+//
+//                                            }
+//                                       }
+                                                      
+                            }
+                                        
+                                      
+//                                         
+         
                            
 	
                                }

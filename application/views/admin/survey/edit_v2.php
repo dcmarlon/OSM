@@ -190,7 +190,7 @@ $(document).ready(function(){
                  
                   
                              
-//                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value="0" >');  
+                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value="0" >');  
 		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
@@ -201,7 +201,7 @@ $(document).ready(function(){
         
         
 	$(document).on("click","#rmv2_choiceItem", function(){
-       
+      // c_num-=1;
 	    if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
@@ -250,7 +250,7 @@ $(document).ready(function(){
                                                 }
 
                                 });
-                                
+                              //  $('.question_main > div.questions').last().remove();
                                             $(this).parent().parent().fadeOut("slow", function() {
                                                 
                                                // $('.question_main > div.questions').parent().remove();
