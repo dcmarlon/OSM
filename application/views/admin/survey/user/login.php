@@ -68,12 +68,12 @@
 			<div class = "ui centered grid">
 			<div class ="ten wide centered aligned column">
 				
-				
-		<form class ="ui inverted form" action='<?php echo base_url();?>login/process' method='post' name='process'>
+			
+		<form class ="ui inverted form" action='<?php echo base_url('index.php/user/student/login_validate');?>' method='post'>
                           <?php if(! is_null($msg)) echo $msg;?>
 				<div class = "required field" id="nm">
 				<label>Enter ID Number:</label>
-				<input id = "idnum" type="number" min="1000000" max="99999999" class="form-control" placeholder="ID Number" name='idnum' required autofocus required><br>
+				<input id = "idnum" type="text" minlength='8' max="99999999" class="form-control" placeholder="ID Number" name='idnum' required autofocus required><br>
 				</div>
 				
 				

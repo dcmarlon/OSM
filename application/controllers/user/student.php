@@ -20,10 +20,20 @@
                // to the user
            $msg ="Hello";
                $this->data['msg'] = $msg;
-		$this->load->view('admin/survey/user/login',  $this->data);
+		//$this->load->view('admin/survey/user/login',  $this->data);
+        $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
+
+
         
          public function process(){
+            $id = $this->input->post('idnum');
+            $coll = $this->input->post('coll');
+
+            echo $id."<br>";
+            echo $coll."<br>";
+
+            /*
             // Load the model
             $this->load->model('login_model');
             // Validate the user can login
@@ -37,8 +47,12 @@
                 // If user did validate, 
                 // Send them to members area
                 redirect('admin/survey/user/home');
-            }         
+            }  
+
+            */       
        }
+	   
+	   
         
         public function login ()
         {
@@ -68,18 +82,28 @@
             $id = $this->input->post('idnum');
             $coll = $this->input->post('coll');
             
-              $this->load->model('login_model');
+            $info = array('student_id'=> $id,
+                          'college'=> $coll);
+
+          
+              $this->load->model('student_m');
             // Validate the user's credentials
-            $result = $this->login_model->log_validate();
+            $result = $this->student_m->log_validate($info);
             
+
+
+
             if(count($result))
             {
-               //redirect sa take survey page
+
+                redirect('/admin/survey/user/home');
+               
             }
             
             else //error ni ses
             {
-                //redirect sa index page
+               
+                redirect('/user/student');
             }
             
            

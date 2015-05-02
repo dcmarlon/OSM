@@ -21,7 +21,7 @@
         <?php if(count($survey)): foreach($survey as $sur): ?>	
             <tr>
                    
-                         <td><?php echo btn_editThree('admin/survey/watch/' . $sur->survey_id); ?></td>
+                     <td><?php echo btn_editThree('admin/survey/watch/' . $sur->survey_id); ?></td>
                    
                     <td><?php echo $sur->survey_id; ?></td>
                     <td><?php echo $sur->survey_name; ?></td>

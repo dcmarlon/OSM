@@ -54,8 +54,12 @@ class Student_m extends MY_Model
         return false;
     }
     
-    public function log_validate(){
-        
+    public function log_validate($info){
+        $this->db->select('*');
+        $this->db->where($info); 
+        $query = $this->db->get('students');
+
+        return $query->result();
     }
     
     
