@@ -1,35 +1,4 @@
 
-
-<!-- MENU HEADER 
-<div class= "sixteen wide column">
-		<div class = "ui large fixed inverted menu">
-		<div class="title item">	
-			TC Surveys
-		</div>
-		
-		
-		
-		<div class="right menu" >
-		<a class="item">
-			Contact Us
-		 </a>
-		 
-		 <a class="item">
-			TC Website
-		 </a>
-		 
-		 <a class="item">
-			Facebook
-		 </a>
-		 
-		 <a class="item">
-			Twitter
-		 </a>
-		</div>
-		
-		</div>
-	</div>
--->
 	
 	<!-- SURVEY BODY -->
 <div class="ui three column centered grid">
@@ -37,8 +6,8 @@
 	
 		<div class="column">
 
-		<form class="ui form" id="surveyform" method="post" action="<?php echo base_url('index.php/user/student/insert_answers');?>" role="form">
-
+		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/add_answers');?>" role="form">
+           
 			<?php if(count($survs)): ?>
 			<h3 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h3>
 			<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
@@ -49,12 +18,12 @@
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
-				<div class="two fields">
+				<div class="fields">
 					<div class="field">
 					<label>Q U E S T I O N </label>
 					<p name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></p>
 					</div>
-					<div class="grouped fields radio2">
+					<div class="grouped fields">
 						<?php 
 		
 							if($quest->question_type == 'Single')
@@ -87,30 +56,7 @@
 
 					</div>
 				</div>
-				<!--
-					<form>
-					<div class="grouped fields radio1" >
-				    
-				     
-				        <input type="radio" name="fruit">
-				        <label>Apples</label>
-				      
-				    
-				        <input type="radio" name="fruit">
-				        <label>Oranges</label>
-				      
-				    
-				      
-				        <input type="radio" name="fruit">
-				        <label>Pears</label>s
-				      
-				   
-				      
-				        <input type="radio" name="fruit">
-				        <label>Grapefruit</label>
-				      
-				    </div>
-					</form>-->
+			
 					<?php endforeach; ?>
 						<?php endif; ?>
 				  </div>

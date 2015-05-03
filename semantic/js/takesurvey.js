@@ -1,7 +1,4 @@
 $(document).ready(function() {
-			$('#fullpage').fullpage({
-				verticalCentered: false				
-			}); 
 			
 			$('#takeSur').on( "click", function() {
 			$('#studSurvey').modal({
@@ -16,4 +13,4 @@ $(document).ready(function() {
 		$('.grouped.fields.cb').checkbox();
 
 		$('.grouped.fields.radio2').checkbox();				
-	});s
+	});
