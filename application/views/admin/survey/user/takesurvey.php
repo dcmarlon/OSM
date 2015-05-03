@@ -1,25 +1,52 @@
-
+<div class= "sixteen wide column">
+		<div class = "ui large fixed inverted menu">
+		<div class="title item">	
+			Today's Carolinian Surveys
+		</div>
+		
+		
+		
+		<div class="right menu" >
+		<a class="item">
+			Contact Us
+		 </a>
+		 
+		 <a class="item">
+			TC Website
+		 </a>
+		 
+		 <a class="item">
+			Facebook
+		 </a>
+		 
+		 <a class="item">
+			Twitter
+		 </a>
+		</div>
+		
+		</div>
+	</div>
 	
 	<!-- SURVEY BODY -->
 <div class="ui three column centered grid">
 	<div class="seven wide centered column">
 	
-		<div class="column">
+		<div class="row">
 
 		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/add_answers');?>" role="form">
            
 			<?php if(count($survs)): ?>
-			<h3 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h3>
+			<h2 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h2>
 			<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
 
 			<?php endif; ?>
-			<div class = "column" id = "q_section">
+			<div class = "row" id = "q_section">
                             
 				 <?php echo $survs->survey_id; ?>
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
-				<div class="fields">
+				<div class="grouped fields">
 					<div class="field">
 					<label>Q U E S T I O N </label>
 					<p name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></p>
@@ -54,20 +81,24 @@
 							<input type='text' name="Others">
 							<?php endif; ?>  
 							</div>
-
-					</div>
-				</div>
-			
+					<div class="ui divider"></div>
 					<?php endforeach; ?>
 						<?php endif; ?>
+						
+						
+			<div class="center aligned column">
+			<input class="huge ui green button" type="submit" value = "Submit Answers" id='subsurvey'>	
+			</div>
+					</div>
+					
+				</div>
+			
 				  </div>
 			
 
 			
 			
-			<div class="center aligned column">
-			<input class="huge ui green button" type="submit" value = "Submit Answers" id='subsurvey'>	
-		</div>
+			
 		</form>
 		
 	</div>

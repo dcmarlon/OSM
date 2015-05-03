@@ -29,12 +29,12 @@
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
-<<<<<<< HEAD
-        public function take ($id = 14){
-=======
+
+      //  public function take ($id = 14){
+
         public function take ($id = 15){
             
->>>>>>> origin/revert-1-master
+
                 if ($id) {
             $this->data['survs'] = $this->survey_m->get($id);
             count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
