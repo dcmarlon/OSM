@@ -17,7 +17,7 @@
 
 		$this->data['survey'] = $this->survey_m->get_all(); //get all the survey names
 		$this->data['subview'] = 'admin/survey/index';
-		$this->load->view('admin/_layout_main', $this->data);
+		$this->load->view('admin/_layout_v2', $this->data);
 	}
         
         
@@ -35,14 +35,14 @@
 			);
 
                 $data['subview'] = 'admin/survey/info';
-		$this->load->view('admin/_layout_main', $data); 
+		$this->load->view('admin/_layout_v2', $data); 
             
         }
 
         public function add(){        
                    
             $this->data['subview']='admin/survey/create_v2' ;
-            $this->load->view('admin/_layout_main',$this->data);           
+            $this->load->view('admin/_layout_v2',$this->data);           
            }
 
 

@@ -5,7 +5,7 @@
         <div class="ten wide column">
             
             <div class="row">
-                <label> <h2>S U R V E Y - C R E A T I O N</h2>   </label>
+                <label> <h3><strong>C r e a t i o n - S u r v e y</strong></h3></label>
                     </div>  
             
           <form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/add_survey_v2');?>" role="form">
@@ -22,7 +22,7 @@
                                                                    
                           <div class="field">
    
-                           <label>Q U E S T I O N </label><input name ="question[0][q_data]" type="text" required="required" placeholder="Question">
+                           <label><strong>Q u e s t i o n</strong></label><input name ="question[0][q_data]" type="text" required="required" placeholder="Question">
                           </div>
                           <div class="field">
                             <label>&nbsp;</label>
@@ -41,7 +41,7 @@
                                   </div>
 
                       <div id="choice_main" class="grouped fields">
-                        <label>Choices:</label>
+                        <label><strong>C h o i c e s :</strong></label>
 
                         <div id="choice_sub" class="two fields">
 
@@ -106,7 +106,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    var q_num =1, c_num = 1, minq =1,max=50;
+    var q_num =1;
 
 	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
@@ -131,10 +131,7 @@ $(document).ready(function(){
 	});
 	
 	$(document).on("click","#add_question", function(){
-	
 
-	
-	
 		if($('.question_main > div[class*="questions"]').length == 1)
 			$('#remove_question').removeAttr("disabled");
 		
@@ -160,6 +157,7 @@ $(document).ready(function(){
 			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	
 	});
+        
 	$(document).on("click","#rmv_choiceItem", function(){
        
 	    if($(this).siblings("#choice_sub").children().length == 5)
@@ -182,7 +180,7 @@ function field( i){
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
           '<div class="field">'+
-          ' <label>Q U E S T I O N </label><input name ="question['+i+'][q_data]" type="text" required="required"placeholder="Question">'+
+          ' <label><strong>Q u e s t i o n</strong></label><input name ="question['+i+'][q_data]" type="text" required="required"placeholder="Question">'+
        '   </div>'+
          ' <div class="field">'+
            ' <label>&nbsp;</label>'+
@@ -200,21 +198,15 @@ function field( i){
 		 ' </div>'+
      
     '  <div id="choice_main" class="grouped fields">	'+
-      '  <label>Choices:</label>'+
+      '  <label><strong>C h o i c e s :</strong></label>'+
         
       '  <div id="choice_sub" class="two fields">'+
-            
-         
-        '  <input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+    
-            
-        
-	
-            
-            
+
+        '  <input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+         
        ' </div>'+
 
-    '  <div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> '+
-     ' <div id="rmv_choiceItem"class="mini ui red button" type="button">Remove choice</div>'+
+    '  <div id="add_choiceItem" class="mini ui button" type="button">Add Choice</div> '+
+     ' <div id="rmv_choiceItem" class="mini ui red button" type="button">Remove choice</div>'+
 	 '<input type="hidden" name="ctr" id="ctr" value="'+i+'" />'+
     '  </div>'+
     ' </div>'+
