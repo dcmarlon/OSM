@@ -87,6 +87,23 @@
 			 
 			 
 		}    
+		
+		//not final function
+		public function add_answers(){
+			/*add validation rules to each of the input pwede ra wala */
+			//insert code here
+			
+			if($this->answers_m->insert_answer() != false){	
+                            
+                                 redirect('/user/student', 'location', 301); 
+                 
+			}else{
+				echo "error";
+			}
+			
+			 
+			 
+		} 
                 
                 
                 public function edit_survey_v2(){
@@ -165,7 +182,7 @@
 //                        $this->data['question'] = $this->question_m->get_all_question($id);
                       //  $this->data['choices'] = $this->choice_m->get_all_choices($this->data['question']->question_id);
 			count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-                                    //$this->data['surveyID'] = $id;
+                      //$this->data['surveyID'] = $id;
 		}
 		//$this->data['max_q']= $this->question_m->get_max_q();
 	           $this->data['subview']='admin/survey/edit_v2' ;

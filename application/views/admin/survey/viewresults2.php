@@ -87,7 +87,7 @@
                             foreach ($res as $q): ?>                
                                 <div class="item">
                                   <div class="content">
-                                    <a class="header"><h3> <li><?php echo $q['question_data']; ?> </li> </h3></a>
+                                    <p class="header"><h3> <li><?php echo $q['question_data']; ?> </li> </h3></p>
                                     <div class="meta">
                                       <span class="cinema"></span>
                                     </div>

@@ -12,6 +12,10 @@
 		$this->load->helper('form');
 		$this->load->helper('html');
                 $this->load->model('student_m');
+                 $this->load->model('survey_m');
+                 $this->load->model('question_m');
+                 $this->load->model('choice_m');
+                 $this->load->model('results_m');
 	}
         
        public function index ()
@@ -24,11 +28,61 @@
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
-        public function take (){
-            $this->load->view('admin/survey/user/takesurvey');
+        public function take ($id = 15){
+                if ($id) {
+            $this->data['survs'] = $this->survey_m->get($id);
+            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
+        }
+
+            $this->load->view('admin/components/takesurvey_head');
+            $this->load->view('admin/survey/user/takesurvey',$this->data);
+            $this->load->view('admin/components/takesurvey_tail');
         }
 
         
+		
+		function insert_answers()	/* insert answer data to db */
+		{
+			
+                      
+		$data = array(
+				'survey_name' => $this->input->post('s_name')
+			);
+			
+			$query1 = $this->db->insert('survey',$data);
+			$survey_id = $this->db->insert_id();
+			
+			$question= $this->input->post('question');
+			foreach($question as $index => $quest){
+				$data = array(
+					'survey_id' => $survey_id,
+					'question_data' => $quest['q_data'],
+					'question_type' => $quest['q_type']
+				
+				);
+				$this->db->insert('questions',$data);
+				$question_id = $this->db->insert_id();
+				foreach($quest['choices_item'] as $choice){
+					$data = array(
+								'question_id' => $question_id,
+								'choice_data' => $choice
+					);
+					
+					$this->db->insert('choices',$data);
+				}
+				
+			}
+		
+			if($query1){
+				return true;
+				
+			}else
+				return false;
+                    
+                      
+		}
+              
+		
          public function process(){
             $id = $this->input->post('idnum');
             $coll = $this->input->post('coll');
