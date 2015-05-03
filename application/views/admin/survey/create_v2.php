@@ -67,8 +67,8 @@
                                         <div class="row"></div>
                             <div class="three wide column"></div>
                             <button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
-                                        <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
-                            <button id="submit_form" type="submit" name="addlist" class="ui submit button" onclick="myFunction()">Submit Form</button>
+                            <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
+                            <button id="submit_form" type="submit" name="addlist" class="ui submit button" onclick="alert('You just submit!')">Submit Form</button>
                         </div>
                                 </br>
                     
@@ -205,8 +205,8 @@ function field( i){
         '  <input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+         
        ' </div>'+
 
-    '  <div id="add_choiceItem" class="mini ui button" type="button">Add Choice</div> '+
-     ' <div id="rmv_choiceItem" class="mini ui red button" type="button">Remove choice</div>'+
+    '  <button id="add_choiceItem" class="mini ui button" type="button">Add Choice</button> '+
+     ' <button id="rmv_choiceItem" class="mini ui red button" type="button">Remove choice</button>'+
 	 '<input type="hidden" name="ctr" id="ctr" value="'+i+'" />'+
     '  </div>'+
     ' </div>'+
