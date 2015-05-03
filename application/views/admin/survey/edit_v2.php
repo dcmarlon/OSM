@@ -85,7 +85,7 @@
 							<?php endif; ?>    
                                                                   
 							<div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
-							<button id="rmv2_choiceItem" class="mini ui red button" type="button"  >Remove Choice</button>
+							<button id="rmv_choiceItem" class="mini ui red button" type="button"  >Remove Choice</button>
 							<input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
                                                     
 						</div>
@@ -139,7 +139,8 @@ $(document).ready(function(){
 	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
 		
-	$('#remove_choiceItem').attr("disabled","disabled");
+	$('#rmv2_choiceItem').attr("disabled","disabled");
+        $('#rmv_choiceItem').attr("disabled","disabled");
 	
 	$('#rr').click(function(){
 		alert($('.cnt > div[id*="re"]').length);
@@ -173,19 +174,21 @@ $(document).ready(function(){
 		
 	});
         
-  $(document).on("click", "#choice_add", function(){
+  $(document).on("click", "#add2_choiceItem", function(){
        
+   
 		
-		 if($(this).siblings("#choice_sub").children().length == 1)
-			$(this).siblings('#rmv2_choiceItem').removeAttr("disabled");
-                    
-		 var x= $(this).siblings("#sctr2").val();
-               
-		$(this).siblings("#choice_sub").append('<input type="text" name="question_two['+x+'][choices2_item][]" class="form-group form-control" required="required" placeholder="Choice">');
+	 if($(this).siblings("#choice_sub").children().length == 1){
+            $(this).siblings('#rmv2_choiceItem').removeAttr("disabled");
+         }     
+		 var q_ctrs = $(this).siblings("#sctr2").val();
+		$(this).siblings("#choice_sub").append('<input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" required placeholder="Choice">');
 		
-			 if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).attr("disabled","disabled");	
-	});
+			    
+                    if($(this).siblings("#choice_sub").children().length == 5)
+                       $(this).attr("disabled","disabled");	
+         
+});
 	
 	$(document).on("click", "#add_choiceItem", function(){
        
@@ -208,7 +211,6 @@ $(document).ready(function(){
         
         
 	$(document).on("click","#rmv2_choiceItem", function(){
-      // c_num-=1;
 	    if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
@@ -221,8 +223,6 @@ $(document).ready(function(){
         
       $(document).on("click","#rmv_choiceItem", function(){
           
-    
-          c_num-=1;
                 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
@@ -326,7 +326,7 @@ function field(i){
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
                                 '<div class="field">'+
-                                        '<label>Q U E S T I O N </label> <input name ="question_two['+i+'][q2_data]" type="text"  required="required"placeholder="Question">'+
+                                        '<label>Q u e s t i o n</label> <input name ="question_two['+i+'][q2_data]" type="text"  required="required"placeholder="Question">'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -342,13 +342,13 @@ function field(i){
                         '</div>'+
                         
                 '<div id="choice_main" class="grouped fields">'+
-                            '<label>Choices:</label>'+
+                            '<label>C h o i c e s :</label>'+
                         '<div id="choice_sub" class="two fields">'+
                             '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" placeholder="Choice">'+    
                         '</div>'+
 
-                            '<div id="choice_add" class="mini ui button" type="button">Add Choice</div> '+
-                             '<div id="rmv2_choiceItem"class="mini ui red button" type="button">Remove choice</div>'+
+                            '<button id="add2_choiceItem" class="mini ui button" type="button">Add Choice</button> '+
+                             '<button id="rmv2_choiceItem"class="mini ui red button" type="button">Remove choice</button>'+
                                  '<input type="hidden" name="sctr2" id="sctr2"  value="'+i+'" />'+
                             '</div>'+
                     '</div>'+
