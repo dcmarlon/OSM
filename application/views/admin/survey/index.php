@@ -3,7 +3,7 @@
     <div class="row"><h2>Archives of Survey</h2></div>
     			<h4><?php echo $meta_title; ?>
     			&nbsp;&nbsp;&nbsp;&nbsp;
-                        <?php echo anchor('admin/survey/add_v2', '<button class="tiny ui green button">Add Survey</button> '); ?>
+                        <?php echo anchor('admin/survey/add', '<button class="tiny ui green button">Add Survey</button> '); ?>
                         </h4> 
 
 <table id ="datatables" class="ui very basic table">

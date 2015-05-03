@@ -11,43 +11,7 @@
            parent::__construct();
            $this->_database = $this->db;
        }
-        
-        public $rules = array(
-		'survey_name' => array(
-			'field' => 'survey name', 
-			'label' => 'Survey Name', 
-			'rules' => 'trim|required|xss_clean'
-		), 
-          
-        );
-        
-        
-       public function get_new(){
-		$survey = new stdClass();
-		$survey->survey_name = '';
-		$survey->created_date = date('Y-m-d');
-		$survey->issued_date = date('Y-m-d');
-                $survey->status = '';
-		return $survey;
-        }
-        
-        public function delete_question(){
 
-
-			$this->db->where('id', $this->input->post('id'));
-			$this->db->update('users', $data);
-		
-			if($this->db->affected_rows()>0){
-				return true;
-			}
-			else
-			 return false;
-		
-		
-	}
-        
-      
-	  
 		function insert_survey_v2()	/* insert survey data to db */
 		{
 			/*
@@ -96,29 +60,6 @@
 				
 				
 			}
-		/*	foreach(array_combine($this->input->post('q_data'),$this->input->post('q_type')) as $question => $question_type){
-				$data = array(
-				'survey_id' => $survey_id,
-				'question_data' => $question,
-				'question_type' => $question_type
-				
-				);
-				
-				$this->db->insert('questions',$data);
-				$question_id = $this->db->insert_id();
-				
-				foreach($this->input->post('choices_item') as $choices){
-					$data = array(
-								'question_id' => $question_id,
-								'choice_data' => $choices
-					);
-					
-					$this->db->insert('choices',$data);
-					
-				}
-				
-			
-			}		*/	
 
 			if($query1){
 				return true;
@@ -135,7 +76,7 @@
                     
              //          echo count($this->input->post('question'))  ;
 //                
-          //              print_r($this->input->post('question'));
+//                        print_r($this->input->post('question'));
 //                          echo "<br>";
 //                          print_r($this->input->post('question_two'));
 //                           echo "<br>";
@@ -181,7 +122,7 @@
                                         $ctr=0;
                                         foreach($quest['c_id'] as $choice){
                                             
-                                            if($quest['c_id']!=0){
+                                           if($quest['c_id']!=0){
 
                                                 $data = array(
                                                                 'choice_data' => $quest['choices_item'][$ctr]
@@ -190,39 +131,31 @@
                                                 $query1 = $this->db->update('choices',$data);
 
                                                 $ctr++;
-                                        }
-                                        
-                                        
-                                                      
-                            }
-                                        
-                                       if($this->input->post($quest['choices_item'])) {
-                                        foreach($quest['choices_item'] as $chox){
-					$data = array(
-								'question_id' => $quest['q_id'],
-								'choice_data' => $chox
-					);
-					
-					$this->db->insert('choices',$data);
-					
-                                        }
-                                       }
-//                                         
-                                         if($quest['c_id']<=0){
-                                             
-                                                 
-                                            $data = array(
-                                                                    'question_id' => $quest['q_id'],
-                                                                    'choice_data' => $quest['choices_item'][$ctr]
-                                            );
-					
-                                                        $this->db->insert('choices',$data);
-                                             $ctr++;
                                          }
-                           
-	
-                               }
-                                 
+                                        
+                                                     //$tmp = array_filter($quest['c_id']);
+                                               else if($this->input->post('question_three')){
+                                                         $question_cho = $this->input->post('question_three');
+                                                        $quest_ctr = $this->input->post('#ctr2');
+                                                        // $sctr = 0;
+                                                           foreach($question_cho  as $cho){
+                                                         $data = array(
+                                                                 'question_id' => $quest_ctr,
+                                                                 'choice_data' => $cho['choices3_item']
+
+                                                         );
+                    				
+                                                                $this->db->insert('choices',$data);
+                                                      // $sctr++;
+                                                   }
+                                                 } 
+                                           
+//                                         
+                              }
+//                                       
+//	
+                              }
+//                                 
 //                                 else
 //                                 {
 //                                    
@@ -250,34 +183,34 @@
                       //   }
      
  }   
-       if($this->input->post('question_two')){
-
-			
-			$question_two= $this->input->post('question_two');
-			foreach($question_two as $quest_two => $quest2){
-				$data = array(
-					'survey_id' => $this->input->post('s_id'),
-					'question_data' => $quest2['q2_data'],
-					'question_type' => $quest2['q2_type']
-				
-				);
-				
-				$this->db->insert('questions',$data);
-				$question_id = $this->db->insert_id();
-                                
-				foreach($quest2['choices2_item'] as $choice){
-					$data = array(
-								'question_id' => $question_id,
-								'choice_data' => $choice
-					);
-					
-					$this->db->insert('choices',$data);
-					
-				}
-       
-                        } 
-                        
-       }
+//       if($this->input->post('question_two')){
+//
+//			
+//			$question_two= $this->input->post('question_two');
+//			foreach($question_two as $quest_two => $quest2){
+//				$data = array(
+//					'survey_id' => $this->input->post('s_id'),
+//					'question_data' => $quest2['q2_data'],
+//					'question_type' => $quest2['q2_type']
+//				
+//				);
+//				
+//				$this->db->insert('questions',$data);
+//				$question_id = $this->db->insert_id();
+//                                
+//				foreach($quest2['choices2_item'] as $choice){
+//					$data = array(
+//								'question_id' => $question_id,
+//								'choice_data' => $choice
+//					);
+//					
+//					$this->db->insert('choices',$data);
+//					
+//				}
+//       
+//                        } 
+//                        
+//       }
  
                         	if($query1){
 				return true;			
@@ -301,15 +234,15 @@
 
 	}
         
-               	public function deleteUserFromDBs($id){
-		$this->db->where('question_id',$id);
-                $this->db->delete('choices');
-		
-		if($this->db->affected_rows()>0){
-			return true;
-		}else{ return false;}
-
-	}
+//               	public function deleteUserFromDBs($id){
+//		$this->db->where('question_id',$id);
+//                $this->db->delete('choices');
+//		
+//		if($this->db->affected_rows()>0){
+//			return true;
+//		}else{ return false;}
+//
+//	}
         
         
          public function delete_choice_id($id){
@@ -322,8 +255,7 @@
 
 	}
                 
-                
-	   
+                   
         
             function update_survey($sdata,$sid)
             {
@@ -334,37 +266,5 @@
             }
         
         
-        
- 
-        
-            public function get_status ()
-	{
-		$array = array(
-			'Available' => 'Available',
-                        'Active' => 'Active',
-                        'Unavaiable' => 'Unavaiable',
-		);
-		return $array;
-	}
-        
-               
-        
-        
-         public function record_count() {
-                return $this->db->count_all('survey');
-        }
-        
-        public function fetch_survey($limit, $start) {
-             $this->db->limit($limit, $start);
-                $query = $this->db->get('survey');
- 
-            if ($query->num_rows() > 0) {
-              foreach ($query->result() as $row) {
-                $data[] = $row;
-            }
-            return $data;
-             }
-             return false;
-        }
 
   }
