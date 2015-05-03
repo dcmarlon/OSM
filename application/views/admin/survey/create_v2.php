@@ -153,8 +153,9 @@ $(document).ready(function(){
 		
 		 if($(this).siblings("#choice_sub").children().length == 1)
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
+                    
 		 var q_ctr = $(this).siblings("#ctr").val();
-		$(this).siblings("#choice_sub").append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
+		$(this).siblings("#choice_sub").append('<input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	

@@ -2,16 +2,6 @@
 class Student_m extends MY_Model
 {
     
-    protected $has_many = array(
-        'questions', 
-        'choices',
-        'answers');
-    public $validation = array(
-        array(
-            'field' => 'id', 
-            'label' => 'ID Number', 
-            'rules' => 'requiredtrim'));
-
     public function __construct ()
     {
         parent::__construct();
@@ -43,7 +33,7 @@ class Student_m extends MY_Model
             $data = array(
                     'student_id' => $row->userid,
                     'college' => $row->fname,
-                    'taken_date' => $row->take_date,
+                    'survey_id' => $row->survey_id,
                     'validated' => true
                     );
             $this->session->set_userdata($data);

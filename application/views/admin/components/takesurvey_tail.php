@@ -5,9 +5,6 @@
         <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('semantic/js/takesurvey.js'); ?>"></script>
-                 
 
-
-        
 </body>
 </html>

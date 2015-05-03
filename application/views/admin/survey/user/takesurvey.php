@@ -14,6 +14,7 @@
 
 			<?php endif; ?>
 			<div class = "column" id = "q_section">
+                            
 				 <?php echo $survs->survey_id; ?>
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 

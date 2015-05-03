@@ -128,6 +128,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     var q_num =<?php  echo count($questions); ?> ;
+   
 
 	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
@@ -186,12 +187,12 @@ $(document).ready(function(){
 		 if($(this).siblings("#choice_sub").children().length == 1)
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                     
-		 var q_ctr = $(this).siblings("#ctr").val();
+	 var q_ctr = $(this).siblings("#ctr").val();
                  
                   
                              
-                $(this).siblings("#choice_sub").append('<input type="hidden" name="question['+q_ctr+'][c_id][]" value="0" >');  
-		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
+                $(this).siblings("#choice_sub").append('<input type="hidden" name="question_three['+q_ctr+'][c_id]" value="0" >');  
+		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice">');
 		
 			 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	
@@ -231,10 +232,10 @@ $(document).ready(function(){
    
                    $(document).on("click","#remove_quest", function(){ 
               
-//                       $.confirm({
+//                $.confirm({
 //                                text: "This is a confirmation dialog manually triggered! Please confirm:",
 //                                confirm: function(button) {
-//                                  alert("You just confirmed.");
+//                                 alert("You just confirmed.");
                                     alert(this.value);
                                          id = this.value;
                                          
@@ -257,13 +258,16 @@ $(document).ready(function(){
                                             
                                                 $(this).remove();
                                              
-                   //          },
+                           
+                            });
+//                            },
 //                              cancel: function(button) {
-//                                  alert("You cancelled.");
+//                                 alert("You cancelled.");
 //                          }
-                  });
-
-            });
+                           
+                            });
+                //    });
+       //  });
             
             
             $(document).on("click","#remove_cho", function(){ 
@@ -304,9 +308,10 @@ $(document).ready(function(){
 //                          }
                //   });
 
-            });
+                });
+ 
+  });
 
-});
 
 
 
