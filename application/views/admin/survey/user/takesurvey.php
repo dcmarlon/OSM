@@ -1,6 +1,6 @@
-<?php $this->load->view('admin/components/takesurvey_head'); ?>
 
-<!-- MENU HEADER -->
+
+<!-- MENU HEADER 
 <div class= "sixteen wide column">
 		<div class = "ui large fixed inverted menu">
 		<div class="title item">	
@@ -29,18 +29,67 @@
 		
 		</div>
 	</div>
-
+-->
 	
 	<!-- SURVEY BODY -->
 <div class="ui three column centered grid">
 	<div class="seven wide centered column">
-	<h3>Survey Title</h3>
+	
 		<div class="column">
 
-		<form>
+		<form class="ui form" id="surveyform" method="post" action="<?php echo base_url('index.php/user/student/insert_answers');?>" role="form">
+
+			<?php if(count($survs)): ?>
+			<h3 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h3>
+			<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
+
+			<?php endif; ?>
 			<div class = "column" id = "q_section">
-				<p>1. Sample Question asdf asdf asdf asdf asdf ?</p>
-					<fieldset>
+                            
+				 <?php echo $survs->survey_id; ?>
+				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
+				if(count($questions)): foreach($questions as $i => $quest): 
+				?>    
+				<div class="two fields">
+					<div class="field">
+					<label>Q U E S T I O N </label>
+					<p name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></p>
+					</div>
+					<div class="grouped fields radio2">
+						<?php 
+		
+							if($quest->question_type == 'Single')
+								$qs_type = "radio";
+							else if($quest->question_type == 'Multiple' || $quest->question_type == 'Combination')
+								$qs_type = "checkbox";
+							
+						?>
+						<div class="field">
+				      		<div class='<?php echo $qs_type; ?>'>
+						<label>Choices:</label>
+                            <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+							if(count($choices)): foreach($choices as $cho):
+							?>
+						<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+						<input type='<?php echo $qs_type; ?>' name="question[<?php echo $i; ?>][choices_item][]">
+						<label><?php echo $cho->choice_data; ?></label>
+							</div>
+						
+
+						<?php endforeach; ?>
+							<?php endif; ?>
+							<?php
+								if($quest->question_type == 'Combination'):
+							?>  
+							<label>Others: </label>
+							<input type='text' name="Others">
+							<?php endif; ?>  
+							</div>
+
+					</div>
+				</div>
+				<!--
+					<form>
 					<div class="grouped fields radio1" >
 				    
 				     
@@ -62,74 +111,14 @@
 				        <label>Grapefruit</label>
 				      
 				    </div>
-					</fieldset>
+					</form>-->
+					<?php endforeach; ?>
+						<?php endif; ?>
 				  </div>
 			
 
-			<div class = "column" id = "q_section">
-				<p>2. Cause tonight is the night when two become?</p>
-					<fieldset>
-					<div class="grouped fields cb" id="cb1">
-				    <div class="field">
-				      <div class="checkbox">
-				        <input type="checkbox" name="fruit">
-				        <label>one</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="checkbox">
-				        <input type="checkbox" name="fruit">
-				        <label>three</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="checkbox">
-				        <input type="checkbox" name="fruit">
-				        <label>four</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="checkbox">
-				        <input type="checkbox" name="fruit">
-				        <label>one</label>
-				      </div>
-				    </div>
-				  </div>
-				  </fieldset>
-			</div>
-
-			<div class = "column" id = "q_section">
-				<p>3. I'm not a girl, not yet a?</p>
-					<fieldset>
-					<div class="grouped fields radio2" id="rd1">
-				    <div class="field">
-				      <div class="radio">
-				        <input type="radio" name="fruit">
-				        <label>woman</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="radio">
-				        <input type="radio" name="fruit">
-				        <label>man</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="radio">
-				        <input type="radio" name="fruit">
-				        <label>lesbian</label>
-				      </div>
-				    </div>
-				    <div class="field">
-				      <div class="radio">
-				        <input type="radio" name="fruit">
-				        <label>other</label>
-				        <input type="text" id="otherchoice">
-				      </div>
-				    </div>
-				  </div>
-				  </fieldset>
-			</div>
+			
+			
 			<div class="center aligned column">
 			<input class="huge ui green button" type="submit" value = "Submit Answers" id='subsurvey'>	
 		</div>
@@ -177,5 +166,3 @@
                  
 			  </div>
 		
-
-<?php $this->load->view('admin/components/takesurvey_tail'); ?>

@@ -33,13 +33,12 @@
 				'date_issued' => $row->issued_date,
 				'status' =>$row->status
 			);
-                
-      
+
                 $data['subview'] = 'admin/survey/info';
 		$this->load->view('admin/_layout_main', $data); 
             
         }
-          
+
         public function add(){        
                    
             $this->data['subview']='admin/survey/create_v2' ;
@@ -58,6 +57,23 @@
 			} 
 			 
 		}    
+		
+		//not final function
+		public function add_answers(){
+			/*add validation rules to each of the input pwede ra wala */
+			//insert code here
+			
+			if($this->answers_m->insert_answer() != false){	
+                            
+                                 redirect('/user/student', 'location', 301); 
+                 
+			}else{
+				echo "error";
+			}
+			
+			 
+			 
+		} 
                 
                 
                 public function edit_survey_v2(){

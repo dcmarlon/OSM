@@ -1,9 +1,9 @@
 <?php
     class Survey_m extends MY_Model{
         
-        protected $_table = 'survey';
+    protected $_table = 'survey';
 	protected $primary_key = 'survey_id';
-        public $_database = 'osmdb';
+    public $_database = 'osmdb';
 	public $_rules = array();    
 	protected $_timestamps = FALSE;
         
