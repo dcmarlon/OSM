@@ -183,34 +183,34 @@
                       //   }
      
  }   
-       if($this->input->post('question_two')){
-
-			
-			$question_two= $this->input->post('question_two');
-			foreach($question_two as $quest_two => $quest2){
-				$data = array(
-					'survey_id' => $this->input->post('s_id'),
-					'question_data' => $quest2['q2_data'],
-					'question_type' => $quest2['q2_type']
-				
-				);
-				
-				$this->db->insert('questions',$data);
-				$question_id = $this->db->insert_id();
-                                
-				foreach($quest2['choices2_item'] as $choice){
-					$data = array(
-								'question_id' => $question_id,
-								'choice_data' => $choice
-					);
-					
-					$this->db->insert('choices',$data);
-					
-				}
-       
-                        } 
-                        
-       }
+//       if($this->input->post('question_two')){
+//
+//			
+//			$question_two= $this->input->post('question_two');
+//			foreach($question_two as $quest_two => $quest2){
+//				$data = array(
+//					'survey_id' => $this->input->post('s_id'),
+//					'question_data' => $quest2['q2_data'],
+//					'question_type' => $quest2['q2_type']
+//				
+//				);
+//				
+//				$this->db->insert('questions',$data);
+//				$question_id = $this->db->insert_id();
+//                                
+//				foreach($quest2['choices2_item'] as $choice){
+//					$data = array(
+//								'question_id' => $question_id,
+//								'choice_data' => $choice
+//					);
+//					
+//					$this->db->insert('choices',$data);
+//					
+//				}
+//       
+//                        } 
+//                        
+//       }
  
                         	if($query1){
 				return true;			

@@ -46,8 +46,68 @@
 
     </div>
      </div>  
+    
+    
+  <!--------------------               VIEW RESULTS STARTS HERE               -------------------------------------------------------------!-->
             
+        <div class="ui modal scrolling" id="modal_view_results">
+            <i class="close icon"></i>
+            <div class="header">
+              <?php echo  $surv['name']; ?>
+            </div>
+            <div class="content">
+            
+              <div class="description">
+                  
+                    <div class="ui divided items">
+                        <?php
+                        if($res == NULL){
+                            echo '<div class="ui inverted segment">
+                                    <p>No results availabe yet</p>
+                                  </div>';
+                        }
+                        else{
+                            foreach ($res as $q): ?>                
+                                <div class="item">
+                                  <div class="content">
+                                    <a class="header"><?php echo $q['question_data']; ?> </a>
+                                    <div class="meta">
+                                      <span class="cinema"></span>
+                                    </div>
+                                    <div class="description">                                          
+                                            <?php foreach ($choices as $c): 
+                                                $tot=$per=0;
+                                               if($q['question_id'] == $c['question_id']){
+                                                   foreach($ans as $a):
+                                                   if($a['choice_id'] == $c['choice_id']){
+                                                       $tot++;
+                                                   }  
+                                                   $per = $tot/$ansque[$q['question_id']] *100;
+                                                   endforeach; ?>
+                                        <table class="ui celled table">
+                                                <tr>
+                                                    <td style="color:red; width: 65px"><?php echo $per; ?> %</td>
+                                                    <td><?php  echo $c['choice_data']; ?></td>
+                                                </tr>
+                                                </table>
+                                               <?php } endforeach ?>   
+                                    </div>
+                                  </div>    
+                                </div>
+                        <?php endforeach; } ?>   
+                  </div>
+                  
+              </div>
+            </div>
+            <div class="actions">
+              <div class="ui black button">
+                Close
+              </div>
+              
+            </div>
+        </div>
+     
+<!--------------------               VIEW RESULTS MODAL ENDS HERE HERE               -------------------------------------------------------------!-->
+  
+                       
 </div> 
-
-</body>
-        </html>

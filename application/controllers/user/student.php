@@ -28,7 +28,7 @@
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
-        public function take ($id = 5){
+        public function take ($id = 15){
             
                 if ($id) {
             $this->data['survs'] = $this->survey_m->get($id);

@@ -81,7 +81,7 @@
                 $data['totala'] = $total_a;
                 //$this->load->view('admin/survey/viewresults2, $data');
                 $data['subview'] = 'admin/survey/viewresults2';
-                $this->load->view('admin/_layout_v2', $data); 
+                $this->load->view('admin/_layout_main', $data); 
             }
 
             //function for getting the total number of answers for a given question		

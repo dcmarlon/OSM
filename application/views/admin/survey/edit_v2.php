@@ -4,7 +4,7 @@
 		<div class="three wide column"></div>
 		<div class="ten wide column">
 			<div class="row">
-			<label> <h3><strong>C u s t o m i z e - S u r v e y</strong></h3> </label>
+			<label> <h2>EDIT - SURVEY</h2>   </label>
 		</div>  
 
 		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/edit_survey_v2');?>" role="form">
@@ -30,13 +30,13 @@
 		
 
 					<div class="questions">
-                                                	
+                                                		<?php echo $survs->survey_id; ?>
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
 						<div class = "three fields">                               
 							<div class="field">
-								<label>Q u e s t i o n </label> 
+								<label>Q U E S T I O N </label> 
 								<input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
 								<input name ="question[<?php echo $i; ?>][q_data]" type="text" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
 							</div>
@@ -58,38 +58,32 @@
 							</div>
 						</div>
 
-						<div id="choice_main" class="two fields">
-                                                   <label><strong>C h o i c e s:</strong></label>
-
+						<div id="choice_main" class="grouped fields">
+                                                   <label>Choices:</label>
+							<?php echo $quest->question_id; ?>
                                                  <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
 							if(count($choices)): foreach($choices as $cho):
 							?>
 		
 
 			
-							<div id="choice_sub" class=" two fields">
-                                                            
+							<div id="choice_sub" class="two fields">
                                                             <div id ="choice_info"class="field">
 								<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
 								<input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
                                                             </div>
-                                                            
                                                             <div class="field">
 								<button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > x </button>
-                                                            </div>
-                                                            
-                                                         
+                                                             </div>
 							</div>
-                                                
 							<?php endforeach; ?>
 							<?php endif; ?>    
-                                                                  
+
 							<div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
 							<button id="rmv2_choiceItem" class="mini ui red button" type="button"  >Remove Choice</button>
 							<input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
-                                                    
+
 						</div>
-                                             <br>   
 						<?php endforeach; ?>
 						<?php endif; ?>
 
@@ -359,7 +353,7 @@ function field(i){
 </script>	
 
 
-</body>
+
         </html>
 
 
