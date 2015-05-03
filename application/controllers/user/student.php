@@ -16,6 +16,7 @@
                  $this->load->model('question_m');
                  $this->load->model('choice_m');
                  $this->load->model('results_m');
+				 $this->load->model('answers_m');
 	}
         
        public function index ()
@@ -28,8 +29,16 @@
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
+<<<<<<< HEAD
         public function take ($id = 5){
+=======
+
+      //  public function take ($id = 14){
+
+        public function take ($id = 15){
+>>>>>>> origin/revert-1-master
             
+
                 if ($id) {
             $this->data['survs'] = $this->survey_m->get($id);
             count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
@@ -40,50 +49,39 @@
             $this->load->view('admin/components/takesurvey_tail');
         }
 
-        
 		
-		function insert_answers()	/* insert answer data to db */
-		{
-			
-                      
-		$data = array(
-				'survey_name' => $this->input->post('s_name')
-			);
-			
-			$query1 = $this->db->insert('survey',$data);
-			$survey_id = $this->db->insert_id();
-			
-			$question= $this->input->post('question');
-			foreach($question as $index => $quest){
-				$data = array(
-					'survey_id' => $survey_id,
-					'question_data' => $quest['q_data'],
-					'question_type' => $quest['q_type']
-				
-				);
-				$this->db->insert('questions',$data);
-				$question_id = $this->db->insert_id();
-				foreach($quest['choices_item'] as $choice){
-					$data = array(
-								'question_id' => $question_id,
-								'choice_data' => $choice
-					);
-					
-					$this->db->insert('choices',$data);
-				}
-				
+		   public function add_answers(){
+             
+			/* 
+           if($this->answers_m->insert_answer() != false){	
+                            
+                                 redirect('/admin/survey', 'location', 301); 
+                 
+			}else{
+				echo "error";
 			}
+                    */
+	$survs = $this->input->post('s_id');
+	$questions = $this->question_m->get_all_questions($survs);
 		
-			if($query1){
-				return true;
+		foreach($questions as $i => $quest){
+			$var = $this->input->post('question[$i]');
+			
+				if (is_array($var)){
+				foreach((array)$var as $cho){
 				
-			}else
-				return false;
-                    
-                      
-		}
-              
-		
+					$data ['ans']= array(
+						'ans_id' => $quest,
+						'choice_id' => $cho['choice_id']		
+					);
+				}
+					$this->db->insert('answers',$data);	
+				}
+			}	
+	}
+          
+   
+        
          public function process(){
             $id = $this->input->post('idnum');
             $coll = $this->input->post('coll');
@@ -91,23 +89,7 @@
             echo $id."<br>";
             echo $coll."<br>";
 
-            /*
-            // Load the model
-            $this->load->model('login_model');
-            // Validate the user can login
-            $result = $this->login_model->validate();
-            // Now we verify the result
-            if(! $result){
-                // If user did not validate, then show them login page again
-                $msg = '<font color=red>Invalid username and/or password.</font><br />';
-                $this->index($msg);
-            }else{
-                // If user did validate, 
-                // Send them to members area
-                redirect('admin/survey/user/home');
-            }  
-
-            */       
+           
        }
 	   
 	   

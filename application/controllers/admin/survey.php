@@ -59,21 +59,7 @@
 		}    
 		
 		//not final function
-		public function add_answers(){
-			/*add validation rules to each of the input pwede ra wala */
-			//insert code here
-			
-			if($this->answers_m->insert_answer() != false){	
-                            
-                                 redirect('/user/student', 'location', 301); 
-                 
-			}else{
-				echo "error";
-			}
-			
-			 
-			 
-		} 
+		
                 
                 
                 public function edit_survey_v2(){
