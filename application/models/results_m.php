@@ -8,7 +8,7 @@ class Results_m extends CI_Model {
             $this->db->from('survey');
             $query = $this->db->get();
 		
-            return  $query->row();
+            return  $query->row();  
         }
     
     public function get_questions($id)  

@@ -29,6 +29,18 @@ function btn_editFour ($uri)
 	return anchor($uri, '<button class="tiny ui green button"></button>');
 }
 
+
+function btn_deactivate ($uri)
+{
+	return anchor($uri, '<button class="tiny ui red button">Deactivate Survey</button>');
+}
+
+function btn_activate ($uri)
+{
+	return anchor($uri, '<button class="tiny ui blue button">Activate Survey</button>');
+}
+
+
 function btn_back ($uri)
 {
 	return anchor($uri, '<button class="tiny ui button">View</button>');

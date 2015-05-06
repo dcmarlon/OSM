@@ -72,15 +72,8 @@
                 
                 
                 
-                function edit_survey_v() {
+                function edit_survey_v() { /* edit survey, insert new survey */
                     
-             //          echo count($this->input->post('question'))  ;
-//                
-//                        print_r($this->input->post('question'));
-//                          echo "<br>";
-//                          print_r($this->input->post('question_two'));
-//                           echo "<br>";
-//                           
                       $data = array(
                             
 				'survey_name' => $this->input->post('s_name')
@@ -88,22 +81,13 @@
 
                       $this->db->where('survey_id', $this->input->post('s_id'));
                       $query1 = $this->db->update('survey',$data);
-            
-                  //     print_r($this->input->post('question'));
-//			$question= $this->input->post('question');
-//                        foreach($question as $index => $quest){
-//                            print_r($quest);
-//                            echo "<br>";
-//                            
-//                            
-//                        }
+           
                  
                       if($this->input->post('question')){
                         $question =  $this->input->post('question');
 			foreach($question as $index => $quest){
                             
-                            // if($index <= $this->input->post('edit_q_count') ){
-				
+
                                     $data = array(
                                                 'question_data' => $quest['q_data'],
                                                 'question_type' => $quest['q_type']
@@ -114,11 +98,6 @@
                                          $this->db->where('question_id',$quest['q_id']);
                                         $query1 = $this->db->update('questions',$data);
 
-
-
-
-                                //	print_r($quest['c_id']);
-                                        
                                         $ctr=0;
                                         foreach($quest['c_id'] as $choice){
                                             
@@ -132,56 +111,28 @@
 
                                                 $ctr++;
                                          }
-                                        
-                                                     //$tmp = array_filter($quest['c_id']);
-                                               else if($this->input->post('question_three')){
+                                                                         
+                              }          
+                             
+   }
+   
+                               if($this->input->post('question_three')){
                                                          $question_cho = $this->input->post('question_three');
-                                                        $quest_ctr = $this->input->post('#ctr2');
-                                                        // $sctr = 0;
-                                                           foreach($question_cho  as $cho){
+
+                                                           foreach($question_cho  as $index => $cho){
+                                                               foreach($cho['choices3_item'] as $items){
                                                          $data = array(
-                                                                 'question_id' => $quest_ctr,
-                                                                 'choice_data' => $cho['choices3_item']
+                                                                 'question_id' => $index,
+                                                                 'choice_data' => $items
 
                                                          );
                     				
                                                                 $this->db->insert('choices',$data);
-                                                      // $sctr++;
-                                                   }
-                                                 } 
                                            
-//                                         
+                                                   }
+                                                 }
                               }
-//                                       
-//	
-                              }
-//                                 
-//                                 else
-//                                 {
-//                                    
-//                                    $dataInsert = array(
-//                                                        'question_data' => $quest['q_data'],
-//                                                        'question_type' => $quest['q_type'],
-//                                                        'survey_id' => $this->input->post('s_id') );
-//                                    
-//                                    $this->db->insert('questions',$dataInsert);
-//                                    $question_id = $this->db->insert_id();
-//                                    
-//                                    //inserting choices to the new question
-//                                    
-//                                        $ctr=0;
-//                                    	foreach($quest['c_id'] as $choice){
-//					$data = array(
-//								'question_id' => $question_id,
-//								'choice_data' => $quest['choices_item'][$ctr]
-//					);
-//					
-//					$this->db->insert('choices',$data);
-//                                        $ctr++;
-//                                        }
-//                                 }
-                      //   }
-     
+
  }   
        if($this->input->post('question_two')){
 
@@ -221,7 +172,7 @@
                   
           
       }        
-       	public function deleteUserFromDB($id){
+       	public function delete_question_choices($id){
 		$this->db->where('question_id',$id);
                 $this->db->delete('choices');
                 $this->db->where('question_id',$id);
@@ -254,17 +205,63 @@
 		}else{ return false;}
 
 	}
+        
+         public function insert_activate($id){
+             
+	       $this->load->helper('date');
+             
+
+//             
+//                        $time = time();
+//
+//                      $date =  mdate($datestring, $time);
+
+              //  $date_time = ;
+               $stat = 'Active';
+//                
+                        $data = array(
+                                //   'created_date' => '',
+                          //        'issued_date' =>  date('Y-m-d H:i:s') ,
+                                   'status' => $stat,
+				
+		);
+                        
+                    //    print_r($data).
+                        
+                 $this->db->set('issued_date', date('Y-m-d',time()));
+              //  $this->db->set('status', $stat);
+                $this->db->where('survey_id',$id);        
+                $this->db->update('survey',$data);
                 
-                   
+	if($this->db->affected_rows()>0){
+			return true;
+		}else{ 
+                    return false;
+                    
+                }
+
+	}
         
-            function update_survey($sdata,$sid)
-            {
-		
-                        $this->db->set($sdata);
-			$this->db->where($this->primary_key, $sid);
-			$this->db->update($this->_table);
-            }
-        
-        
+                 public function insert_deactivate($id){
+
+               $stat = 'Unavailable';              
+                        $data = array(
+
+                                   'status' => $stat,
+				
+		);
+                        
+                $this->db->where('survey_id',$id);        
+                $this->db->update('survey',$data);
+                
+	if($this->db->affected_rows()>0){
+			return true;
+		}else{ 
+                    return false;
+                    
+                }
+
+	}
+                
 
   }

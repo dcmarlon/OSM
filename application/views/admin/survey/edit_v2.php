@@ -10,17 +10,13 @@
 		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/edit_survey_v2');?>" role="form">
 
 			<?php if(count($survs)): ?>
-			<div class ="two fields">
+			<div class ="field">
 				<div class ="field">
 					<div class="ui input"> 
-						<input type="text" name="s_name" class="required field" value="<?php echo $survs->survey_name ?>" placeholder="Survey Title" >
+						<input type="text" name="s_name" required="required" value="<?php echo $survs->survey_name ?>" placeholder="Survey Title" >
 						<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
 
 					</div> 
-				</div>
-
-				<div class="field">
-					<div id="activate_survey" class=" ui blue button">Activate Survey</div>
 				</div>
 				<?php endif; ?>
 			</div>
@@ -29,12 +25,12 @@
                             
 		
 
-					<div class="questions">
+					<div id ="test_p" class="questions">
                                                 	
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
-						<div class = "three fields">                               
+						<div  class = "three fields">                               
 							<div class="field">
 								<label>Q u e s t i o n </label> 
 								<input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
@@ -85,7 +81,7 @@
 							<?php endif; ?>    
                                                                   
 							<div id="add_choiceItem"class="mini ui button" type="button">Add Choice</div> 
-							<button id="rmv_choiceItem" class="mini ui red button" type="button"  >Remove Choice</button>
+							<button id="remove_choice" class="mini ui red button" type="button"  >Remove Choice</button>
 							<input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
                                                     
 						</div>
@@ -103,13 +99,13 @@
 					<div class="three wide column"></div>
 					<button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
 					<button id="remove_question" class="tiny ui red button" type="button">Remove Question</button>
-                                        <input type="hidden" name="edit_q_count" value ="<?php echo count($questions); ?>"/>
-					<button id="submit_form" type="submit" name="addlist" class="ui submit button" onclick="myFunction()">Save</button>
+                                      
+					<button id="submit_form" type="submit" name="addlist" class="ui submit button" >Save</button>
 
 				</div>
 				</br>
 				<div class="left floated column"> 
-					<?php echo anchor('admin/survey', '<button class="ui button">Back</button> '); ?>
+					<?php echo anchor('admin/survey', '<button type = "button" class="ui button">Back</button> '); ?>
 				</div>
 			</div>
 		</form>
@@ -140,7 +136,8 @@ $(document).ready(function(){
 		$('#remove_question').attr("disabled","disabled");
 		
 	$('#rmv2_choiceItem').attr("disabled","disabled");
-        $('#rmv_choiceItem').attr("disabled","disabled");
+        $('#rmv2_choiceItem').attr("disabled","disabled");
+       // $('#rmv_choiceItem').attr("disabled","disabled");
 	
 	$('#rr').click(function(){
 		alert($('.cnt > div[id*="re"]').length);
@@ -194,16 +191,16 @@ $(document).ready(function(){
        
 		
 		 if($(this).siblings("#choice_sub").children().length == 1)
-			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
+			$(this).siblings('#remove_choice').removeAttr("disabled");
                     
 	 var q_ctr = $(this).siblings("#ctr").val();
                  
                   
                              
-                $(this).siblings("#choice_sub").append('<input type="hidden" name="question_three['+q_ctr+'][c_id]" value="0" >');  
+               // $(this).siblings("#choice_sub").last().append('<input type="hidden" name="question_three['+q_ctr+'][c_id]" value="0" >');  
 		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice">');
 		
-			 if($(this).siblings("#choice_sub").children().length == 5)
+            if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).attr("disabled","disabled");	
 	});
         
@@ -221,7 +218,7 @@ $(document).ready(function(){
         
         
         
-      $(document).on("click","#rmv_choiceItem", function(){
+      $(document).on("click","#remove_choice", function(){
           
                 if($(this).siblings("#choice_sub").children().length == 5)
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
@@ -242,14 +239,14 @@ $(document).ready(function(){
 //                                text: "This is a confirmation dialog manually triggered! Please confirm:",
 //                                confirm: function(button) {
 //                                 alert("You just confirmed.");
-                                    alert(this.value);
+                              //      alert(this.value);
                                          id = this.value;
                                          
-                                         		
+                                     if(confirm("Do you want to delete this question?" )){                      		
 
                              $.ajax({
                                             type: "POST",
-                                            url: "<?php echo base_url('index.php/admin/survey/deleteQuestion/')?>/"+id,
+                                            url: "<?php echo base_url('index.php/admin/survey/delete_questions/')?>/"+id,
 
                                     }).done(function(msg){
                                                 if(msg=="success"){
@@ -257,15 +254,22 @@ $(document).ready(function(){
                                                 }
 
                                 });
+                                 alert("Successfully deleted!");
                               //  $('.question_main > div.questions').last().remove();
-                                            $(this).parent().parent().fadeOut("slow", function() {
+                                         //   $("#main_quest").fadeOut("1000", function() {
+                                         $("#test_p").fadeOut("slow", function() {
                                                 
                                                // $('.question_main > div.questions').parent().remove();
                                             
                                                 $(this).remove();
-                                             
+                                             location.reload();
                            
                             });
+                               
+                            }else{
+                                
+                                
+                            }
 //                            },
 //                              cancel: function(button) {
 //                                 alert("You cancelled.");
@@ -315,6 +319,15 @@ $(document).ready(function(){
                //   });
 
                 });
+                
+                     $('#submit_form').submit(function(e) {
+                            if(!confirm('really submit the form?')) {
+                                    e.preventDefault();
+                                     return;
+                            }
+});
+                
+
  
   });
 
@@ -348,7 +361,7 @@ function field(i){
                         '</div>'+
 
                             '<button id="add2_choiceItem" class="mini ui button" type="button">Add Choice</button> '+
-                             '<button id="rmv2_choiceItem"class="mini ui red button" type="button">Remove choice</button>'+
+                             '<button id="rmv2_choiceItem" class="mini ui red button" type="button">Remove choice</button>'+
                                  '<input type="hidden" name="sctr2" id="sctr2"  value="'+i+'" />'+
                             '</div>'+
                     '</div>'+
@@ -356,6 +369,21 @@ function field(i){
 	
 	return x;
 	}
+        
+        
+//                    function yesNo(){
+//         
+//         if(confirm("Do you want to save changes?")){
+//         
+//                    alert("Saved! Redirect to List of Survey");
+//             
+//         }else{
+//                     alert("Cancelled!");
+//         }
+//         
+//     }
+     
+
 </script>	
 
 

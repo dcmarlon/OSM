@@ -9,6 +9,7 @@ class Admin_Controller extends MY_Controller
                 $this->load->helper('url');
                 $this->data['meta_title'] = 'Admin Panel';
                 $this->load->helper('form');
+       
                 $this->load->library('form_validation');
               //  $this->load->library('session');
                

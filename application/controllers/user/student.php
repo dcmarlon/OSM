@@ -29,14 +29,10 @@
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
-<<<<<<< HEAD
-        public function take ($id = 5){
-=======
 
-      //  public function take ($id = 14){
+        public function take ($id = 11){
 
-        public function take ($id = 15){
->>>>>>> origin/revert-1-master
+
             
 
                 if ($id) {
