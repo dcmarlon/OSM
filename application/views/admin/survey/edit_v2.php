@@ -61,7 +61,7 @@
 							if(count($choices)): foreach($choices as $cho):
 							?>
 		
-
+                                                       <?php if(strcmp($cho->choice_data, "OTHERS")!=0){?>
 			
 							<div id="choice_sub">
                                                             
@@ -77,6 +77,7 @@
                                                             
                                                             </div>     
 							</div>
+                                                       <?php } ?>
                                                 
 							<?php endforeach; ?>
 							<?php endif; ?>    
