@@ -14,8 +14,7 @@
                 $this->load->model('survey_m');
                 $this->load->model('question_m');
                 $this->load->model('survey_m');
-                $this->load->model('choice_m');
-				$this->load->model('answers_m');
+                    $this->load->model('choice_m');
 	}
         
        public function index ()
@@ -30,7 +29,7 @@
                             }          
                         }
                 }
-                $data['msg'] = "Welcome";
+                $data['msg'] = "No Survey Activated";
                 $data['check'] = $stat;
 		$this->load->view('admin/survey/user/login',  $data);
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
@@ -62,7 +61,7 @@
         }
 
 		
-		   /*public function add_answers(){
+		   public function add_answers(){
              
 			/* 
            if($this->answers_m->insert_answer() != false){	
@@ -72,7 +71,7 @@
 			}else{
 				echo "error";
 			}
-                    
+                    */
 	$survs = $this->input->post('s_id');
 	$questions = $this->question_m->get_all_questions($survs);
 		
@@ -92,53 +91,7 @@
 			}	
 	}
           
-   */
    
-   public function add_answers(){
-            /* 
-           if($this->answers_m->insert_answer() != false){	
-                                 redirect('/admin/survey', 'location', 301); 
-			}else{
-				echo "error";
-			}
-             */
-		$survs_id = $this->input->post('s_id');
-		$questions = $this->question_m->get_all_questions($survs_id);
-		
-		if(count($questions)){
-			foreach($questions as $i => $quest){
-				//$var = $this->input->post('question[$i]');
-				$choices = $this->choice_m->get_all_choices($quest->question_id);
-				
-					foreach($choices as $cho){  
-					
-					$ans = $this->input->post('${question[<?php echo $i; ?>][c_id][]}');
-					if (is_array($ans)){
-					 if($this->input->post('${question[<?php echo $i; ?>][c_id][]}')){
-
-						 $data = array(
-									'student_id' => 11100222,
-									'choice_id' => $cho['choice_id'],
-									
-									);
-									$this->db->insert('answers',$data);
-						}
-						else{
-					echo "error";
-				}
-					
-                                             
-                }else{
-					echo "error";
-				}
-					
-			}	
-			
-			}
-		}
-				
-	}
-          
         
          public function process(){
             $id = $this->input->post('idnum');
