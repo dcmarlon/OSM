@@ -11,6 +11,10 @@
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->helper('html');
+                $this->load->model('survey_m');
+                $this->load->model('question_m');
+                $this->load->model('survey_m');
+                    $this->load->model('choice_m');
 	}
         
        public function index ()
@@ -32,11 +36,20 @@
 	}
 
 
-        public function take ($id = 11){
-
-
+        public function take ($id = null){
             
-
+            $this->load->model('survey_m');
+            
+                $row = $this->survey_m->get_survey_active('Active');
+                
+                
+                    $data['sur'] = array(
+                        
+                        'id' => $row->survey_id
+                    );
+                
+                $id = $data['sur']['id'];
+            
                 if ($id) {
             $this->data['survs'] = $this->survey_m->get($id);
             count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';

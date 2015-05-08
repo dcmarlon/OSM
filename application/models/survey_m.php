@@ -11,6 +11,17 @@
            parent::__construct();
            $this->_database = $this->db;
        }
+       
+       public function get_survey_active($status){
+           
+           
+           $this->db->where('status',$status);
+           $this->db->from('survey');
+           $query = $this->db->get();
+           
+           return $query->row();
+           
+       }
 
 		function insert_survey_v2()	/* insert survey data to db */
 		{
