@@ -13,7 +13,6 @@
 		$this->load->helper('html');
                 $this->load->model('survey_m');
                 $this->load->model('question_m');
-                $this->load->model('survey_m');
                     $this->load->model('choice_m');
 	}
         
@@ -29,7 +28,7 @@
                             }          
                         }
                 }
-                $data['msg'] = "No Survey Activated";
+                $data['msg'] = "W E L C O M E";
                 $data['check'] = $stat;
 		$this->load->view('admin/survey/user/login',  $data);
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
@@ -61,35 +60,19 @@
         }
 
 		
-		   public function add_answers(){
-             
-			/* 
-           if($this->answers_m->insert_answer() != false){	
+		 public function answers_add(){
+                     
+                                     $this->load->model('student_m');
+			
+			if($this->student_m->answers_insert() != false){	
                             
-                                 redirect('/admin/survey', 'location', 301); 
+                                // redirect('/admin/survey', 'location', 301); 
                  
 			}else{
 				echo "error";
-			}
-                    */
-	$survs = $this->input->post('s_id');
-	$questions = $this->question_m->get_all_questions($survs);
-		
-		foreach($questions as $i => $quest){
-			$var = $this->input->post('question[$i]');
-			
-				if (is_array($var)){
-				foreach((array)$var as $cho){
-				
-					$data ['ans']= array(
-						'ans_id' => $quest,
-						'choice_id' => $cho['choice_id']		
-					);
-				}
-					$this->db->insert('answers',$data);	
-				}
-			}	
-	}
+			} 
+			 
+		}    
           
    
         
