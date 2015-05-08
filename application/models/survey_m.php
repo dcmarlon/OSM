@@ -23,7 +23,7 @@
            
        }
 
-		function insert_survey_v2()	/* insert survey data to db */
+				function insert_survey_v2()	/* insert survey data to db */
 		{
 			/*
                     print_r($this->input->post('question'));
@@ -69,17 +69,18 @@
 					$this->db->insert('choices',$data);
 					
 				}
-                                
-//                                          if($quest['q_type']=='Combination'){
-//                                        
-//                                        $data = array(
-//								'question_id' => $question_id,
-//								'choice_data' => 'OTHERS'
-//					);
-//					
-//					$this->db->insert('choices',$data);
-//                                        
-//                                    }
+
+
+                                          if($quest['q_type']=='Combination'){
+                                        
+                                        $data = array(
+								'question_id' => $question_id,
+								'choice_data' => 'OTHERS'
+					);
+					
+					$this->db->insert('choices',$data);
+                                        
+                                    }
 				
 				
 				
@@ -94,7 +95,14 @@
                       
 		}
                 
-                
+                  public function others_call($q){
+                        $this->db->where('question_id',$q);
+                        $this->db->from('questions');
+                        $query = $this->db->get();
+
+                        return  $query->row(); 
+
+                  }
                 
                 function edit_survey_v() { /* edit survey, insert new survey */
                     
@@ -117,9 +125,27 @@
                                                 'question_type' => $quest['q_type']
   
                                         );
+                                    
+                                    
+                                   $row = $this->others_call($quest['q_id']); 
+                                   
+                                   if ($row->question_type == 'Combination' && ($quest['q_type'] == 'Single' || $quest['q_type'] == 'Multiple') ){
+                                       $this->db->where('question_id', $quest['q_id']);
+                                       $this->db->where('choice_data =', 'OTHERS');
+                                       $this->db->delete('choices');
+                                   } else if ( ($row->question_type == 'Single' || $row->question_type == 'Multiple') &&  $quest['q_type'] == 'Combination' ) {
+                                       
+                                       $cdata = array(
+								'question_id' => $quest['q_id'],
+								'choice_data' => 'OTHERS'
+					);
+					
+					$this->db->insert('choices',$cdata);
+                                   }else{
+                                       //do nothing? 
+                                   }
 
-
-                                         $this->db->where('question_id',$quest['q_id']);
+                                        $this->db->where('question_id',$quest['q_id']);   
                                         $query1 = $this->db->update('questions',$data);
 
                                         $ctr=0;
@@ -286,6 +312,13 @@
                 }
 
 	}
+        
+        
+        
+      
+        
+        
+        
                 
 
   }
