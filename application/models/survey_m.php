@@ -23,79 +23,9 @@
            
        }
 
-				function insert_survey_v2()	/* insert survey data to db */
+		function insert_survey_v2()	/* insert survey data to db */
 		{
-			/*
-                    print_r($this->input->post('question'));
-			echo "<br>";
-			$bq= $this->input->post('question');
-			
-			foreach($bq as $index => $quest)
-			{
-				foreach($quest['choices_item'] as $choice){
-					echo  $choice." ";
-					
-				}
-				echo "<br>";
-			}
-                         * */
-                      
-		$data = array(
-				'survey_name' => $this->input->post('s_name')
-			);
-			
-			$query1 = $this->db->insert('survey',$data);
-			$survey_id = $this->db->insert_id();
-			
-			$question= $this->input->post('question');
-			foreach($question as $index => $quest){
-				$data = array(
-					'survey_id' => $survey_id,
-					'question_data' => $quest['q_data'],
-					'question_type' => $quest['q_type']
-				
-				);
-				
-				$this->db->insert('questions',$data);
-				$question_id = $this->db->insert_id();
-				foreach($quest['choices_item'] as $choice){
-                                    
-                          
-					$data = array(
-								'question_id' => $question_id,
-								'choice_data' => $choice
-					);
-					
-					$this->db->insert('choices',$data);			
-				}
 
-
-
-                                          if($quest['q_type']=='Combination'){
-                                        
-                                        $data = array(
-								'question_id' => $question_id,
-								'choice_data' => 'OTHERS'
-					);
-					
-					$this->db->insert('choices',$data);
-                                        
-                                    }
-				
-=======
-                                
-//                                          if($quest['q_type']=='Combination'){
-//                                        
-//                                        $data = array(
-//								'question_id' => $question_id,
-//								'choice_data' => 'OTHERS'
-//					);
-//					
-//					$this->db->insert('choices',$data);
-//                                        
-//                                    }
-//				
->>>>>>> parent of a179ff6... try
 				
 				
 			}
@@ -109,14 +39,7 @@
                       
 		}
                 
-                  public function others_call($q){
-                        $this->db->where('question_id',$q);
-                        $this->db->from('questions');
-                        $query = $this->db->get();
-
-                        return  $query->row(); 
-
-                  }
+                
                 
                 function edit_survey_v() { /* edit survey, insert new survey */
                     
@@ -139,27 +62,9 @@
                                                 'question_type' => $quest['q_type']
   
                                         );
-                                    
-                                    
-                                   $row = $this->others_call($quest['q_id']); 
-                                   
-                                   if ($row->question_type == 'Combination' && ($quest['q_type'] == 'Single' || $quest['q_type'] == 'Multiple') ){
-                                       $this->db->where('question_id', $quest['q_id']);
-                                       $this->db->where('choice_data =', 'OTHERS');
-                                       $this->db->delete('choices');
-                                   } else if ( ($row->question_type == 'Single' || $row->question_type == 'Multiple') &&  $quest['q_type'] == 'Combination' ) {
-                                       
-                                       $cdata = array(
-								'question_id' => $quest['q_id'],
-								'choice_data' => 'OTHERS'
-					);
-					
-					$this->db->insert('choices',$cdata);
-                                   }else{
-                                       //do nothing? 
-                                   }
 
-                                        $this->db->where('question_id',$quest['q_id']);   
+
+                                         $this->db->where('question_id',$quest['q_id']);
                                         $query1 = $this->db->update('questions',$data);
 
                                         $ctr=0;
@@ -326,13 +231,6 @@
                 }
 
 	}
-        
-        
-        
-      
-        
-        
-        
                 
 
   }
