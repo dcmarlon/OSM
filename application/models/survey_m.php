@@ -66,9 +66,9 @@
 								'choice_data' => $choice
 					);
 					
-					$this->db->insert('choices',$data);
-					
+					$this->db->insert('choices',$data);			
 				}
+
 
 
                                           if($quest['q_type']=='Combination'){
@@ -82,6 +82,20 @@
                                         
                                     }
 				
+=======
+                                
+//                                          if($quest['q_type']=='Combination'){
+//                                        
+//                                        $data = array(
+//								'question_id' => $question_id,
+//								'choice_data' => 'OTHERS'
+//					);
+//					
+//					$this->db->insert('choices',$data);
+//                                        
+//                                    }
+//				
+>>>>>>> parent of a179ff6... try
 				
 				
 			}

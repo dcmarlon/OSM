@@ -42,10 +42,10 @@
                         
                  <?php if(!($check =='Active')):?>
                              
-                          <div class="ui huge red inverted button disabled"   id="takeSur">Take Our Survey</div>
+                          <div class="ui huge red inverted button"   id="takeSur">Take Our Survey</div>
           
                   <?php else: ?>          
-			<div class="ui huge red inverted button"  id="takeSur">Take Our Survey</div>
+			<div class="ui huge red inverted button disabled"  id="takeSur">Take Our Survey</div>
                   <?php endif; ?>
 		</div>
 	</div>
