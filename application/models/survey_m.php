@@ -80,7 +80,7 @@
 //					$this->db->insert('choices',$data);
 //                                        
 //                                    }
-//				
+				
 				
 				
 			}
