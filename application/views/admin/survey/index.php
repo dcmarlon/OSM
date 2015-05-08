@@ -36,7 +36,7 @@
          <?php endforeach; ?>
          <?php else: ?>
             <tr>
-                    <td colspan="3">We could not find any users.</td>
+                    <td colspan="3">We could not find any surveys.</td>
             </tr>
          <?php endif; ?>	
     </tbody>

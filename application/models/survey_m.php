@@ -48,6 +48,8 @@
 				$this->db->insert('questions',$data);
 				$question_id = $this->db->insert_id();
 				foreach($quest['choices_item'] as $choice){
+                                    
+                          
 					$data = array(
 								'question_id' => $question_id,
 								'choice_data' => $choice
@@ -56,7 +58,18 @@
 					$this->db->insert('choices',$data);
 					
 				}
-				
+                                
+//                                          if($quest['q_type']=='Combination'){
+//                                        
+//                                        $data = array(
+//								'question_id' => $question_id,
+//								'choice_data' => 'OTHERS'
+//					);
+//					
+//					$this->db->insert('choices',$data);
+//                                        
+//                                    }
+//				
 				
 				
 			}

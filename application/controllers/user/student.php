@@ -11,21 +11,23 @@
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->helper('html');
-                $this->load->model('student_m');
-                 $this->load->model('survey_m');
-                 $this->load->model('question_m');
-                 $this->load->model('choice_m');
-                 $this->load->model('results_m');
-				 $this->load->model('answers_m');
 	}
         
        public function index ()
 	{   
-                // Load our view to be displayed
-               // to the user
-           $msg ="Hello";
-               $this->data['msg'] = $msg;
-		$this->load->view('admin/survey/user/login',  $this->data);
+                $this->load->model('survey_m');
+               $stat = '';
+                      $surveys= $this->survey_m->get_all();   
+                if(count($surveys)){
+                    foreach($surveys as $survey){
+                        if(($survey->status =='Active')){
+                                    $stat = 'Active'; 
+                            }          
+                        }
+                }
+                $data['msg'] = "No Survey Activated";
+                $data['check'] = $stat;
+		$this->load->view('admin/survey/user/login',  $data);
        // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 

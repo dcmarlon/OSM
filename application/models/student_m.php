@@ -26,6 +26,7 @@ class Student_m extends MY_Model
         // Run the query
         $query = $this->db->get('students');
         // Let's check if there are any results
+        
         if($query->num_rows == 1)
         {
             // If there is a user, then create session data

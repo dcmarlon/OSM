@@ -39,7 +39,14 @@
 	<div class="section " id="section0">
 		<div class="intro">
 			<h1>Welcome to TC Surveys</h1>
-			<div class="ui huge red inverted button" id="takeSur">Take Our Survey</div>
+                        
+                 <?php if(!($check =='Active')):?>
+                             
+                          <div class="ui huge red inverted button"   id="takeSur">Take Our Survey</div>
+          
+                  <?php else: ?>          
+			<div class="ui huge red inverted button disabled"  id="takeSur">Take Our Survey</div>
+                  <?php endif; ?>
 		</div>
 	</div>
 	<div class="section" id="section1">
