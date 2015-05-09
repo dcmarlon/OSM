@@ -25,6 +25,9 @@
 
 		function insert_survey_v2()	/* insert survey data to db */
 		{
+<<<<<<< HEAD
+
+=======
 			/*
                     print_r($this->input->post('question'));
 			echo "<br>";
@@ -69,18 +72,20 @@
 					$this->db->insert('choices',$data);
 					
 				}
-                                
-//                                          if($quest['q_type']=='Combination'){
-//                                        
-//                                        $data = array(
-//								'question_id' => $question_id,
-//								'choice_data' => 'OTHERS'
-//					);
-//					
-//					$this->db->insert('choices',$data);
-//                                        
-//                                    }
-//				
+
+
+                                          if($quest['q_type']=='Combination'){
+                                        
+                                        $data = array(
+								'question_id' => $question_id,
+								'choice_data' => 'OTHERS'
+					);
+					
+					$this->db->insert('choices',$data);
+                                        
+                                    }
+				
+>>>>>>> parent of 75deb81... Revert "try"
 				
 				
 			}

@@ -33,7 +33,7 @@
 	
 		<div class="row">
 
-		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/add_answers');?>" role="form">
+		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/answers_add');?>" role="form">
            
 			<?php if(count($survs)): ?>
 			<h2 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h2>
@@ -43,12 +43,18 @@
 			<div class = "row" id = "q_section">
                             
 				 <?php echo $survs->survey_id; ?>
+                            
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
+                            
+                            
 				<div class="grouped fields">
+                                    
 					<div class="field">
 					<label>Q U E S T I O N </label>
+                                        
+                                        <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
 					<p name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></p>
 					</div>
 					<div class="grouped fields">
@@ -60,25 +66,30 @@
 								$qs_type = "checkbox";
 							
 						?>
-						<div class="field">
-				      		<div class='<?php echo $qs_type; ?>'>
+						<div class=" two fields">
+                                                    
+				      		<div class="field">
+                                                 
 						<label>Choices:</label>
-                            <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
-							if(count($choices)): foreach($choices as $cho):
+                                                
+                                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+							$ctr =0; if(count($choices)): foreach($choices as $cho): 
 							?>
+                                                
 						<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-						<input type='<?php echo $qs_type; ?>' name="question[<?php echo $i; ?>][choices_item][]">
-						<label><?php echo $cho->choice_data; ?></label>
+						<input type="<?php echo $qs_type; ?>" name="question[<?php echo $i; ?>][choices_item][]" >
+                                                <label><?php echo $cho->choice_data; ?></label>
+                                                
+                                           
 							</div>
-						
-
+                                                        
 						<?php endforeach; ?>
 							<?php endif; ?>
 							<?php
 								if($quest->question_type == 'Combination'):
 							?>  
 							<label>Others: </label>
-							<input type='text' name="Others">
+							<input type='text' name="question[<?php echo $i; ?>][others]">
 							<?php endif; ?>  
 							</div>
 					<div class="ui divider"></div>
@@ -87,7 +98,7 @@
 						
 						
 			<div class="center aligned column">
-			<input class="huge ui green button" type="submit" value = "Submit Answers" id='subsurvey'>	
+                        <button id="submit_forms" type="submit"  class="tiny ui submit blue button" >Submit Survey</button>	
 			</div>
 					</div>
 					
