@@ -62,35 +62,37 @@
 		
 							if($quest->question_type == 'Single')
 								$qs_type = "radio";
-							else if($quest->question_type == 'Multiple' || $quest->question_type == 'Combination')
+							else if($quest->question_type == 'Multiple')
 								$qs_type = "checkbox";
 							
 						?>
 						<div class=" two fields">
                                                     
-				      		<div class="field">
+				      		<div class="<?php echo $qs_type; ?>">
                                                  
 						<label>Choices:</label>
                                                 
                                                     <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
-							$ctr =0; if(count($choices)): foreach($choices as $cho): 
+							if(count($choices)): foreach($choices as $x => $cho): 
 							?>
                                                 
 						<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-						<input type="<?php echo $qs_type; ?>" name="question[<?php echo $i; ?>][choices_item][]" >
+						<input type="<?php echo $qs_type; ?>" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_id; ?>" >
                                                 <label><?php echo $cho->choice_data; ?></label>
+                                                
+                                                
+                                                     <?php if(strtoupper($cho->choice_data) == 'OTHERS'):?>
+                                                
+                                                        <input type='text' >
+                                                
+                                                     <?php endif;?>
                                                 
                                            
 							</div>
                                                         
 						<?php endforeach; ?>
 							<?php endif; ?>
-							<?php
-								if($quest->question_type == 'Combination'):
-							?>  
-							<label>Others: </label>
-							<input type='text' name="question[<?php echo $i; ?>][others]">
-							<?php endif; ?>  
+					
 							</div>
 					<div class="ui divider"></div>
 					<?php endforeach; ?>

@@ -63,8 +63,11 @@
   	    public function add_survey_v2(){
 			
 			if($this->survey_m->insert_survey_v2() != false){	
-                            
-                                 redirect('/admin/survey', 'location', 301); 
+                            echo "<script type='text/javascript'>";
+                            echo "alert('Submitted Successfully');";
+                            echo "window.location.href='../survey'";
+                            echo "</script>";
+                                 //redirect('/admin/survey', 'location', 301); 
                  
 			}else{
 				echo "error";

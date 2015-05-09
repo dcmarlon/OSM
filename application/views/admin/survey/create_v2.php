@@ -31,7 +31,7 @@
                                     <option value="" disabled default selected class="display-none">Question Type</option>
                                     <option value="Single">Single</option>
                                     <option value="Multiple">Multiple</option>
-                                    <option value="Combination">Combination</option>
+      
                                 </select>
 
                             </div>
@@ -189,7 +189,6 @@ function field( i){
                 '    <option value="" disabled default selected class="display-none">Question Type</option>'+
                   '  <option value="Single">Single</option>'+
                   '  <option value="Multiple">Multiple</option>'+
-                   '+ <option value="Combination">Combination</option>'+
 	'	</select>'+
           
            ' </div>'+

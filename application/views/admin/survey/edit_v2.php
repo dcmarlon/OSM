@@ -45,7 +45,7 @@
 										</option>
 										<option value="Single">Single</option>
 										<option value="Multiple">Multiple</option>
-										<option value="Combination">Combination</option>
+				
 									</select>
 								</div>
 							</div>                 	
@@ -61,8 +61,6 @@
 							if(count($choices)): foreach($choices as $cho):
 							?>
 		
-
-			
 							<div id="choice_sub">
                                                             
                                                             <div class="two fields">
@@ -77,6 +75,7 @@
                                                             
                                                             </div>     
 							</div>
+                                               
                                                 
 							<?php endforeach; ?>
 							<?php endif; ?>    
@@ -388,7 +387,6 @@ function field(i){
                                                        '<option value="" disabled default selected class="display-none">Question Type</option>'+
                                                        '<option value="Single">Single</option>'+
                                                        '<option value="Multiple">Multiple</option>'+
-                                                       '<option value="Combination">Combination</option>'+
                                                '</select>'+     
                                         '</div>'+
                                 '</div>'+                	

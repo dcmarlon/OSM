@@ -54,52 +54,31 @@ class Student_m extends MY_Model
     }
     
      function answers_insert(){
-             
-                      
-		//$dataID = ;
                 
-                
-                
-                  
-                
-//                echo 'inside';
+        echo 'inside';
                 print_r($this->input->post('question'));
 			
                 if($this->input->post('question')){
-			$question= $this->input->post('question');
+			$question= $this->input->post('question');  
 			foreach($question as $index => $quest){
                       //    $result = count($quest['choices_item']);
-                            $i=0;
-				foreach($quest['choices_item'] as $choice){
-                             
-                                     if($quest['choices_item'][$i]=='on'){
-					$data = array(
-					'student_id' => '10304187',
-					'question_id' =>$quest['q_id'],
-                                        'choice_id'=> $quest['c_id'][$i],			
-                                    );
-					
-					$this->db->insert('answers',$data);
-                                     }
-					$i++;
-				}
+                        
+				foreach($quest['choices_item'] as  $choice){
+                            
+                                            $data = array(
+                                                    'student_id' => '10304187',
+                                                    'question_id' =>$quest['q_id'],
+                                                    'choice_id'=> $choice			
+                                                );
+                                                   // echo $choice['choices_item'];
+                                            $result     =   $this->db->insert('answers',$data);
+                                         }
+			
                                 
-                                if($this->input->post($quest['others'])){
-                                    
-                                    $data = array(
-					'student_id' => $dataID,
-					'question_id' =>$quest['q_id'],
-                                        'choice_id'=> "0",
-                                        'answer_data'=> $quest['others']
-                                    );
-					
-					$this->db->insert('answers',$data);
-                                    
-                                }
                                 	
 			}
                 }
-			if($query1){
+			if(count($result)){
 				return true;
 				
 			}else
@@ -107,4 +86,5 @@ class Student_m extends MY_Model
 	}
     
     
+
 }
