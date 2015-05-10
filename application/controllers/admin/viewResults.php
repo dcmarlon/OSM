@@ -46,15 +46,15 @@
                    }
                     
                   //get answers  
-                    if($data['choices']!= false){
+                    //if($data['choices']!= false){
                         $totalc=count($data['choices']);
-                        $q_id = array();
+                        //$q_id = array();
                         //echo $total;
-                        for($n=0;$n<$totalc;$n++){
-                            $c_id[$n] = $data['choices'][$n]['choice_id'];
-                        }  
-                        $data['ans'] = $this->results_m->get_answers($c_id, $data['college']);
-                    }
+                        //for($n=0;$n<$totalc;$n++){
+                          //  $c_id[$n] = $data['choices'][$n]['choice_id'];
+                        //}  
+                        $data['ans'] = $this->results_m->get_answers($q_id, $data['college']);
+                   // }
 
 
 

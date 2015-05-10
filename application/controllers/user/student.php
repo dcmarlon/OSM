@@ -162,7 +162,7 @@
             }
             
             
-              $this->data['user'] = $this->session->set_userdata($info);
+              //$this->data['user'] = $this->session->set_userdata($info);
 
             $this->load->view('admin/components/takesurvey_head');
             $this->load->view('admin/survey/user/takesurvey',$this->data);

@@ -28,18 +28,24 @@ class Results_m extends CI_Model {
     public function get_answers($c_id, $college){
         if(!empty($c_id)){
            if(strcmp($college, "ALL") == 0){
-               $query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") ORDER BY choice_id";
+               $query_str = "SELECT * FROM answers WHERE question_id IN(".implode(',',$c_id).") ORDER BY choice_id";
                $query = $this->db->query($query_str);
                
            }
            else {
-               //$query_str = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") && student_id = (SELECT student_id FROM students WHERE college = $college )ORDER BY choice_id";
+              /* $college = strtoupper($college);
+               
+               $query_str = "SELECT student_id FROM students WHERE college = '$college'" ; 
+               $query = $this->db->query($query_str);
+               print_r($query->result_array());
+               $query_str2 = "SELECT * FROM answers WHERE choice_id IN(".implode(',',$c_id).") && student_id IN($query->result_array()) ORDER BY choice_id";
+               //$query = $this->db->query($query_str2);*/
                $this->db->select('*');
                $this->db->where('college =', $college);
                $this->db->from('students');
                $this->db->join('answers', 'answers.student_id = students.student_id');
-               $this->db->join('choices', 'answers.choice_id = choices.choice_id');
-
+               $this->db->join('questions', 'answers.question_id = questions.question_id');
+               
                $query = $this->db->get(); 
                
            }
