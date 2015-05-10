@@ -39,7 +39,7 @@
         
         
                      <?php if(($surv['status'] =='Available')):?>          
-                          <?php echo btn_editTwo('admin/survey/edit/' . $surv['id']); ?>                  
+                          <?php echo btn_editTwo('/admin/survey/edit/' . $surv['id']); ?>                  
                      <?php endif; ?>
         
                     <?php if(!($check =='Active')):?>

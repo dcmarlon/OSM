@@ -94,16 +94,7 @@
                       
 		}
                 
-//                  public function others_call($q){
-//                        $this->db->where('question_id',$q);
-//                        $this->db->from('questions');
-//                        $query = $this->db->get();
-//
-//                        return  $query->row(); 
-//
-//                  }
-                
-                function edit_survey_v() { /* edit survey, insert new survey */
+                function edit_survey() { /* edit survey, insert new survey */
                     
                       $data = array(
                             
@@ -124,26 +115,6 @@
                                                 'question_type' => $quest['q_type']
   
                                         );
-                                    
-                                    
-//                                   $row = $this->others_call($quest['q_id']); 
-//                                   
-//                                   if ($row->question_type == 'Combination' && ($quest['q_type'] == 'Single' || $quest['q_type'] == 'Multiple') ){
-//                                       $this->db->where('question_id', $quest['q_id']);
-//                                       $this->db->where('choice_data =', 'OTHERS');
-//                                       $this->db->delete('choices');
-//                                   } else if ( ($row->question_type == 'Single' || $row->question_type == 'Multiple') &&  $quest['q_type'] == 'Combination' ) {
-//                                       
-//                                       $cdata = array(
-//								'question_id' => $quest['q_id'],
-//								'choice_data' => 'OTHERS'
-//					);
-//					
-//					$this->db->insert('choices',$cdata);
-//                                   }else{
-//                                       //do nothing? 
-//                                   }
-
                                         $this->db->where('question_id',$quest['q_id']);   
                                         $query1 = $this->db->update('questions',$data);
 
@@ -207,18 +178,6 @@
 					$this->db->insert('choices',$data);
 					
 				}
-//                                
-//                                if($quest2['q2_type']=='Combination'){
-//                                        
-//                                        $data = array(
-//								'question_id' => $question_id,
-//								'choice_data' => 'OTHERS'
-//					);
-//					
-//					$this->db->insert('choices',$data);
-//                                        
-//                                    }
-       
                         } 
                         
        }
@@ -245,17 +204,6 @@
 
 	}
         
-//               	public function deleteUserFromDBs($id){
-//		$this->db->where('question_id',$id);
-//                $this->db->delete('choices');
-//		
-//		if($this->db->affected_rows()>0){
-//			return true;
-//		}else{ return false;}
-//
-//	}
-        
-        
          public function delete_choice_id($id){
 		$this->db->where('choice_id',$id);
                 $this->db->delete('choices');
@@ -269,27 +217,14 @@
          public function insert_activate($id){
              
 	       $this->load->helper('date');
-             
 
-//             
-//                        $time = time();
-//
-//                      $date =  mdate($datestring, $time);
-
-              //  $date_time = ;
-               $stat = 'Active';
-//                
+               $stat = 'Active';             
                         $data = array(
-                                //   'created_date' => '',
-                          //        'issued_date' =>  date('Y-m-d H:i:s') ,
                                    'status' => $stat,
 				
 		);
-                        
-                    //    print_r($data).
-                        
+
                  $this->db->set('issued_date', date('Y-m-d',time()));
-              //  $this->db->set('status', $stat);
                 $this->db->where('survey_id',$id);        
                 $this->db->update('survey',$data);
                 

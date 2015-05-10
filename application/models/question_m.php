@@ -13,12 +13,5 @@ class Question_m extends MY_Model{
            parent::__construct();
            $this->_database = $this->db;
        }
-    
-    
-//        public function insert_question($var1)	/* insert survey data to db */
-//	{
-//		$this->db->insert('questions',$var1);
-//		return $this->db->insert_id();
-//	}
         
 }

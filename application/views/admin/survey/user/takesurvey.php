@@ -42,9 +42,11 @@
                     </div>
 
 			<?php endif; ?>
+                    
+                  
 			<div class = "row" id = "q_section">
                             
-				<?php $questions = $this->survey_m->get_all_questions($survs->survey_id);   
+				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
                             
@@ -75,7 +77,7 @@
                                                 <br>
                                                 <br>
                                                 
-                                                    <?php $choices = $this->survey_m->get_all_choices($quest->question_id); 
+                                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
 							if(count($choices)): foreach($choices as $x => $cho): 
 							?>
                                                 

@@ -12,8 +12,8 @@
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->helper('html');
-                $this->load->model('survey_m');
                 $this->load->model('student_m');
+
 	}
         
        public function index ()
@@ -35,29 +35,32 @@
 	}
 
 
-//        public function take ($id = null){
-//            
-//            $this->load->model('survey_m');
-//            
-//                $row = $this->survey_m->get_survey_active('Active');
-//                
-//                
-//                    $data['sur'] = array(
-//                        
-//                        'id' => $row->survey_id
-//                    );
-//                
-//                $id = $data['sur']['id'];
-//            
-//                if ($id) {
-//            $this->data['survs'] = $this->survey_m->get($id);
-//            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-//        }
-//
-//            $this->load->view('admin/components/takesurvey_head');
-//            $this->load->view('admin/survey/user/takesurvey',$this->data);
-//            $this->load->view('admin/components/takesurvey_tail');
-//        }
+        public function take ($id = null){
+            
+              $this->load->model('question_m');
+                $this->load->model('choice_m');            
+            $this->load->model('survey_m');
+            
+                $row = $this->survey_m->get_survey_active('Active');
+                
+                
+                    $data['sur'] = array(
+                        
+                        'id' => $row->survey_id
+                    );
+                
+                $id = $data['sur']['id'];
+            
+                if ($id) {
+            $this->data['survs'] = $this->survey_m->get($id);
+            $this->data['user'] = $info;
+            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
+        }
+
+            $this->load->view('admin/components/takesurvey_head');
+            $this->load->view('admin/survey/user/takesurvey',$this->data);
+            $this->load->view('admin/components/takesurvey_tail');
+        }
         
                 public function test (){
     
@@ -117,6 +120,12 @@
         }
         
         public function login_validate(){
+            
+            $this->load->library('form_validation');
+            
+//            $this->form_validation->set_rules('idnum','IDNumber','required|trim|exact_length[8]');
+//            $this->form_validation->set_rules('coll','College','required|trim|');
+            
 
             $id = $this->input->post('idnum');
             $coll = $this->input->post('coll');
@@ -124,7 +133,7 @@
             $info = array('student_id'=> $id,
                           'college'=> $coll);
             
-            //$this->session->set_userdata($info);
+      //      $this->session->set_userdata($info);
 
           
              
@@ -143,34 +152,12 @@
             
             else //error ni ses
             {
+                $id=null;
                 
-//                          $this->load->model('survey_m');
-            
-                    $row = $this->survey_m->get_survey_active('Active');
-                
-                
-                    $data['sur'] = array(
-                        
-                        'id' => $row->survey_id
-                    );
-                
-                $id = $data['sur']['id'];
-            
-                if ($id) {
-            $this->data['survs'] = $this->survey_m->get($id);
-            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-            }
-            
-            
-              $this->data['user'] = $this->session->set_userdata($info);
-
-            $this->load->view('admin/components/takesurvey_head');
-            $this->load->view('admin/survey/user/takesurvey',$this->data);
-            $this->load->view('admin/components/takesurvey_tail');
-            }
-            
+                 redirect('/user/student/take',$info);
            
             
+            }
         }
 
     }

@@ -13,7 +13,7 @@
 			<div class ="field">
 				<div class ="field">
 					<div class="ui input"> 
-						<input type="text" name="s_name" required="required" value="<?php echo $survs->survey_name ?>" placeholder="Survey Title" >
+						<input type="text" name="s_name" maxlength="40" required="required" value="<?php echo $survs->survey_name ?>" placeholder="Survey Title" >
 						<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
 
 					</div> 
@@ -204,8 +204,8 @@ $(document).ready(function(){
        
 //		$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                 
-		 if($(this).siblings("#choice_sub").children().length == 1)
-			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
+//		 if($(this).siblings("#choice_sub").children().length == 1)
+//			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                     
 	 var q_ctr = $(this).siblings("#ctr").val();
                  
@@ -213,9 +213,9 @@ $(document).ready(function(){
                              
                // $(this).siblings("#choice_sub").last().append('<input type="hidden" name="question_three['+q_ctr+'][c_id]" value="0" >');  
 		$(this).siblings("#choice_sub").last().append(' <input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice">');
-		
-            if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).attr("disabled","disabled");	
+//		
+//            if($(this).siblings("#choice_sub").children().length == 5)
+//			$(this).attr("disabled","disabled");	
 	});
         
 
@@ -264,7 +264,7 @@ $(document).ready(function(){
 
                              $.ajax({
                                             type: "POST",
-                                            url: "<?php echo base_url('index.php/admin/survey/delete_questions/')?>/"+id,
+                                            url: "<?php echo base_url('/admin/survey/delete_questions/')?>/"+id,
 
                                     }).done(function(msg){
                                                 if(msg=="success"){
@@ -291,7 +291,7 @@ $(document).ready(function(){
                         if(confirm("Do you want to delete this choice?" )){    
                              $.ajax({
                                             type: "POST",
-                                            url: "<?php echo base_url('index.php/admin/survey/delete_choiceby_id/')?>/"+id,
+                                            url: "<?php echo base_url('/admin/survey/delete_choiceby_id/')?>/"+id,
 
                                     }).done(function(msg){
                                                 if(msg=="success"){

@@ -12,7 +12,7 @@
               
           
                           <div class="ui input"> 
-                            <input type="text" name="s_name" class="required field" required="required" placeholder="Survey Title" >
+                            <input type="text" name="s_name" class="required field" maxlength="40" required="required" placeholder="Survey Title" >
                           </div> 
 
                     <div class="question_main" class="field"> 

@@ -79,7 +79,7 @@
                 
                 public function edit_survey_v2(){
                     
-                    	if($this->survey_m->edit_survey_v() != false){	
+                    	if($this->survey_m->edit_survey() != false){	
                             
                                  redirect('/admin/survey', 'location', 301); 
                  
