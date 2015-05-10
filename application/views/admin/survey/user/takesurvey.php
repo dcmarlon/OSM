@@ -78,7 +78,7 @@
                                                     
 				      		<div class="<?php echo $qs_type; ?>">
                                                  
-						<label><strong>Choices:</strong></label>
+						<label>C h o i c e s:</label>
                                                 <br>
                                                 <br>
                                                 

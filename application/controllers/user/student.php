@@ -31,9 +31,41 @@
                 $data['msg'] = "W E L C O M E";
                 $data['check'] = $stat;
 		$this->load->view('admin/survey/user/login',  $data);
+       // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
 
+        public function take ($id = null,$idnum,$coll){
+            
+              $this->load->model('question_m');
+                $this->load->model('choice_m');            
+            $this->load->model('survey_m');
+            
+                $row = $this->survey_m->get_survey_active('Active');
+                
+                
+                    $data['sur'] = array(
+                        
+                        'id' => $row->survey_id
+                    );
+                
+                $id = $data['sur']['id'];
+                
+                $this->data['users'] = $idnum;
+                $this->data['college'] = $coll;
+                
+            
+                if ($id) {
+            $this->data['survs'] = $this->survey_m->get($id);
+           // $this->data['user'] = $info;
+            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
+        }
+
+            $this->load->view('admin/components/takesurvey_head');
+            $this->load->view('admin/survey/user/takesurvey',$this->data);
+            $this->load->view('admin/components/takesurvey_tail');
+        }
+        
                 public function test (){
     
             $this->load->view('admin/components/takesurvey_head');
@@ -91,7 +123,7 @@
              $this->load_view('users/login');
         }
         
-        public function login_validate(){
+        public function takesurvey(){
             
             $this->load->library('form_validation');
             
@@ -126,37 +158,10 @@
             
             else //error ni ses
             {
-                
+                $id = null;
                //  redirect('/user/student/take' + $info);
                 
-                        $this->load->model('question_m');
-                        $this->load->model('choice_m');            
-                        $this->load->model('survey_m');
-                        
-             //           print_r($info);
-
-                        $row = $this->survey_m->get_survey_active('Active');
-
-
-                                    $data['sur'] = array(
-
-                                    'id' => $row->survey_id
-                        );
-
-                        $id = $data['sur']['id'];
-                        
-                         $this->data['users'] =  $this->input->post('idnum');
-                         $this->data['college'] = $this->input->post('coll');
-
-                        if ($id) {
-                                $this->data['survs'] = $this->survey_m->get($id);
-                                
-                                count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-                        }
-
-                        $this->load->view('admin/components/takesurvey_head');
-                        $this->load->view('admin/survey/user/takesurvey',$this->data);
-                        $this->load->view('admin/components/takesurvey_tail');
+                        $this->take($id,$this->input->post('idnum'),$this->input->post('coll'));
 
                  
                  
