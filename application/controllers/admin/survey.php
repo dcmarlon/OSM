@@ -7,6 +7,8 @@
 		parent::__construct();
                  $this->load->model('survey_m');
                  $this->load->model('results_m');
+                   $this->load->model('question_m');
+                 $this->load->model('choice_m');
                   
 	}
         
@@ -90,7 +92,7 @@
         
        	public function edit ($id = NULL)
 	{
-                 $this->load->model('choice_m');
+               //  $this->load->model('choice_m');
          
 		if ($id) {
 			$this->data['survs'] = $this->survey_m->get($id);

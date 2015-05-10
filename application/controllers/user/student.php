@@ -7,7 +7,7 @@
 		parent::__construct();
                   
                 $this->load->library('form_validation');
-                 $this->load->library('session');
+                // $this->load->library('session');
 		//$this->load->library('session');
 		$this->load->helper('url');
 		$this->load->helper('form');
@@ -35,29 +35,29 @@
 	}
 
 
-        public function take ($id = null){
-            
-            $this->load->model('survey_m');
-            
-                $row = $this->survey_m->get_survey_active('Active');
-                
-                
-                    $data['sur'] = array(
-                        
-                        'id' => $row->survey_id
-                    );
-                
-                $id = $data['sur']['id'];
-            
-                if ($id) {
-            $this->data['survs'] = $this->survey_m->get($id);
-            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-        }
-
-            $this->load->view('admin/components/takesurvey_head');
-            $this->load->view('admin/survey/user/takesurvey',$this->data);
-            $this->load->view('admin/components/takesurvey_tail');
-        }
+//        public function take ($id = null){
+//            
+//            $this->load->model('survey_m');
+//            
+//                $row = $this->survey_m->get_survey_active('Active');
+//                
+//                
+//                    $data['sur'] = array(
+//                        
+//                        'id' => $row->survey_id
+//                    );
+//                
+//                $id = $data['sur']['id'];
+//            
+//                if ($id) {
+//            $this->data['survs'] = $this->survey_m->get($id);
+//            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
+//        }
+//
+//            $this->load->view('admin/components/takesurvey_head');
+//            $this->load->view('admin/survey/user/takesurvey',$this->data);
+//            $this->load->view('admin/components/takesurvey_tail');
+//        }
         
                 public function test (){
     
@@ -124,7 +124,7 @@
             $info = array('student_id'=> $id,
                           'college'=> $coll);
             
-                      $this->session->set_userdata($info);
+            //$this->session->set_userdata($info);
 
           
              

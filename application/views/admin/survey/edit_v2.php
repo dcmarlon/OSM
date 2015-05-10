@@ -27,7 +27,7 @@
 
 					<div id ="question_sib" class="questions">
                                                 	
-				<?php $questions = $this->survey_m->get_all_questions($survs->survey_id);   
+				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
 						<div  class = "three fields">                               
@@ -57,7 +57,7 @@
 						<div id="choice_main" class="two fields">
                                                    <label><strong>C h o i c e s:</strong></label>
 
-                                                 <?php $choices = $this->survey_m->get_all_choices($quest->question_id); 
+                                                 <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
 							if(count($choices)): foreach($choices as $cho):
 							?>
 		
