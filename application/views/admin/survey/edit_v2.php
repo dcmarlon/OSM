@@ -280,7 +280,7 @@ $(document).ready(function(){
                             });
                                
                             }else{
-                                  alert("You cancelled!");
+                                  alert("Cancelled");
                                 
                             }
                             });
@@ -305,7 +305,7 @@ $(document).ready(function(){
                   });
                     }else{
                         
-                                alert("You cancelled!");
+                                alert("Cancelled");
                        }
 
                 });
@@ -313,7 +313,7 @@ $(document).ready(function(){
                 
             $(document).on("click","#back", function(){
                     
-                         if(confirm("Do you want to back without saving?" )){    
+                         if(confirm("Do you want to go back without saving?" )){    
                                 
                                window.history.back();   
                              

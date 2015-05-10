@@ -35,6 +35,7 @@
 	#section0,
 	#section1,
 	#section2,
+	#congrats_section,
 	#section3{
 		background-size: cover;
 	}
@@ -54,6 +55,11 @@
 		background-image: url(../imgs/portal.jpg);
 		padding: 15% 0 0 0;
 	}
+	#congrats_section{
+		background-image: url(../imgs/thanks_2.jpg);
+		padding: 20% 0 0 0;
+	}
+	
         .sticky {
   position: absolute;
   bottom: 0;

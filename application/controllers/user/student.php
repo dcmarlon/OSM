@@ -76,8 +76,8 @@
 		
 		 public function answers_add(){		
 			if($this->student_m->answers_insert() != false){	
-                            
-                                 redirect('/user/student', 'location', 301); 
+                           
+                                 redirect('admin/survey/user/congrats', 'location', 301); 
                  
 			}else{
 				echo "error";
