@@ -34,7 +34,7 @@
            
     <div class ="row">   
    
-          <?php echo anchor('admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+          <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
         
         
         
@@ -87,7 +87,7 @@
 
                              $.ajax({
                                             type: "POST",
-                                            url: "<?php echo base_url('index.php/admin/survey/act_surveyby_id/')?>/"+idx,
+                                            url: "<?php echo base_url('/admin/survey/act_surveyby_id/')?>/"+idx,
                                            //   data: $(this).serialize(),
 
                                     })
@@ -111,7 +111,7 @@
 
                          $.ajax({
                                         type: "POST",
-                                        url: "<?php echo base_url('index.php/admin/survey/deact_surveyby_id/')?>/"+idx,
+                                        url: "<?php echo base_url('/admin/survey/deact_surveyby_id/')?>/"+idx,
                                        //   data: $(this).serialize(),
 
                                 })

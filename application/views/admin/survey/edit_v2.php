@@ -7,7 +7,7 @@
 			<label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
 		</div>  
 
-		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/edit_survey_v2');?>" role="form">
+		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('/admin/survey/edit_survey_v2');?>" role="form">
 
 			<?php if(count($survs)): ?>
 			<div class ="field">

@@ -76,7 +76,7 @@
 			<div class ="ten wide centered aligned column">
 				
 			
-		<form class ="ui inverted form" action='<?php echo base_url('index.php/user/student/login_validate');?>' method='post'>
+		<form class ="ui inverted form" action='<?php echo base_url('/user/student/login_validate');?>' method='post'>
                           <?php if(! is_null($msg)) echo $msg;?>
 				<div class = "required field" id="nm">
 				<label>Enter ID Number:</label>

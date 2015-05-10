@@ -33,8 +33,12 @@
 	
 		<div class="row">
 
-		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/answers_add');?>" role="form">
+		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('/user/student/answers_add');?>" role="form">
            
+                    
+                          <input type="hidden" name="person"  value="<?php echo $users; ?>" />
+                          <input type="hidden" name="school" value="<?php echo $college; ?>" />
+ 
 			<?php if(count($survs)): ?>
                     <br>
                     <div class="field">
@@ -42,8 +46,9 @@
                     </div>
 
 			<?php endif; ?>
+                    <p>Hello, <strong> <?php echo $users;?></strong> </p>
                     
-                  
+                    
 			<div class = "row" id = "q_section">
                             
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
@@ -105,7 +110,7 @@
 						
 						
 			<div class="center aligned column">
-                        <button id="submit_forms" type="submit"  class=" ui submit green button" >Submit Survey</button>	
+                        <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Survey</button>	
 			</div>
 					</div>
 					

@@ -31,37 +31,9 @@
                 $data['msg'] = "W E L C O M E";
                 $data['check'] = $stat;
 		$this->load->view('admin/survey/user/login',  $data);
-       // $this->load->view('admin/survey/user/takesurvey',  $this->data);
 	}
 
 
-        public function take ($id = null){
-            
-              $this->load->model('question_m');
-                $this->load->model('choice_m');            
-            $this->load->model('survey_m');
-            
-                $row = $this->survey_m->get_survey_active('Active');
-                
-                
-                    $data['sur'] = array(
-                        
-                        'id' => $row->survey_id
-                    );
-                
-                $id = $data['sur']['id'];
-            
-                if ($id) {
-            $this->data['survs'] = $this->survey_m->get($id);
-            $this->data['user'] = $info;
-            count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
-        }
-
-            $this->load->view('admin/components/takesurvey_head');
-            $this->load->view('admin/survey/user/takesurvey',$this->data);
-            $this->load->view('admin/components/takesurvey_tail');
-        }
-        
                 public function test (){
     
             $this->load->view('admin/components/takesurvey_head');
@@ -73,7 +45,7 @@
 		 public function answers_add(){		
 			if($this->student_m->answers_insert() != false){	
                             
-                                // redirect('/admin/survey', 'location', 301); 
+                                 redirect('/user/student', 'location', 301); 
                  
 			}else{
 				echo "error";
@@ -133,12 +105,14 @@
             $info = array('student_id'=> $id,
                           'college'=> $coll);
             
+            $infoid = array('student_id'=> $id
+                          );    
       //      $this->session->set_userdata($info);
 
           
              
             // Validate the user's credentials
-            $result = $this->student_m->log_validate($info);
+            $result = $this->student_m->log_validate($infoid);
             
 
             echo count($result);
@@ -152,7 +126,41 @@
             
             else //error ni ses
             {
-                 redirect('/user/student/take',$info);
+                
+               //  redirect('/user/student/take' + $info);
+                
+                        $this->load->model('question_m');
+                        $this->load->model('choice_m');            
+                        $this->load->model('survey_m');
+                        
+             //           print_r($info);
+
+                        $row = $this->survey_m->get_survey_active('Active');
+
+
+                                    $data['sur'] = array(
+
+                                    'id' => $row->survey_id
+                        );
+
+                        $id = $data['sur']['id'];
+                        
+                         $this->data['users'] =  $this->input->post('idnum');
+                         $this->data['college'] = $this->input->post('coll');
+
+                        if ($id) {
+                                $this->data['survs'] = $this->survey_m->get($id);
+                                
+                                count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
+                        }
+
+                        $this->load->view('admin/components/takesurvey_head');
+                        $this->load->view('admin/survey/user/takesurvey',$this->data);
+                        $this->load->view('admin/components/takesurvey_tail');
+
+                 
+                 
+                 
             }
         }
 

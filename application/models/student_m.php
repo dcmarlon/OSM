@@ -55,36 +55,65 @@ class Student_m extends MY_Model
     }
     
      function answers_insert(){
+   
+//                print_r($this->input->post('question'));
+         
+         $collegex = strtoupper($this->input->post('school'));
+         
+         
+                    $data = array(
+				'student_id' => $this->input->post('person'),
+                                'college' => $collegex 
+			);
+                    
+//                    $datax = array('student_id' => $this->input->post('person'));
+//                    
+//                      $result = $this->student_m->log_validate($datax);
+                      
+                      
+//                      if(count($result)){
+//                          
+//                           echo 'error';
+//                          
+//                      } else{
+			
+			$query = $this->db->insert('students',$data);
+                        
+                        
                 
-        echo 'inside';
-                print_r($this->input->post('question'));
+                
 			
                 if($this->input->post('question')){
 			$question= $this->input->post('question');  
 			foreach($question as $index => $quest){
-                      //    $result = count($quest['choices_item']);
                         
 				foreach($quest['choices_item'] as  $choice){
                             
                                             $data = array(
-                                                    'student_id' => '10304187',
+                                                    'student_id' => $this->input->post('person'),
                                                     'question_id' =>$quest['q_id'],
                                                     'choice_id'=> $choice			
                                                 );
                                                    // echo $choice['choices_item'];
-                                            $result     =   $this->db->insert('answers',$data);
+                                           $this->db->insert('answers',$data);
                                          }
 			
                                 
                                 	
 			}
                 }
-			if(count($result)){
-				return true;
-				
-			}else
-				return false;
-	}
+                     
+                
+                        if($query){
+                            
+                            return true;    
+                        }else{
+                            return false;
+                        }
+                        
+            }
+		
+            
     
     
 
