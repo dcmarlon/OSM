@@ -152,11 +152,7 @@
             
             else //error ni ses
             {
-                $id=null;
-                
                  redirect('/user/student/take',$info);
-           
-            
             }
         }
 
