@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2015 at 11:34 AM
+-- Generation Time: May 10, 2015 at 05:39 AM
 -- Server version: 5.6.14
 -- PHP Version: 5.5.6
 
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `choices` (
   `choice_data` varchar(100) NOT NULL,
   PRIMARY KEY (`choice_id`),
   KEY `question_id` (`question_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=52 ;
 
 --
 -- Dumping data for table `choices`
@@ -189,15 +189,25 @@ INSERT INTO `choices` (`choice_id`, `question_id`, `choice_data`) VALUES
 (28, 11, 'Five'),
 (29, 11, 'Four'),
 (30, 11, 'Three'),
-(31, 12, 'sdd'),
-(32, 12, 'bbbb'),
-(33, 13, 'asdd'),
-(34, 13, 'bbb'),
-(35, 13, 'ssss'),
-(36, 14, 'man'),
-(37, 14, 'fancy'),
-(38, 14, 'oops'),
-(46, 18, 'c2');
+(31, 12, 'Male'),
+(32, 12, 'Female'),
+(33, 12, 'Others'),
+(34, 13, 'Apple'),
+(35, 13, 'Juice'),
+(36, 13, 'Others'),
+(37, 14, 'Zip'),
+(38, 14, 'Top'),
+(39, 14, 'Echo'),
+(40, 15, 'Ice Cream'),
+(41, 15, 'Banana'),
+(42, 16, 'oops'),
+(43, 16, 'shoot'),
+(44, 17, 'Sachet'),
+(45, 17, 'Bottle'),
+(46, 18, 'systemex'),
+(47, 18, 'triumph over'),
+(48, 19, 'asasas'),
+(49, 19, 'asasasasasas');
 
 -- --------------------------------------------------------
 
@@ -212,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `question_data` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`question_id`),
   KEY `survey_id` (`survey_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `questions`
@@ -230,10 +240,14 @@ INSERT INTO `questions` (`question_id`, `survey_id`, `question_type`, `question_
 (9, 1, 'Multiple', 'Who cares rinmaywid ?'),
 (10, 1, 'Single', 'What is your song?'),
 (11, 1, 'Single', 'What is the correct value?'),
-(12, 12, 'Multiple', 'daaaa'),
-(13, 8, 'Single', 'asdd'),
-(14, 4, 'Single', 'what is like to be a human?'),
-(18, 7, 'Multiple', 'two');
+(12, 1, 'Single', 'I am . . .'),
+(13, 1, 'Multiple', 'Choose among them . . .'),
+(14, 1, 'Multiple', 'Tell them what to do. . .'),
+(15, 12, 'Single', 'What do you live'),
+(16, 13, 'Multiple', 'What are the suits?'),
+(17, 14, 'Single', 'What do you want?'),
+(18, 15, 'Single', 'sure it does'),
+(19, 16, 'Multiple', 'asasas');
 
 -- --------------------------------------------------------
 
@@ -244,28 +258,27 @@ INSERT INTO `questions` (`question_id`, `survey_id`, `question_type`, `question_
 CREATE TABLE IF NOT EXISTS `students` (
   `student_id` int(11) NOT NULL,
   `college` varchar(50) NOT NULL,
-  `survey_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`student_id`),
-  KEY `survey_id` (`survey_id`)
+  PRIMARY KEY (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`student_id`, `college`, `survey_id`) VALUES
-(11100222, 'CAS', 5),
-(11100224, 'CAS', 5),
-(11100226, 'CAFA', 5),
-(11100228, 'CAFA', 5),
-(11100230, 'COE', 5),
-(11100232, 'COE', 5),
-(11100234, 'SBE', 5),
-(11100236, 'SBE', 5),
-(11100238, 'SHCP', 5),
-(11100240, 'SHCP', 5),
-(11100242, 'SLG', 5),
-(11100244, 'SLG', 5);
+INSERT INTO `students` (`student_id`, `college`) VALUES
+(10304187, 'CAS'),
+(11100222, 'CAS'),
+(11100224, 'CAS'),
+(11100226, 'CAFA'),
+(11100228, 'CAFA'),
+(11100230, 'COE'),
+(11100232, 'COE'),
+(11100234, 'SBE'),
+(11100236, 'SBE'),
+(11100238, 'SHCP'),
+(11100240, 'SHCP'),
+(11100242, 'SLG'),
+(11100244, 'SLG');
 
 -- --------------------------------------------------------
 
@@ -280,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `survey` (
   `issued_date` date DEFAULT NULL,
   `status` enum('Available','Active','Unavailable') NOT NULL DEFAULT 'Available',
   PRIMARY KEY (`survey_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `survey`
@@ -288,17 +301,21 @@ CREATE TABLE IF NOT EXISTS `survey` (
 
 INSERT INTO `survey` (`survey_id`, `survey_name`, `created_date`, `issued_date`, `status`) VALUES
 (1, 'Everything has changed', '2015-01-22 16:00:00', '2015-02-14', 'Active'),
-(2, 'Thinking Out Loud', '2015-07-13 16:00:00', '2015-05-05', 'Active'),
-(3, 'Stay with me', '2014-06-06 16:00:00', '2015-05-05', 'Unavailable'),
-(4, 'Far awaysurvey', '2014-06-06 16:00:00', '2015-05-06', 'Unavailable'),
+(2, 'Thinking Out Loud', '2015-07-13 16:00:00', '0000-00-00', 'Available'),
+(3, 'Stay with me', '2014-06-06 16:00:00', '0000-00-00', 'Available'),
+(4, 'Far awaysurvey', '2014-06-06 16:00:00', '0000-00-00', 'Available'),
 (5, 'Passenger Seat', '2014-05-01 16:00:00', '2015-05-28', 'Unavailable'),
 (6, 'All of me', '2014-04-14 16:00:00', '2015-04-15', 'Unavailable'),
-(7, 'It was always you', '2014-06-23 16:00:00', '2015-05-06', 'Unavailable'),
+(7, 'It was always you', '2014-06-23 16:00:00', '0000-00-00', 'Available'),
 (8, 'Sugar', '2013-06-23 16:00:00', '0000-00-00', 'Available'),
 (9, 'Break Free', '2012-06-23 16:00:00', '0000-00-00', 'Available'),
-(10, 'Style', '2011-06-23 16:00:00', '2015-05-06', 'Unavailable'),
+(10, 'Style', '2011-06-23 16:00:00', '0000-00-00', 'Available'),
 (11, 'Always', '2010-06-23 16:00:00', '0000-00-00', 'Available'),
-(12, 'dddddddddddddd', '2015-05-05 14:28:29', '2015-05-05', 'Unavailable');
+(12, 'on the Shore lin', '2015-05-10 01:58:23', NULL, 'Available'),
+(13, 'The fast and furios 7', '2015-05-10 02:08:03', NULL, 'Available'),
+(14, 'The fathomable service', '2015-05-10 02:11:41', NULL, 'Available'),
+(15, 'The fanthom opera', '2015-05-10 02:21:03', NULL, 'Available'),
+(16, 'asddd', '2015-05-10 02:24:53', NULL, 'Available');
 
 --
 -- Constraints for dumped tables
@@ -323,12 +340,6 @@ ALTER TABLE `choices`
 --
 ALTER TABLE `questions`
   ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`);
-
---
--- Constraints for table `students`
---
-ALTER TABLE `students`
-  ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`survey_id`) REFERENCES `survey` (`survey_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

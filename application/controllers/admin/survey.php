@@ -6,8 +6,6 @@
 	{
 		parent::__construct();
                  $this->load->model('survey_m');
-                 $this->load->model('question_m');
-    
                  $this->load->model('results_m');
                   
 	}
@@ -19,9 +17,7 @@
 		$this->data['subview'] = 'admin/survey/index';
 		$this->load->view('admin/_layout_v2', $this->data);
 	}
-        
-        
-        
+
         public function watch($id=null){
             $stat = '';
             $this->load->model('survey_m');
@@ -63,11 +59,11 @@
   	    public function add_survey_v2(){
 			
 			if($this->survey_m->insert_survey_v2() != false){	
-                            echo "<script type='text/javascript'>";
-                            echo "alert('Submitted Successfully');";
-                            echo "window.location.href='../survey'";
-                            echo "</script>";
-                                 //redirect('/admin/survey', 'location', 301); 
+//                            echo "<script type='text/javascript'>";
+//                            echo "alert('Submitted Successfully');";
+//                            echo "window.location.href='../survey'";
+//                            echo "</script>";
+                                 redirect('/admin/survey', 'location', 301); 
                  
 			}else{
 				echo "error";
@@ -142,16 +138,6 @@
 			echo "invalid";
 		}	
 	}
-        
-//           public function deleteChoices($id){
-//		$this->load->model('survey_m');
-//		if($this->survey_m->deleteUserFromDBs($id)){
-//			
-//				echo "success";
-//		}else{
-//			echo "invalid id";
-//		}	
-//	}
         
            public function delete_choiceby_id($id){
 		$this->load->model('survey_m');

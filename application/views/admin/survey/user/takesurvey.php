@@ -36,15 +36,15 @@
 		<form class="ui form" id="takeform" method="post" action="<?php echo base_url('index.php/user/student/answers_add');?>" role="form">
            
 			<?php if(count($survs)): ?>
-			<h2 style="color: black">Survey Title: <p name="s_name"><?php echo $survs->survey_name ?></p></h2>
-			<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
+                    <br>
+                    <div class="field">
+			<h2 style="color: black">S U R V E Y : <?php echo $survs->survey_name ?></h2>
+                    </div>
 
 			<?php endif; ?>
 			<div class = "row" id = "q_section">
                             
-				 <?php echo $survs->survey_id; ?>
-                            
-				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
+				<?php $questions = $this->survey_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
                             
@@ -53,6 +53,7 @@
                                     
 					<div class="field">
 					<label>Q U E S T I O N </label>
+                                        <br>
                                         
                                         <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
 					<p name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></p>
@@ -70,9 +71,11 @@
                                                     
 				      		<div class="<?php echo $qs_type; ?>">
                                                  
-						<label>Choices:</label>
+						<label><strong>Choices:</strong></label>
+                                                <br>
+                                                <br>
                                                 
-                                                    <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+                                                    <?php $choices = $this->survey_m->get_all_choices($quest->question_id); 
 							if(count($choices)): foreach($choices as $x => $cho): 
 							?>
                                                 
@@ -83,7 +86,7 @@
                                                 
                                                      <?php if(strtoupper($cho->choice_data) == 'OTHERS'):?>
                                                 
-                                                        <input type='text' >
+                                                        <input type="text" placeholder="Please Specify" >
                                                 
                                                      <?php endif;?>
                                                 
@@ -100,7 +103,7 @@
 						
 						
 			<div class="center aligned column">
-                        <button id="submit_forms" type="submit"  class="tiny ui submit blue button" >Submit Survey</button>	
+                        <button id="submit_forms" type="submit"  class=" ui submit green button" >Submit Survey</button>	
 			</div>
 					</div>
 					

@@ -92,7 +92,7 @@
                                       <span class="cinema"></span>
                                     </div>
                                     <div class="description">  
-                                        <ol type="a">
+                                        <ul type="">
                                             <?php foreach ($choices as $c): 
                                                 $tot=$per=0;
                                                if($q['question_id'] == $c['question_id']){
@@ -114,7 +114,7 @@
                                                 </tr>
                                                 </table>
                                                <?php } endforeach ?>  
-                                        </ol>
+                                        </ul>
                                     </div>
                                   </div>    
                                 </div>

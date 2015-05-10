@@ -5,7 +5,7 @@
         <div class="ten wide column">
             
             <div class="row">
-                <label> <h3><strong>C r e a t i o n - S u r v e y</strong></h3></label>
+                <label> <h3><strong>[Create] - S u r v e y</strong></h3></label>
                     </div>  
             
           <form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/add_survey_v2');?>" role="form">
@@ -68,7 +68,7 @@
                             <div class="three wide column"></div>
                             <button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
                             <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
-                            <button id="submit_form" type="submit" name="addlist" class="ui submit blue button" onsubmit="confirm('You just submit!')">Submit Form</button>
+                            <button id="submit_form" type="submit" name="addlist" class="ui submit blue button" onclick="return confirm('Do you want to create this survey?'); return false; ">Submit Form</button>
                         </div>
                                 </br>
                     
@@ -76,7 +76,9 @@
           
             </form>
                 <div class="left floated column"> 
-                           <?php echo anchor('admin/survey', '<button class="ui button">Back</button> '); ?>
+                      
+                    
+                                 <button id="back" type="button"  class="ui button" >Back</button>
                         </div>
                   
        </div>
@@ -113,10 +115,10 @@ $(document).ready(function(){
 		
 	$('#remove_choiceItem').attr("disabled","disabled");
 	
-	$('#rr').click(function(){
-		alert($('.cnt > div[id*="re"]').length);
-	});
-	
+//	$('#rr').click(function(){
+//		alert($('.cnt > div[id*="re"]').length);
+//	});
+//	
 	$(document).on("click","#remove_question", function(){
 		q_num-=1;
 		if($('.question_main > div[class*="questions"]').length == 50)
@@ -148,7 +150,7 @@ $(document).ready(function(){
 	$(document).on("click", "#add_choiceItem", function(){
        
 		
-		 if($(this).siblings("#choice_sub").children().length == 1)
+		 if($(this).siblings("#choice_sub").children().length == 2)
 			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                     
 		 var q_ctr = $(this).siblings("#ctr").val();
@@ -164,14 +166,26 @@ $(document).ready(function(){
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
 		$(this).siblings("#choice_sub").children().last().remove();
-		if($(this).siblings("#choice_sub").children().length == 1)
+		if($(this).siblings("#choice_sub").children().length == 2)
 		$(this).attr("disabled","disabled");	
 	});
-	
-		function myFunction() {
-			confirm("Press OK to submit the Survey Form!");
-		}
-   
+        
+        
+        	$(document).on("click","#back", function(){
+                    
+                         if(confirm("Do you want to back without saving?" )){    
+                                
+                               window.history.back(-1);   
+                             
+                         }else{
+                             // do nothing
+                         }
+       
+                    
+                });
+        
+        
+
 
 });
 

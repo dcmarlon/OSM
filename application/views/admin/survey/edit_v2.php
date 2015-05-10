@@ -4,7 +4,7 @@
 		<div class="three wide column"></div>
 		<div class="ten wide column">
 			<div class="row">
-			<label> <h2><strong>C u s t o m i z e - S u r v e y</strong></h2> </label>
+			<label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
 		</div>  
 
 		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/edit_survey_v2');?>" role="form">
@@ -25,9 +25,9 @@
                             
 		
 
-					<div id ="test_p" class="questions">
+					<div id ="question_sib" class="questions">
                                                 	
-				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
+				<?php $questions = $this->survey_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
 						<div  class = "three fields">                               
@@ -57,13 +57,15 @@
 						<div id="choice_main" class="two fields">
                                                    <label><strong>C h o i c e s:</strong></label>
 
-                                                 <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+                                                 <?php $choices = $this->survey_m->get_all_choices($quest->question_id); 
 							if(count($choices)): foreach($choices as $cho):
 							?>
 		
-							<div id="choice_sub">
+							<div id="choice_sub" class="chos">
                                                             
-                                                            <div class="two fields">
+                                                            <div class="chos_sub">
+                                                            
+                                                            <div id ="nax"class="nay two fields ">
                                                             <div id ="choice_info"class="field">
 								<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
 								<input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
@@ -73,7 +75,8 @@
 								<button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > x </button>
                                                             </div>
                                                             
-                                                            </div>     
+                                                            </div>   
+                                                            </div>
 							</div>
                                                
                                                 
@@ -96,7 +99,7 @@
 			<div class="two fields">
                             
                             	<div class="left floated column"> 
-					<?php echo anchor('admin/survey', '<button type = "button" class="tiny ui button">Back</button> '); ?>
+					      <button id="back" type="button" class="ui button" >Back</button>
 				</div>
 				<div class="right floated column">
 					<div class="row"></div>
@@ -104,7 +107,7 @@
 					<button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
 					<button id="remove_question" class="tiny ui red button" type="button">Remove Question</button>
                                       
-					<button id="submit_form" type="submit" name="addlist" class="tiny ui submit blue button" >Save</button>
+					<button id="submit_form" type="submit" name="addlist" class="tiny ui submit blue button" onclick="return confirm('Do you want to save the changes?'); return false; ">Save</button>
 
 				</div>
 				</br>
@@ -142,13 +145,13 @@ $(document).ready(function(){
 	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
             
-//           if( $('.choice_sub > div[class*="choice_info"]').length == 3)
+//           if( $('.chos > div[class*="chos_sub"]').length == 1)
 //		$('#rmv_choiceItem').attr("disabled","disabled"); 
             
       //  $('#rmv_choiceItem').attr("disabled","disabled");
 		
 	
-         $('#rmv2_choiceItem').attr("disabled","disabled");
+     //    $('#rmv2_choiceItem').attr("disabled","disabled");
        // $('#rmv_choiceItem').attr("disabled","disabled");
 	
 //	$('#rr').click(function(){
@@ -187,25 +190,22 @@ $(document).ready(function(){
        
    
 		
-	 if($(this).siblings("#choice_sub").children().length == 1)
+                if($(this).siblings("#choice_sub").children().length == 2)
 			$(this).siblings('#rmv2_choiceItem').removeAttr("disabled");
             
 		 var q_ctrs = $(this).siblings("#sctr2").val();
 		$(this).siblings("#choice_sub").append('<input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" required placeholder="Choice">');
 		
-//		 if($(this).siblings("#choice_sub").children().length == 10)
-//			$(this).attr("disabled","disabled");
-                    
-
-         
+		 if($(this).siblings("#choice_sub").children().length == 5)
+			$(this).attr("disabled","disabled");  
 });
 	
 	$(document).on("click", "#add_choiceItem", function(){
        
-		$(this).siblings('#remove_choice').removeAttr("disabled");
+//		$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                 
 		 if($(this).siblings("#choice_sub").children().length == 1)
-			$(this).siblings('#remove_choice').removeAttr("disabled");
+			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                     
 	 var q_ctr = $(this).siblings("#ctr").val();
                  
@@ -223,11 +223,11 @@ $(document).ready(function(){
         
 	$(document).on("click","#rmv2_choiceItem", function(){
 	    if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).siblings('#add_choiceItem').removeAttr("disabled");
+			$(this).siblings('#add2_choiceItem').removeAttr("disabled");
 		
 		$(this).siblings("#choice_sub").children().last().remove();
                 
-		if($(this).siblings("#choice_sub").children().length == 1)
+		if($(this).siblings("#choice_sub").children().length == 2)
 		$(this).attr("disabled","disabled");	
 	});
         
@@ -236,20 +236,20 @@ $(document).ready(function(){
       $(document).on("click","#rmv_choiceItem", function(){
           
           
-          	if( $('.choice_main > div[class*="choice_info"]').length == 2)
+          	if( $('.choice_main > div[class*="choice_info"]').length == 1)
 		    $('#rmv_choiceItem').attr("disabled","disabled");
 //          
 //            if($(this).siblings("#choice_sub").length == 1)
 //		$(this).attr("disabled","disabled");
           
-	    if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).siblings('#add2_choiceItem').removeAttr("disabled");
+//	    if($(this).siblings("#choice_sub").children().length == 5)
+//			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
              //   $(this).siblings('#rmv_choiceItem').removeAttr("disabled");
 		$(this).siblings("#choice_sub").children().last().remove();
                 
-		if($(this).siblings("#choice_sub").children().length == 1)
-		$(this).attr("disabled","disabled");
+//		if($(this).siblings("#choice_sub").children().length == 2)
+//		$(this).attr("disabled","disabled");
 				
 	});
 
@@ -257,14 +257,9 @@ $(document).ready(function(){
 
    
                    $(document).on("click","#remove_quest", function(){ 
+                       
               
-//                $.confirm({
-//                                text: "This is a confirmation dialog manually triggered! Please confirm:",
-//                                confirm: function(button) {
-//                                 alert("You just confirmed.");
-                              //      alert(this.value);
-                                         id = this.value;
-                                         
+                                         id = this.value;                                      
                                      if(confirm("Do you want to delete this question?" )){                      		
 
                              $.ajax({
@@ -273,16 +268,11 @@ $(document).ready(function(){
 
                                     }).done(function(msg){
                                                 if(msg=="success"){
-                                         //            $(this).parent().remove();
                                                 }
 
                                 });
                                  alert("Successfully deleted!");
-                              //  $('.question_main > div.questions').last().remove();
-                                         //   $("#main_quest").fadeOut("1000", function() {
-                                         $("#test_p").fadeOut("slow", function() {
-                                                
-                                               // $('.question_main > div.questions').parent().remove();
+                                         $("#question_sib").fadeOut("slow", function() {
                                             
                                                 $(this).remove();
                                              location.reload();
@@ -293,23 +283,10 @@ $(document).ready(function(){
                                   alert("You cancelled!");
                                 
                             }
-//                            },
-//                              cancel: function(button) {
-//                                 alert("You cancelled.");
-//                          }
-                           
                             });
-                //    });
-       //  });
-            
+
             
             $(document).on("click","#remove_cho", function(){ 
-//              
-//                       $.confirm({
-//                                text: "This is a confirmation dialog manually triggered! Please confirm:",
-//                                confirm: function(button) {
-//                                  alert("You just confirmed.");
-                               
                                          id = this.value;
                         if(confirm("Do you want to delete this choice?" )){    
                              $.ajax({
@@ -318,54 +295,35 @@ $(document).ready(function(){
 
                                     }).done(function(msg){
                                                 if(msg=="success"){
-                                                    
-                                                    	//$(this).siblings("#choice_sub").children().last().remove();
                                                 }
 
                                 });
                                 
                                  alert("Successfully deleted!");
                                                               $(this).parent().parent().fadeOut("slow", function() {
-                                                
-                                               // $('.question_main > div.questions').parent().remove();
-                                            
                                                 $(this).remove();
-                                             
-                   //          },
-//                              cancel: function(button) {
-//                                  alert("You cancelled.");
-//                          }
                   });
                     }else{
                         
                                 alert("You cancelled!");
                        }
-                     //        },
-//                              cancel: function(button) {
-//                                  alert("You cancelled.");
-//                          }
-               //   });
 
                 });
                 
-
-//                     $(document).on("click","#submit_form", function(){ 
-//                            if (confirm("Do you want to save changes?")){
-//                                    alert("Saved! Redirect to List of Survey");
-//                                    $('form#questionform').submit();
-//                             }else{
-//                                 alert("Cancelled!");
-//                             }
-//});
-//
-                        $('#questionform').submit(function() {
-                           if (confirm("Click OK to continue?")){
-                               
-                           }else{
-                               alert("Cancelled");
-                                }
-                          });
-//                  
+                
+            $(document).on("click","#back", function(){
+                    
+                         if(confirm("Do you want to back without saving?" )){    
+                                
+                               window.history.back();   
+                             
+                         }else{
+                             // do nothing
+                         }
+       
+                    
+                });
+                
 
  
   });
@@ -407,22 +365,6 @@ function field(i){
 	
 	return x;
 	}
-        
-        
-//                    function yesNo(){
-//         
-//         if(confirm("Do you want to save changes?")){
-//         
-//                    alert("Saved! Redirect to List of Survey");
-//                   //  $('form#questionform').submit()
-//             
-//         }else{
-//                     alert("Cancelled!");
-//                     location.reload();
-//         }
-//         
-//     }
-//     
 
 </script>	
 
