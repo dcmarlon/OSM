@@ -25,12 +25,15 @@
                             
 		
 
-					<div id ="question_sib" class="questions">
+					<div id ="question_sib" class="questions field">
                                                 	
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>    
-						<div  class = "three fields">                               
+                                            
+                                            <div id="question_inner" class="field">
+                                                <div id="question_inners" >
+						<div  id ="question_holder" class = "two fields">                               
 							<div class="field">
 								<label>Q u e s t i o n </label> 
 								<input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
@@ -49,12 +52,11 @@
 									</select>
 								</div>
 							</div>                 	
-							<div class="field">
-								<button id="remove_quest" type ="button" class=" tiny ui red button" value="<?php echo $quest->question_id; ?>" > x </button>
-							</div>
+							
+							
 						</div>
 
-						<div id="choice_main" class="two fields">
+						<div id="choice_main" class="field">
                                                    <label><strong>C h o i c e s:</strong></label>
 
                                                  <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
@@ -72,7 +74,7 @@
                                                             </div>
                                                             
                                                             <div class="field">
-								<button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > x </button>
+								<button id="remove_cho" type ="button" class=" tiny ui black button" value="<?php echo $cho->choice_id; ?>" > x Choice </button>
                                                             </div>
                                                             
                                                             </div>   
@@ -89,9 +91,16 @@
                                                     
 						</div>
                                              <br>   
+                                           
+                                                </div>
+                                                  <div>
+                                             <button id="remove_quest" type ="button" class=" tiny ui black button" value="<?php echo $quest->question_id; ?>" > X Question </button>
+                                             </div>
+                                            </div>
+                                            <br>
 						<?php endforeach; ?>
 						<?php endif; ?>
-
+                                                	
 				</div>       
 				</br>
 			</div>     
@@ -152,11 +161,12 @@ $(document).ready(function(){
 		
 	
      //    $('#rmv2_choiceItem').attr("disabled","disabled");
-       // $('#rmv_choiceItem').attr("disabled","disabled");
+	$('#rmv_choiceItem'+q_num).attr("disabled","disabled");
+        $('#rmv2_choiceItem').attr("disabled","disabled");
 	
-//	$('#rr').click(function(){
-//		alert($('.cnt > div[id*="re"]').length);
-//	});
+	$('#rr').click(function(){
+		alert($('.cnt > div[id*="re"]').length);
+	});
 	
 	$(document).on("click","#remove_question", function(){
 		q_num-=1;
@@ -201,6 +211,8 @@ $(document).ready(function(){
 });
 	
 	$(document).on("click", "#add_choiceItem", function(){
+            
+            $('#rmv_choiceItem').removeAttr("disabled");
        
 //		$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
                 
@@ -256,13 +268,42 @@ $(document).ready(function(){
   
 
    
-                   $(document).on("click","#remove_quest", function(){ 
-                       
+//                   $(document).on("click","#remove_quest", function(){ 
+//                       
+//                       var parent = $(this).parent();
+//                                         id = this.value;                                      
+//                                     if(confirm("Do you want to delete this question?" )){                      		
+//
+//                             $.ajax({
+//                                            type: "POST",
+//                                            url: "<?php echo base_url('/admin/survey/delete_questions/')?>/"+id,
+//
+//                                    }).done(function(msg){
+//                                                if(msg=="success"){
+//                                                }
+//
+//                                });
+//                                 alert("Successfully deleted!");
+//                                 
+//                                      $(this).parent("#question_sib").siblings().fadeOut("slow", function() {
+//                                                $(this).remove();
+//                                         });
+//                           
+//                            
+//                               
+//                            }else{
+//                                  alert("Cancelled");
+//                                
+//                            }
+//                            });
               
-                                         id = this.value;                                      
-                                     if(confirm("Do you want to delete this question?" )){                      		
+                 $(document).on("click","#remove_quest", function(){ 
+		var parent = $(this).parent();
+                   id = this.value;  
+                   
+                    if(confirm("Do you want to delete this question?" )){    
 
-                             $.ajax({
+                                $.ajax({
                                             type: "POST",
                                             url: "<?php echo base_url('/admin/survey/delete_questions/')?>/"+id,
 
@@ -271,19 +312,15 @@ $(document).ready(function(){
                                                 }
 
                                 });
-                                 alert("Successfully deleted!");
-                                         $("#question_sib").fadeOut("slow", function() {
-                                            
-                                                $(this).remove();
-                                             location.reload();
-                           
-                            });
-                               
-                            }else{
-                                  alert("Cancelled");
                                 
-                            }
+                                parent.slideUp(300,function() {
+					parent.parent().remove();
                             });
+                            }else{
+                                 alert("Cancelled");    
+                            }
+              
+                 });
 
             
             $(document).on("click","#remove_cho", function(){ 

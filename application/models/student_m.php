@@ -61,30 +61,23 @@ class Student_m extends MY_Model
          $collegex = strtoupper($this->input->post('school'));
          
          
-                    $data = array(
-				'student_id' => $this->input->post('person'),
-                                'college' => $collegex 
-			);
-                    
-//                    $datax = array('student_id' => $this->input->post('person'));
-//                    
-//                      $result = $this->student_m->log_validate($datax);
-                      
-                      
-//                      if(count($result)){
-//                          
-//                           echo 'error';
-//                          
-//                      } else{
-			
-			$query = $this->db->insert('students',$data);
+
                         
                         
                 
                 
 			
                 if($this->input->post('question')){
-			$question= $this->input->post('question');  
+                    
+                       $data = array(
+				'student_id' => $this->input->post('person'),
+                                'college' => $collegex 
+			);
+			
+			$query = $this->db->insert('students',$data);
+                    
+                    
+                    	$question= $this->input->post('question');  
 			foreach($question as $index => $quest){
                         
 				foreach($quest['choices_item'] as  $choice){
@@ -95,12 +88,15 @@ class Student_m extends MY_Model
                                                     'choice_id'=> $choice			
                                                 );
                                                    // echo $choice['choices_item'];
-                                           $this->db->insert('answers',$data);
-                                         }
-			
-                                
-                                	
+                                          $query =  $this->db->insert('answers',$data);
+                                         }              	
 			}
+                    
+		
+                }else{
+                    
+                        $query = false;
+                  
                 }
                      
                 

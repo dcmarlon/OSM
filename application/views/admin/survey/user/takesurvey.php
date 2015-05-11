@@ -1,4 +1,5 @@
 
+<?php $this->load->view('admin/components/takesurvey_head'); ?>
 <div class= "sixteen wide column">
 		<div class = "ui large fixed inverted menu">
 		<div class="title item">	
@@ -111,7 +112,11 @@
 						
 						
 			<div class="center aligned column">
-                        <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Survey</button>	
+                            
+                               <button id="back" type="button"  class="ui black button" >Go Back</button>
+                        <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Survey</button>
+                          
+				 
 			</div>
 					</div>
 					
@@ -128,42 +133,44 @@
 	</div>
 </div>
 </div>
+
+      <!--Javascript-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+                <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('semantic/js/app.js'); ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('semantic/js/testing.js'); ?>"></script> 
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+        	$(document).on("click","#back", function(){
+                    
+                         if(confirm("Do you want to go back without submitting?" )){    
+                                
+                               window.history.back(-1);   
+                             
+                         }else{
+                             // do nothing
+                         }
+       
+                    
+                });
+        
+});
+
+</script>	
+
+</body>
+
+        </html>
+
+
+
 		
-		<!-- MODAL for student login-->
 		
-		<div class="ui modal" id="studSurvey">
-		
-		<div class="header">
-				Student Verification
-			</div>
-			
-			<div class="content">
-			<div class="description">
-      <p>You are about to submit your survey</p>
-    </div>
-			<div class = "ui centered grid">
-			<div class ="ten wide centered aligned column">
-			
-				<h3>Once your answers are submitted, you can no longer take the same survey</h3>
-		
-				
-				</div>
-				</div>
-				</div>
-				
-				<div class = "actions" >
-			
-				
-				  <div class="ui negative labeled button" >
-					Go Back To Survey
-				  </div>
-				 
-				  <div class="ui positive labeled button" type="Submit" value="Submit">
-					Submit
-				  </div>
-			
-			
-			  </div>
-                 
-			  </div>
-		
+

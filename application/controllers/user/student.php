@@ -61,26 +61,26 @@
             count($this->data['survs']) || $this->data['errors'][] = 'survey could not be found';
         }
 
-            $this->load->view('admin/components/takesurvey_head');
+         
             $this->load->view('admin/survey/user/takesurvey',$this->data);
-            $this->load->view('admin/components/takesurvey_tail');
+      
         }
         
-                public function test (){
+                public function congrats (){
     
-            $this->load->view('admin/components/takesurvey_head');
-            $this->load->view('admin/survey/user/test');
-            $this->load->view('admin/components/takesurvey_tail');
+        
+            $this->load->view('admin/survey/user/congrats');
+           
         }
 
 		
 		 public function answers_add(){		
 			if($this->student_m->answers_insert() != false){	
                            
-                                 redirect('admin/survey/user/congrats', 'location', 301); 
+                                 $this->congrats();
                  
 			}else{
-				echo "error";
+				$this->congrats();
 			} 
 			 
 		}    
@@ -152,7 +152,7 @@
             if(count($result))
             {
 
-                redirect('/user/student/test');
+                 $this->congrats();
                
             }
             

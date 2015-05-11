@@ -113,11 +113,11 @@ $(document).ready(function(){
 	if( $('.question_main > div[class*="questions"]').length == 1)
 		$('#remove_question').attr("disabled","disabled");
 		
-	$('#remove_choiceItem').attr("disabled","disabled");
+	$('#rmv_choiceItem').attr("disabled","disabled");
 	
-//	$('#rr').click(function(){
-//		alert($('.cnt > div[id*="re"]').length);
-//	});
+	$('#rr').click(function(){
+		alert($('.cnt > div[id*="re"]').length);
+	});
 //	
 	$(document).on("click","#remove_question", function(){
 		q_num-=1;
@@ -166,6 +166,7 @@ $(document).ready(function(){
 			$(this).siblings('#add_choiceItem').removeAttr("disabled");
 		
 		$(this).siblings("#choice_sub").children().last().remove();
+                
 		if($(this).siblings("#choice_sub").children().length == 2)
 		$(this).attr("disabled","disabled");	
 	});
@@ -229,7 +230,7 @@ function field( i){
 	}
 </script>	
 
-
+</body>
 
         </html>
 
