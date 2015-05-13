@@ -114,7 +114,7 @@
 			<div class="center aligned column">
                             
                                <button id="back" type="button"  class="ui black button" >Go Back</button>
-                        <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Survey</button>
+                        <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Answers</button>
                           
 				 
 			</div>
