@@ -68,20 +68,14 @@ class Student_m extends MY_Model
     
      function answers_insert(){
    
-//                print_r($this->input->post('question'));
-         
-         $collegex = strtoupper($this->input->post('school'));
-         
-         
-
-                        
-                        
-                
-                
-			
-                if($this->input->post('question')){
+           //     print_r($this->input->post('question'));
+         		
+             
                     
-                       $data = array(
+                    
+         $collegex = strtoupper($this->input->post('school'));
+                              
+                                              $data = array(
 				'student_id' => $this->input->post('person'),
                                 'college' => $collegex ,
                                 'status' => 1
@@ -89,16 +83,23 @@ class Student_m extends MY_Model
                        
                        
                         
-                       $sql = $this->db->insert_string('students', $data) . ' ON DUPLICATE KEY UPDATE status = 1';
-                       $this->db->query($sql);
-                        $id = $this->db->insert_id();
+                           $sql = $this->db->insert_string('students', $data) . ' ON DUPLICATE KEY UPDATE status = 1';
+                           $this->db->query($sql);
+                           $query = $this->db->insert_id();
+                        
+                        //	$query = $this->db->insert('students',$data);
 			
                     
-                    
+                       if($this->input->post('question')){
+                           
                     	$question= $this->input->post('question');  
 			foreach($question as $index => $quest){
-                        
+                            
+                            
+                       
+                        if(isset($quest['choices_item'])){
 				foreach($quest['choices_item'] as  $choice){
+                           
                             
                                             $data = array(
                                                     'student_id' => $this->input->post('person'),
@@ -107,24 +108,25 @@ class Student_m extends MY_Model
                                                 );
                                                    // echo $choice['choices_item'];
                                           $query =  $this->db->insert('answers',$data);
-                                         }              	
+                                         } 
+                                         
+                        }
+                                   
 			}
                     
+                      
 		
-                }else{
-                    
-                        $query = false;
-                  
                 }
-                     
                 
-                        if($query){
-                            
-                            return true;    
-                        }else{
-                            return false;
-                        }
+                    if($query){
                         
+                        return true;
+                    }else{
+                        
+                        return false;
+                    }
+                     
+           
             }
 		
             

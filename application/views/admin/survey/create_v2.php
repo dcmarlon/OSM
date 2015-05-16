@@ -83,7 +83,7 @@
 					<div class="row"></div>
 					<div class="three wide column"></div>
 			             
-					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" onclick="return confirm('Do you want to save the changes?'); return false; ">Create Survey</button>
+					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" onclick="return confirm('Do you want to save the changes?');return false; ">Create Survey</button>
 
 				</div>
 				</br>

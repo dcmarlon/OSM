@@ -246,8 +246,10 @@
 				
 		);
                         
-                $this->db->where('survey_id',$id);        
+                $this->db->where('survey_id',$id);                       
                 $this->db->update('survey',$data);
+                $this->db->set('status', 0);
+                $this->db->update('students');
                 
 	if($this->db->affected_rows()>0){
 			return true;
