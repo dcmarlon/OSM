@@ -122,7 +122,7 @@
 					<div class="row"></div>
 					<div class="three wide column"></div>
 			             
-					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" onclick="return confirm('Do you want to save the changes?'); return false; ">Save</button>
+					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" >Save</button>
 
 				</div>
 				</br>
@@ -276,6 +276,22 @@ $('.message .close').on('click', function() {
        
                     
                 });
+                
+                 $(document).on("submit","form", function(){
+
+
+                        var admin_choice = window.confirm('Would you like to continue?');
+
+                        if(admin_choice==true) {
+
+                            alert("Successfully Created!")
+
+                            } else {
+
+
+                        return false;
+                        }
+             });
                 
 
  
