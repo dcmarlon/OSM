@@ -4,6 +4,14 @@
 		<div class="three wide column"></div>
 		<div class="ten wide column">
 			<div class="row">
+			<div class="ui success message">
+  <i class="close icon"></i>
+  <div class="header">
+    If you want to add "Others" as a choice
+  </div>
+  <p>Input "Others" in the choice field. A text box will appear beside that choice when a student takes the survey</p>
+</div>
+      
 			<label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
 		</div>  
 
@@ -141,6 +149,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+$('.message .close').on('click', function() {
+  $(this).closest('.message').fadeOut();
+});
 
     var q_num =<?php  echo count($questions); ?>;
 

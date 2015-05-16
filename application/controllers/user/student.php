@@ -66,12 +66,21 @@
       
         }
         
-                public function congrats (){
+        public function congrats (){
     
         
             $this->load->view('admin/survey/user/congrats');
            
         }
+		
+		 public function taken (){
+    
+        
+            $this->load->view('admin/survey/user/taken');
+           
+        }
+		
+		
 
 		
 		 public function answers_add(){		
@@ -113,7 +122,7 @@
             if($result == false)
             {
 
-                 $this->congrats();
+                 $this->taken();
                
             }
             
