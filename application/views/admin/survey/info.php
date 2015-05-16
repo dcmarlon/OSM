@@ -58,11 +58,11 @@
                             
                             
                      <?php if(($surv['status'] =='Unavailable')):?>
-                         <?php echo btn_report('admin/viewResults/view_results/' . $surv['id']); ?>
+                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
                      <?php endif; ?>
                        
                       <?php if(($surv['status'] =='Active')):?>
-                         <?php echo btn_report('admin/viewResults/view_results/' . $surv['id']); ?>
+                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
                           <button id="survey_deact" class="tiny ui red button center aligned two column row" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
                      <?php endif; ?>
                   
