@@ -104,7 +104,7 @@
                  
 			
 				<div class="two fluid ui inverted buttons">
-				  <div class="ui inverted red basic button" >
+				  <div class="ui inverted red basic button close icon" >
 				  
 					Cancel
 				  </div>

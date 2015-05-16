@@ -84,45 +84,7 @@
 			} 
 			 
 		}    
-          
-   
-        
-         public function process(){
-            $id = $this->input->post('idnum');
-            $coll = $this->input->post('coll');
 
-            echo $id."<br>";
-            echo $coll."<br>";
-
-           
-       }
-	   
-	   
-        
-        public function login ()
-        {
-        // redirect if already logged in
-        if ($this->ion_auth->logged_in() == TRUE) {
-            redirect('take survey');
-        }
-        
-        // Validate the form
-        $this->form_validation->set_rules($this->student_m->validation);
-        if ($this->form_validation->run() == true) {
-            
-            // Try to log in
-            if ($this->ion_auth->login($this->input->post('student_id')) == TRUE) {
-                redirect('questions/listing');
-            }
-            else {
-                $this->data['error'] = 'We could not log you in';
-            }
-        }
-        
-             // Set subview & Load layout
-             $this->load_view('users/login');
-        }
-        
         public function takesurvey(){
             
             $this->load->library('form_validation');
@@ -147,9 +109,8 @@
             $result = $this->student_m->log_validate($infoid);
             
 
-            echo count($result);
 
-            if(count($result))
+            if($result == false)
             {
 
                  $this->congrats();

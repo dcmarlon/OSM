@@ -47,11 +47,23 @@ class Student_m extends MY_Model
     
     public function log_validate($info){
         
-        $this->db->select('*');
+       $this->db->select('*');
         $this->db->where($info); 
         $query = $this->db->get('students');
-
-        return $query->result();
+        
+        $row = $query->row();
+ 
+        if(!($row)){
+            return true;
+        }
+        else if($row->status == 1){
+            return false;
+        }
+        else {
+            return true;
+       
+             }
+    
     }
     
      function answers_insert(){
@@ -71,10 +83,16 @@ class Student_m extends MY_Model
                     
                        $data = array(
 				'student_id' => $this->input->post('person'),
-                                'college' => $collegex 
+                                'college' => $collegex ,
+                                'status' => 1
 			);
+                       
+                       
+                        
+                       $sql = $this->db->insert_string('students', $data) . ' ON DUPLICATE KEY UPDATE status = 1';
+                       $this->db->query($sql);
+                        $id = $this->db->insert_id();
 			
-			$query = $this->db->insert('students',$data);
                     
                     
                     	$question= $this->input->post('question');  
