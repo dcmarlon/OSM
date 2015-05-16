@@ -31,10 +31,13 @@
         
            
        
-           
-    <div class ="row">   
+    <div class="row">
+    <div class="left floated right aligned six wide column">
+                 <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+    </div>
+        <div class ="right floated left aligned six wide column">
    
-          <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+ 
         
         
         
@@ -57,17 +60,18 @@
                      <?php if(($surv['status'] =='Unavailable')):?>
                          <?php echo btn_report('admin/viewResults/view_results/' . $surv['id']); ?>
                      <?php endif; ?>
-        
+                       
                       <?php if(($surv['status'] =='Active')):?>
                          <?php echo btn_report('admin/viewResults/view_results/' . $surv['id']); ?>
-                          <button id="survey_deact" class="tiny ui red button" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
+                          <button id="survey_deact" class="tiny ui red button center aligned two column row" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
                      <?php endif; ?>
+                  
                     
       
     </div>
      </div>  
-            
-</div> 
+</div>
+
 
      <!--Javascript-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>

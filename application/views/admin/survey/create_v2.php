@@ -40,17 +40,28 @@
                           </div>
                                   </div>
 
-                      <div id="choice_main" class="grouped fields">
+                      <div id="choice_main" class="field">
                         <label><strong>C h o i c e s :</strong></label>
 
-                        <div id="choice_sub" class="two fields">
+                        <div id="choice_sub" class="field">
+                            
+                            
+                            <div  id ="choice_in"class="two fields">
+                                
+                                <div class="field">
+                                <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">
+                                <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" placeholder="Choice"><br>
+                                </div>
+                                
+                                <div class="field">
+                                  
+                                </div>
+                                
+                                </div>
 
-                          <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">    
-								
                         </div>
 
                       <button id="add_choiceItem"class="mini ui green button" type="button">Add Choice</button> 
-                      <button id="rmv_choiceItem"class="mini ui red button" type="button">Remove Choice</button>
                       <input type="hidden" name="ctr" id="ctr" value="0" />
                      
                       
@@ -61,26 +72,25 @@
 	
                     </div>     
 
-	
-                      <div class="four column row">
-                        <div class="right floated column">
-                                        <div class="row"></div>
-                            <div class="three wide column"></div>
-                            <button id="add_question" class="tiny ui green button" type="button" >Add Question</button>
-                            <button id="remove_question" type="button" class="tiny ui red button">Remove Question</button>
-                            <button id="submit_form" type="submit" name="addlist" class="ui submit blue button" onclick="return confirm('Do you want to create this survey?'); return false; ">Submit Form</button>
-                        </div>
-                                </br>
-                    
-                      </div>
+                     <br>
+			<div class="two fields">
+                            
+                            	<div class="left floated column"> 
+					      <button id="back" type="button" class="ui button" >Back</button>
+                                              <button id="add_question" class="ui green button" type="button" >Add Question</button>     
+				</div>
+				<div class="right floated column">
+					<div class="row"></div>
+					<div class="three wide column"></div>
+			             
+					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" onclick="return confirm('Do you want to save the changes?'); return false; ">Create Survey</button>
+
+				</div>
+				</br>
+		
+			</div>
           
-            </form>
-                <div class="left floated column"> 
-                      
-                    
-                                 <button id="back" type="button"  class="ui button" >Back</button>
-                        </div>
-                  
+            </form>                  
        </div>
 </div>
         
@@ -110,32 +120,9 @@
 $(document).ready(function(){
     var q_num =1;
 
-	if( $('.question_main > div[class*="questions"]').length == 1)
-		$('#remove_question').attr("disabled","disabled");
-		
-	$('#rmv_choiceItem').attr("disabled","disabled");
-	
-	$('#rr').click(function(){
-		alert($('.cnt > div[id*="re"]').length);
-	});
-//	
-	$(document).on("click","#remove_question", function(){
-		q_num-=1;
-		if($('.question_main > div[class*="questions"]').length == 50)
-			$('#add_question').removeAttr("disabled");
-		
-		
-		$('.question_main > div.questions').last().remove();
-		if( $('.question_main > div[class*="questions"]').length == 1)
-		    $('#remove_question').attr("disabled","disabled");
-		
-		
-	});
+
 	
 	$(document).on("click","#add_question", function(){
-
-		if($('.question_main > div[class*="questions"]').length == 1)
-			$('#remove_question').removeAttr("disabled");
 		
 		var questionItem = field(q_num);
 	   	 q_num +=1;
@@ -147,29 +134,43 @@ $(document).ready(function(){
 		
 	});
 	
-	$(document).on("click", "#add_choiceItem", function(){
        
-		
-		 if($(this).siblings("#choice_sub").children().length == 2)
-			$(this).siblings('#rmv_choiceItem').removeAttr("disabled");
-                    
-		 var q_ctr = $(this).siblings("#ctr").val();
-		$(this).siblings("#choice_sub").append('<input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice">');
-		
-			 if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).attr("disabled","disabled");	
-	});
+       $(document).on("click", "#add_choiceItem", function(){
+           
+     
+	 var q_ctr = $(this).siblings("#ctr").val();          
+		$(this).siblings("#choice_sub").last().append('<div id="heyz" class="two fields"><div class="field"><input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice"></div><div class="field"><button id="remove_field" type ="button" class=" mini ui red button"> Remove Choice </button></div></div>');
+	
+//                 if($(this).siblings("#choice_sub").children().length == 5)
+//			$(this).attr("disabled","disabled");	
+        });
         
-	$(document).on("click","#rmv_choiceItem", function(){
+        
+        
+        
+
+             $(document).on("click","#remove_field", function(e){ 
+                    e.preventDefault(); 
+                                $(this).parent('div').parent().fadeOut(250, function() {
+                                                $(this).remove(); 
+                                                
+//                        if($(this).siblings("#choice_sub").children().length != 5){
+//                            $('#add_choiceItem').removeAttr("disabled","disabled");
+//                        }
+                        
+                  });
+        
        
-	    if($(this).siblings("#choice_sub").children().length == 5)
-			$(this).siblings('#add_choiceItem').removeAttr("disabled");
-		
-		$(this).siblings("#choice_sub").children().last().remove();
-                
-		if($(this).siblings("#choice_sub").children().length == 2)
-		$(this).attr("disabled","disabled");	
-	});
+                })
+    
+    
+                $(document).on("click","#remove_question", function(e){ 
+                    e.preventDefault(); 
+                    
+                                     $(this).parent().parent('.question_main > div.questions').slideUp(250, function() {
+                                                $(this).remove();
+                             });
+                })
         
         
         	$(document).on("click","#back", function(){
@@ -194,37 +195,48 @@ function field( i){
 
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
-          '<div class="field">'+
-          ' <label><strong>Q u e s t i o n</strong></label><input name ="question['+i+'][q_data]" type="text" required="required"placeholder="Question">'+
-       '   </div>'+
-         ' <div class="field">'+
-           ' <label>&nbsp;</label>'+
-          '  <div>'+
-                 ' <select class="form-group form-control" name="question['+i+'][q_type]" required="required">'+
-                '    <option value="" disabled default selected class="display-none">Question Type</option>'+
-                  '  <option value="Single">Single</option>'+
-                  '  <option value="Multiple">Multiple</option>'+
-	'	</select>'+
-          
-           ' </div>'+
-
-        '  </div>'+
-		 ' </div>'+
-     
-    '  <div id="choice_main" class="grouped fields">	'+
-      '  <label><strong>C h o i c e s :</strong></label>'+
+                                '<div class="field">'+
+                                        '<label>Q u e s t i o n</label> <input name ="question['+i+'][q_data]" type="text"  required="required"placeholder="Question">'+
+                                '</div>'+
+                                 '<div class="field">'+
+                                        '<label>&nbsp;</label>'+
+                                        '<div>'+
+                                               '<select class="form-group form-control" name="question['+i+'][q_type]" required="required">'+
+                                                       '<option value="" disabled default selected class="display-none">Question Type</option>'+
+                                                       '<option value="Single">Single</option>'+
+                                                       '<option value="Multiple">Multiple</option>'+
+                                               '</select>'+     
+                                        '</div>'+
+                                '</div>'+                	
+                        '</div>'+
+                        
+                '<div id="choice_main" class="field">'+
+                            '<label>C h o i c e s :</label>'+
+                        '<div id="choice_sub" >'+
+                                '<div class=" two fields">'+
+                        
+                                '<div class="field">'+
+                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+         
+                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+
+                                '</div>'+ 
+                                
+                                '<div class="field">'+
+                                '</div>'+
         
-      '  <div id="choice_sub" class="two fields">'+
+                               '</div>'+                   
+                        '</div>'+
+             
 
-        '  <input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+         
-       ' </div>'+
-
-    '  <button id="add_choiceItem" class="mini ui green button" type="button">Add Choice</button> '+
-     ' <button id="rmv_choiceItem" class="mini ui red button" type="button">Remove choice</button>'+
-	 '<input type="hidden" name="ctr" id="ctr" value="'+i+'" />'+
-    '  </div>'+
-    ' </div>'+
-    '   </br>';
+                            '<button id="add_choiceItem" class="mini ui green button" type="button">Add Choice</button> '+
+                                 '<input type="hidden" name="counter" id="ctr"  value="'+i+'" />'+
+                            '</div>'+
+                                  '<div class="right floated column">'+
+                                             '<button id="remove_question" type ="button" class="ui red button"> Remove Question </button>'+
+                                             '</div>'+
+                                             '</br>'+
+                                         
+                    '</div>'+
+                    '<br>';;
 	
 	return x;
 	}
