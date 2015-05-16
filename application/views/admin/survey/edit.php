@@ -1,21 +1,19 @@
 <div class="ui grid">
-
 	<div class="row"></div>
 		<div class="three wide column"></div>
 		<div class="ten wide column">
-			<div class="row">
-			<div class="ui success message">
-  <i class="close icon"></i>
-  <div class="header">
-    If you want to add "Others" as a choice
-  </div>
-  <p>Input "Others" in the choice field. A text box will appear beside that choice when a student takes the survey</p>
-</div>
-      
-			<label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
-		</div>  
+                        <div class="row">
+                                <div class="ui success message">
+                                    <i class="close icon"></i>
+                                    <div class="header">
+                                        If you want to add "Others" as a choice
+                                    </div>
+                                    <p>Input "Others" in the choice field. A text box will appear beside that choice when a student takes the survey</p>
+                                </div>
+                                <label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
+                        </div>  
 
-		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('/admin/survey/edit_survey_v2');?>" role="form">
+		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('/admin/survey/edit_survey');?>" role="form">
 
 			<?php if(count($survs)): ?>
 			<div class ="field">
@@ -30,90 +28,76 @@
 			</div>
 
 			<div class="question_main" class="field">
-                            
-		
-
-					<div id ="question_sib" class="questions">
-                                                	
+                            <div id ="question_sib" class="questions">             	
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
-				?>    
-                                            
-                                            <div id="question_inner" class="four column row">
-                                                <div id="question_inners" >
-						<div  id ="question_holder" class = "two fields">                               
-							<div class="field">
-								<label>Q u e s t i o n </label> 
-								<input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
-								<input name ="question[<?php echo $i; ?>][q_data]" type="text" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
-							</div>
-							<div class="field">
-								<label>&nbsp;</label>
-								<div>
-									<select class="form-group form-control" name="question[<?php echo $i; ?>][q_type]" required="required">
-										<option value="<?php echo $quest->question_type; ?>"> 
-										<?php if($quest->question_type == 'Single') echo "Single"; elseif ($quest->question_type == 'Multiple') echo "Multiple"; else echo "Combination";?> 
-										</option>
-										<option value="Single">Single</option>
-										<option value="Multiple">Multiple</option>
-				
-									</select>
-								</div>
-							</div>                 	
-							
-							
-						</div>
-                                               
-						<div id="choice_main" class="field">
+				?>      
+                                        <div id="question_inner" class="four column row">
+                                            <div id="question_inners" >
+                                                <div  id ="question_holder" class = "two fields">                               
+                                                        <div class="field">
+                                                                <label>Q u e s t i o n </label> 
+                                                                <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
+                                                                <input name ="question[<?php echo $i; ?>][q_data]" type="text" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
+                                                        </div>
+                                                        <div class="field">
+                                                                <label>&nbsp;</label>
+                                                                <div>
+                                                                        <select class="form-group form-control" name="question[<?php echo $i; ?>][q_type]" required="required">
+                                                                                <option value="<?php echo $quest->question_type; ?>"> 
+                                                                                <?php if($quest->question_type == 'Single') echo "Single"; elseif ($quest->question_type == 'Multiple') echo "Multiple"; else echo "Combination";?> 
+                                                                                </option>
+                                                                                <option value="Single">Single</option>
+                                                                                <option value="Multiple">Multiple</option>
+
+                                                                        </select>
+                                                                </div>
+                                                        </div>                 	
+
+                                                </div>
+                                                <div id="choice_main" class="field">
                                                    <label><strong>C h o i c e s:</strong></label>
 
-                                                 <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
-							if(count($choices)): foreach($choices as $cho):
-							?>
-		
-							<div id="choice_sub">
-                                                    
-                                                            
-                                                            <div id ="nax" class="two fields ">
-                                                            <div id ="choice_info"class="field">
-								<input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-								<input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
-                                                            </div>
-                                                            
-                                                            <div class="field">
-								<button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > Remove Choice </button>
-                                                            </div>
-                                                            
+                                                        <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+                                                               if(count($choices)): foreach($choices as $cho):
+                                                               ?>
+
+                                                        <div id="choice_sub">                                                  
+                                                            <div class="two fields ">
+                                                                <div id ="choice_info" class="field">
+                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
+                                                                </div>
+                                                                <div class="field">
+                                                                    <button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > Remove Choice </button>
+                                                                </div>
                                                             </div>   
-                                                     
-							</div>
-                                               
-                                                
-							<?php endforeach; ?>
-							<?php endif; ?>    
-                                                                  
-							<button id="add_choiceItem"class="tiny ui green button" type="button">Add Choice</button> 
-							<input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
-                                                    
-						</div>
-                                             <br>   
-                                           
+                                                        </div>
+
+
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>    
+
+                                                        <button id="add_choiceItem"class="tiny ui green button" type="button">Add Choice</button> 
+                                                        <input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
+
                                                 </div>
-                                                  <div class="right floated column">
-                                             <button id="remove_quest" type ="button" class="  ui red button" value="<?php echo $quest->question_id; ?>" > Remove Question </button>
-                                             </div>
-                                                <br>
+                                         <br>   
+
                                             </div>
+                                                <div class="right floated column">
+                                                    <button id="remove_quest" type ="button" class="  ui red button" value="<?php echo $quest->question_id; ?>" > Remove Question </button>
+                                                </div>
+                                            <br>
+                                        </div>
                                             <br>
 						<?php endforeach; ?>
-						<?php endif; ?>
-                                                	
+						<?php endif; ?>         	
 				</div>       
-				</br>
+				<br>
 			</div>     
                         <br>
-			<div class="two fields">
-                            
+			<div class="two fields">           
                             	<div class="left floated column"> 
 					      <button id="back" type="button" class="ui button" >Back</button>
                                               <button id="add_question" class="ui green button" type="button" >Add Question</button>     
@@ -121,25 +105,14 @@
 				<div class="right floated column">
 					<div class="row"></div>
 					<div class="three wide column"></div>
-			             
 					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" >Save</button>
-
 				</div>
-				</br>
-		
+				<br>
 			</div>
 		</form>
 
 	</div>
-                   
-
 </div>
-
-
-
-<!--- >
-
-        
 
       <!--Javascript-->
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -149,26 +122,22 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+    
 $('.message .close').on('click', function() {
   $(this).closest('.message').fadeOut();
 });
 
     var q_num =<?php  echo count($questions); ?>;
 
-
 	$(document).on("click","#add_question", function(){
 	
-		if($('.question_main > div[class*="questions"]').length == 1)
-			$('#remove_question').removeAttr("disabled");
-		
 		var questionItem = field(q_num);
 	   	 q_num +=1;
 		$('.question_main').append(questionItem);
 		
 		if($('.question_main > div[class*="questions"]').length == 50)
 			$('#add_question').attr("disabled","disabled");	
-			
-		
+
 	});
         
         $(document).on("click", "#add2_choiceItem", function(){
@@ -195,14 +164,6 @@ $('.message .close').on('click', function() {
         
        
                 })
-                
-//                   $(document).on("click","#remove_field_two", function(e){ 
-//                    e.preventDefault(); 
-//                                         $(this).parent('div').parent().fadeOut(250, function() {
-//                                                $(this).remove();
-//                             });
-//                 })
-                
                       $(document).on("click","#remove_quest_two", function(e){ 
                     e.preventDefault(); 
                     
@@ -284,7 +245,7 @@ $('.message .close').on('click', function() {
 
                         if(admin_choice==true) {
 
-                            alert("Successfully Created!")
+                            alert("Save Changes!")
 
                             } else {
 

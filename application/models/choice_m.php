@@ -1,7 +1,6 @@
  <?php
-class Choice_m extends MY_Model{
-    
-      protected $_table = 'choices';
+class Choice_m extends MY_Model{ 
+        protected $_table = 'choices';
 	protected $primary_key = 'choice_id';
         protected $primary_key_question = 'question_id';
         public $_database = 'osmdb';

@@ -21,7 +21,7 @@
         <?php if(count($survey)): foreach($survey as $sur): ?>	
             <tr>
                    
-                     <td><?php echo btn_editThree('admin/survey/watch/' . $sur->survey_id); ?></td>
+                     <td><?php echo btn_editThree('admin/survey/info_details/' . $sur->survey_id); ?></td>
                    
                     <td><?php echo $sur->survey_id; ?></td>
                     <td><?php echo $sur->survey_name; ?></td>
@@ -57,7 +57,15 @@
         <script type="text/javascript" src="<?php echo base_url('semantic/js/testing.js'); ?>"></script> 
                  
 
+        <script>
+            $(document).ready(function(){
+    
+                      var oTable = $('#datatables').dataTable();
+                      oTable.fnSort( [ [2,'desc'] ] );
 
+            });
+
+        </script>
         
 </body>
         </html>

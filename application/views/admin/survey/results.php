@@ -118,11 +118,8 @@
                                     </div>
                                   </div>    
                                 </div>
-                        <?php endforeach; echo "</ol>";} ?>   
-                        
-                       
+                        <?php endforeach; echo "</ol>";} ?>           
                   </div>
-
 </div>
 
 </body>

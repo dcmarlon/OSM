@@ -32,44 +32,37 @@
            
        
     <div class="row">
-    <div class="left floated right aligned six wide column">
-                 <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
-    </div>
-        <div class ="right floated left aligned six wide column">
-   
- 
-        
-        
-        
-                     <?php if(($surv['status'] =='Available')):?>          
-                          <?php echo btn_editTwo('/admin/survey/edit/' . $surv['id']); ?>                  
-                     <?php endif; ?>
-        
-                    <?php if(!($check =='Active')):?>
-                             
-                        <?php if(($surv['status'] =='Available')):?>          
-                            <button id="survey_act"  class="tiny ui blue button" type="button" value="<?php echo $surv['id']; ?>"  >Activate Survey</button>       
-                     <?php endif; ?>
-                    
-                  <?php endif; ?>
-                            
-                            
-             
-                            
-                            
-                     <?php if(($surv['status'] =='Unavailable')):?>
-                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
-                     <?php endif; ?>
-                       
-                      <?php if(($surv['status'] =='Active')):?>
-                         <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
-                          <button id="survey_deact" class="tiny ui red button center aligned two column row" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
-                     <?php endif; ?>
-                  
-                    
-      
-    </div>
-     </div>  
+        <div class="left floated right aligned six wide column">
+                     <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+        </div>
+             <div class ="right floated left aligned six wide column">
+
+
+                         <?php if(($surv['status'] =='Available')):?>          
+                              <?php echo btn_editTwo('/admin/survey/edit/' . $surv['id']); ?>                  
+                         <?php endif; ?>
+
+                        <?php if(!($check =='Active')):?>
+
+                             <?php if(($surv['status'] =='Available')):?>          
+                                <button id="survey_act"  class="tiny ui blue button" type="button" value="<?php echo $surv['id']; ?>"  >Activate Survey</button>       
+                             <?php endif; ?>
+
+                         <?php endif; ?>
+
+                         <?php if(($surv['status'] =='Unavailable')):?>
+                             <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
+                         <?php endif; ?>
+
+                          <?php if(($surv['status'] =='Active')):?>
+                             <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
+                              <button id="survey_deact" class="tiny ui red button center aligned two column row" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
+                         <?php endif; ?>
+
+
+
+                </div>
+        </div>  
 </div>
 
 
@@ -83,32 +76,24 @@
     $(document).ready(function(){
 
        $(document).on("click","#survey_act", function(){ 
-
-                                 //  alert(this.value);
                                          idx = this.value;
                                          
                          if(confirm("Do you want to Active this survey?" )){                      		
-
                              $.ajax({
                                             type: "POST",
                                             url: "<?php echo base_url('/admin/survey/act_surveyby_id/')?>/"+idx,
-                                           //   data: $(this).serialize(),
-
                                     })
                                             
                                           alert('You Successfully Activated the Survey!');
-                                                       location.reload();
-                                                  
+                                                       location.reload();                                              
                            }else{
                             
                                 alert("You cancelled!");
                             
                            }
-                            });
+         });
                             
          $(document).on("click","#survey_deact", function(){ 
-
-                             //  alert(this.value);
                                      idx = this.value;
 
                    if(confirm("Do you want to deactivate the survey?" )){                     
@@ -116,39 +101,21 @@
                          $.ajax({
                                         type: "POST",
                                         url: "<?php echo base_url('/admin/survey/deact_surveyby_id/')?>/"+idx,
-                                       //   data: $(this).serialize(),
-
                                 })
 
                                       alert('You Successfully Deactivated the Survey!');
                                                    location.reload();
-
-
-                  
-                        
                        }else{
                         
                                 alert("You cancelled!");
                        }
                         
                          });     
-                    
-                            
-    
-    
       });
     
     
     
 </script>
 
-
-
-
-
-
-
-
-
 </body>
-        </html>
+     </html>

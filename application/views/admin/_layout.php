@@ -15,20 +15,14 @@
 		<i class="browser icon"></i>
 			Administration Panel
 		 </div>
+		</div>		
 		</div>
-		
-		</div>
-	</div>
-                
-   
-  
+      </div>
+
              <div class="ui centered grid" id="main">
                     <?php $this->load->view($subview); ?>
              </div>
-                
 
-             
-            
        </div>       
 
 
