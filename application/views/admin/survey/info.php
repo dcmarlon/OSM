@@ -45,7 +45,7 @@
                         <?php if(!($check =='Active')):?>
 
                              <?php if(($surv['status'] =='Available')):?>          
-                                <button id="survey_act"  class="tiny ui blue button" type="button" value="<?php echo $surv['id']; ?>"  >Activate Survey</button>       
+                                <button id="survey_act"  class="tiny ui blue labeled icon button" type="button" value="<?php echo $surv['id']; ?>"  ><i class="unlock alternate icon"></i>Activate Survey</button>       
                              <?php endif; ?>
 
                          <?php endif; ?>
@@ -56,7 +56,7 @@
 
                           <?php if(($surv['status'] =='Active')):?>
                              <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
-                              <button id="survey_deact" class="tiny ui red button center aligned two column row" type="button" value="<?php echo $surv['id']; ?>"  >Deactivate Survey</button>
+                              <button id="survey_deact" class="tiny ui red labeled icon button " type="button" value="<?php echo $surv['id']; ?>"  ><i class="lock icon"></i>Deactivate Survey</button>
                          <?php endif; ?>
 
 

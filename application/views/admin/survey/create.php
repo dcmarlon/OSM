@@ -55,7 +55,7 @@
                                             </div>
                                     </div>
 
-                                    <button id="add_choiceItem"class="mini ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> 
+                                    <button id="add_choiceItem"class="mini ui green labeled icon button" type="button"><i class="add square icon"></i>Add Choice</button> 
                                     <input type="hidden" name="ctr" id="ctr" value="0" />
                       </div>
                       
@@ -74,7 +74,7 @@
                                 <div class="right floated column">
                                         <div class="row"></div>
                                         <div class="three wide column"></div>
-                                        <button id="submit_form" type="submit" name="addlist" class="ui submit blue labelled icon button"> <i class="checkmark icon"></i>Create Survey</button>
+                                        <button id="submit_form" type="submit" name="addlist" class="ui submit blue labeled icon button"> <i class="save icon"></i>Create Survey</button>
                                 </div>
                     <br>
                     </div>
@@ -232,7 +232,7 @@ function field( i){
                         '</div>'+
              
 
-                            '<button id="add_choiceItem" class="mini ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> '+
+                            '<button id="add_choiceItem" class="mini ui green labeled icon button" type="button"><i class="add square icon"></i>Add Choice</button> '+
                                  '<input type="hidden" name="counter" id="ctr"  value="'+i+'" />'+
                             '</div>'+
                                   '<div class="right floated column">'+
