@@ -38,7 +38,7 @@
                                                         <div class="field">
                                                                 <label>Q u e s t i o n </label> 
                                                                 <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
-                                                                <input name ="question[<?php echo $i; ?>][q_data]" type="text" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
+                                                                <input name ="question[<?php echo $i; ?>][q_data]" type="text" maxlength="200" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
                                                         </div>
                                                         <div class="field">
                                                                 <label>&nbsp;</label>
@@ -66,10 +66,10 @@
                                                             <div class="two fields ">
                                                                 <div id ="choice_info" class="field">
                                                                     <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" required="required" placeholder="Choice"> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
                                                                 </div>
                                                                 <div class="field">
-                                                                    <button id="remove_cho" type ="button" class=" tiny ui red button" value="<?php echo $cho->choice_id; ?>" > Remove Choice </button>
+                                                                    <button id="remove_cho" type ="button" class="circular ui red icon button" value="<?php echo $cho->choice_id; ?>" ><i class="remove icon"></i></button>
                                                                 </div>
                                                             </div>   
                                                         </div>
@@ -78,7 +78,7 @@
                                                         <?php endforeach; ?>
                                                         <?php endif; ?>    
 
-                                                        <button id="add_choiceItem"class="tiny ui green button" type="button">Add Choice</button> 
+                                                        <button id="add_choiceItem"class="tiny ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> 
                                                         <input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
 
                                                 </div>
@@ -86,7 +86,7 @@
 
                                             </div>
                                                 <div class="right floated column">
-                                                    <button id="remove_quest" type ="button" class="  ui red button" value="<?php echo $quest->question_id; ?>" > Remove Question </button>
+                                                    <button id="remove_quest" type ="button" class="  ui red labelled icon button" value="<?php echo $quest->question_id; ?>" > <i class="minus square icon"></i>Remove Question </button>
                                                 </div>
                                             <br>
                                         </div>
@@ -100,12 +100,12 @@
 			<div class="two fields">           
                             	<div class="left floated column"> 
 					      <button id="back" type="button" class="ui button" >Back</button>
-                                              <button id="add_question" class="ui green button" type="button" >Add Question</button>     
+                                              <button id="add_question" class="ui green labelled icon button" type="button" ><i class="add square icon"></i>Add Question</button>     
 				</div>
 				<div class="right floated column">
 					<div class="row"></div>
 					<div class="three wide column"></div>
-					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue button" >Save</button>
+					<button id="submit_form" type="submit" name="addlist" class=" ui submit blue labelled icon button" ><i class="checkmark icon"></i>Save</button>
 				</div>
 				<br>
 			</div>
@@ -143,14 +143,14 @@ $('.message .close').on('click', function() {
         $(document).on("click", "#add2_choiceItem", function(){
          
 		 var q_ctrs = $(this).siblings("#sctr2").val();
-		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" required placeholder="Choice"></div><div class="field"><button id="remove_field" type ="button" class=" tiny ui red button"> Remove Choice </button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" required placeholder="Choice" maxlength="150" ></div><div class="field"><button id="remove_field" type ="button" class=" circular ui red labelled icon button"><i class="remove icon"></i></button></div></div>');
  
         });
 	
 	$(document).on("click", "#add_choiceItem", function(){
 
 	 var q_ctr = $(this).siblings("#ctr").val();          
-		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice"></div><div class="field"><button id="remove_field" type ="button" class=" tiny ui red button"> Remove Choice </button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red labelled icon button"> <i class="remove icon"></i></button></div></div>');
 	});
         
 
@@ -263,7 +263,7 @@ function field(i){
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
                                 '<div class="field">'+
-                                        '<label>Q u e s t i o n</label> <input name ="question_two['+i+'][q2_data]" type="text"  required="required"placeholder="Question">'+
+                                        '<label>Q u e s t i o n</label> <input name ="question_two['+i+'][q2_data]" type="text" maxlength="200" required="required"placeholder="Question">'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -283,8 +283,8 @@ function field(i){
                                 '<div class=" two fields">'+
                         
                                 '<div class="field">'+
-                            '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" placeholder="Choice">'+  
-                               '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" placeholder="Choice">'+
+                            '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+  
+                               '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+
                                 '</div>'+  
                                 
                                  '<div class="field">'+
@@ -294,11 +294,11 @@ function field(i){
                         '</div>'+
              
 
-                            '<button id="add2_choiceItem" class="tiny ui green button" type="button">Add Choice</button> '+
+                            '<button id="add2_choiceItem" class="tiny ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> '+
                                  '<input type="hidden" name="sctr2" id="sctr2"  value="'+i+'" />'+
                             '</div>'+
                                   '<div class="right floated column">'+
-                                             '<button id="remove_quest_two" type ="button" class="ui red button" value="<?php echo $quest->question_id; ?>" > Remove Question </button>'+
+                                             '<button id="remove_quest_two" type ="button" class="ui red labelled icon button" value="<?php echo $quest->question_id; ?>" ><i class="minus square icon"></i> Remove Question </button>'+
                                              '</div>'+
                                              '</br>'+
                                          

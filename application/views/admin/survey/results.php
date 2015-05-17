@@ -1,9 +1,15 @@
+<div class ="ui grid">
 
+<div class="three wide column"></div>
 <div class="ten wide column">
     <h2> <?php echo $surv['name']; ?> </h2>
+	<div>
   <?php echo anchor('admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+  </div>
 <form method="post" accept-charset="utf-8" action="<?php echo base_url('/admin/survey/view_results/'.$surv['id'].'');?>"> 
-<select id="filter" name="filter" onchange="this.form.submit()"> 
+
+<div>
+<select class="form-group form-control" id="filter" name="filter" onchange="this.form.submit()"> 
     <option value="ALL" <?php if (strcmp($college, "ALL")== 0) echo "selected"; ?>>
         ALL
     </option>
@@ -30,6 +36,8 @@
     </option> 
      
 </select> 
+</div>
+
 </form>
     
   <!--<ol type="1">  
@@ -122,6 +130,8 @@
                   </div>
 </div>
 
+
+</div>
 </body>
 
 </html>

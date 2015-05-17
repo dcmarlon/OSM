@@ -1,6 +1,6 @@
 <div class="ui grid">
     	
-        <div class="row"></div>
+        
         <div class="three wide column"></div>
         <div class="ten wide column">
             
@@ -25,7 +25,7 @@
                         <div class="questions">
                                 <div class = "two fields">
                                     <div class="field">
-                                        <label><strong>Q u e s t i o n</strong></label><input name ="question[0][q_data]" type="text" required="required" placeholder="Question">
+                                        <label><strong>Q u e s t i o n</strong></label><input name ="question[0][q_data]" type="text" maxlength="200" required="required" placeholder="Question">
                                     </div>
                                     <div class="field">
                                     <label>&nbsp;</label>
@@ -45,8 +45,8 @@
                                             <div  id ="choice_in"class="two fields">
 
                                             <div class="field">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" placeholder="Choice"><br>
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice"><br>
                                             </div>
 
                                             <div class="field">
@@ -55,7 +55,7 @@
                                             </div>
                                     </div>
 
-                                    <button id="add_choiceItem"class="mini ui green button" type="button">Add Choice</button> 
+                                    <button id="add_choiceItem"class="mini ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> 
                                     <input type="hidden" name="ctr" id="ctr" value="0" />
                       </div>
                       
@@ -69,19 +69,36 @@
 
                                 <div class="left floated column"> 
                                     <button id="back" type="button" class="ui button" >Back</button>
-                                    <button id="add_question" class="ui green button" type="button" >Add Question</button>     
+                                    <button id="add_question" class="ui green labeled icon button" type="button"> <i class="add square icon"></i>Add Question</button>     
                                 </div>
                                 <div class="right floated column">
                                         <div class="row"></div>
                                         <div class="three wide column"></div>
-                                        <button id="submit_form" type="submit" name="addlist" class=" ui submit blue button">Create Survey</button>
+                                        <button id="submit_form" type="submit" name="addlist" class="ui submit blue labelled icon button"> <i class="checkmark icon"></i>Create Survey</button>
                                 </div>
                     <br>
                     </div>
 
-            </form>                  
+            </form>  
+		     
        </div>
+	  <!-- <div class="three wide column">
+	    <div class="ui fixed bottom sticky">
+		<div class="scroll-top-wrapper ">
+		    
+		       <i class="chevron up icon"></i>
+		    
+		</div> 
+		</div>	
+	   </div>-->
+	   
+	   
 </div>
+
+		
+			
+	 
+
         
       <!--Javascript-->
             <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
@@ -90,12 +107,34 @@
             <script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
             <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
             <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
-            <script type="text/javascript" src="<?php echo base_url('semantic/js/app.js'); ?>"></script>
-            <script type="text/javascript" src="<?php echo base_url('semantic/js/testing.js'); ?>"></script> 
+			<script type="text/javascript" src="<?php echo base_url('semantic/js/smoothscroll.js'); ?>"></script>
+  <script type="text/javascript">
+   $(function(){
+ 
+   
+ 
+    $('.scroll-top-wrapper').on('click', scrollToTop);
+});
+ 
+function scrollToTop() {
+    verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+    element = $('body');
+    offset = element.offset();
+    offsetTop = offset.top;
+    $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
+}
+</script>         
 
 
 <script type="text/javascript">
 $(document).ready(function(){
+
+$('.ui.sticky')
+  .sticky({
+    context: '#questionform',
+
+  })
+;
         var q_num =1;
 
         $('.message .close').on('click', function() {
@@ -113,7 +152,7 @@ $(document).ready(function(){
 
        $(document).on("click", "#add_choiceItem", function(){
 	 var q_ctr = $(this).siblings("#ctr").val();          
-		$(this).siblings("#choice_sub").last().append('<div id="heyz" class="two fields"><div class="field"><input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice"></div><div class="field"><button id="remove_field" type ="button" class=" mini ui red button"> Remove Choice </button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div id="heyz" class="two fields"><div class="field"><input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red icon button"><i class="remove icon"></i></button></div></div>');
 	
         });
         
@@ -162,7 +201,7 @@ function field( i){
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
                                 '<div class="field">'+
-                                        '<label>Q u e s t i o n</label> <input name ="question['+i+'][q_data]" type="text"  required="required"placeholder="Question">'+
+                                        '<label>Q u e s t i o n</label> <input name ="question['+i+'][q_data]" type="text"  maxlength="200" required="required"placeholder="Question">'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -182,8 +221,8 @@ function field( i){
                                 '<div class=" two fields">'+
                         
                                 '<div class="field">'+
-                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+         
-                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" placeholder="Choice">'+
+                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+         
+                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+
                                 '</div>'+ 
                                 
                                 '<div class="field">'+
@@ -193,11 +232,11 @@ function field( i){
                         '</div>'+
              
 
-                            '<button id="add_choiceItem" class="mini ui green button" type="button">Add Choice</button> '+
+                            '<button id="add_choiceItem" class="mini ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> '+
                                  '<input type="hidden" name="counter" id="ctr"  value="'+i+'" />'+
                             '</div>'+
                                   '<div class="right floated column">'+
-                                             '<button id="remove_question" type ="button" class="ui red button"> Remove Question </button>'+
+                                             '<button id="remove_question" type ="button" class="ui red labeled icon button"><i class="minus square icon"></i> Remove Question </button>'+
                                              '</div>'+
                                              '</br>'+
                                          
@@ -206,7 +245,8 @@ function field( i){
 	
 	return x;
 	}
-</script>	
+</script>
+
 
 </body>
 

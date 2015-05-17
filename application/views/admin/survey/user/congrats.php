@@ -60,21 +60,23 @@
                 <div class="section " id="congrats_section">
                             <div class="intro">
                             <h2>Thank you for taking our survey</h2>
-                                    <div class="ui large circular red  icon button" id="hm" data-content="TC Surveys Home">
-                                    <i class="home icon"></i>
-                                    </div>
+                                    
+									
+                                    <a class="ui large circular red  icon button" id="hm" data-content="TC Surveys Home" href="<?php echo base_url('index.php/user/student');?>"> 
+									<i class="home icon" > </i>
+									</a>
+                                  
+                                    <a class="ui large circular facebook icon button" id="fb" data-content="Like us on Facebook"  href="https://www.facebook.com/todayscarolinian" >
+                                    <i class="facebook icon" ></i>
+                                    </a>
 
-                                    <div class="ui large circular facebook icon button" id="fb" data-content="Like us on Facebook" >
-                                    <i class="facebook icon"></i>
-                                    </div>
-
-                                    <div class="ui large circular red  icon button" id="tcweb" data-content="Visit the TC Website">
+                                    <a class="ui large circular red  icon button" id="tcweb" data-content="Visit the TC Website" href="http://todayscarolinian.net/">
                                     <i class="world icon"></i>
-                                    </div>
+                                    </a>
 
-                                    <div class="ui large circular twitter icon button" id="tw" data-content="Follow us on Twitter" >
-                                    <i class="twitter icon"></i>
-                                    </div>
+                                    <a class="ui large circular twitter icon button" id="tw" data-content="Follow us on Twitter" href="https://twitter.com/todaysusc" >
+                                    <i class="twitter icon" ></i>
+                                    </a>
                             </div>
                 </div>
 

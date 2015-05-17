@@ -8,20 +8,20 @@
                         </div>
 
                         <div class="right menu" >
-                        <a class="item">
+                        <a class="item" href="http://todayscarolinian.net/contact-us/">
                             
                         Contact Us
                         </a>
                             
-                        <a class="item">
+                        <a class="item" href="http://todayscarolinian.net/">
                         TC Website
                         </a>
                             
-                        <a class="item">
+                        <a class="item" href="https://www.facebook.com/todayscarolinian">
                         Facebook
                         </a>
                             
-                       <a class="item">
+                       <a class="item" href="https://twitter.com/todaysusc">
                         Twitter
                         </a>
                             
