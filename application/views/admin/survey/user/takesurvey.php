@@ -6,25 +6,7 @@
                         Today's Carolinian Surveys
                         </div>
 
-                        <div class="right menu" >
-                        <a class="item">
-                            
-                        Contact Us
-                        </a>
-                            
-                        <a class="item">
-                        TC Website
-                        </a>
-                            
-                        <a class="item">
-                        Facebook
-                        </a>
-                            
-                       <a class="item">
-                        Twitter
-                        </a>
-                            
-                        </div>
+                     
 
             </div>
 </div>
@@ -96,10 +78,12 @@
 
 
                                                                             <div class="center aligned column">
-
+																			
+																			<div class="ui buttons">
                                                                             <button id="back" type="button"  class="ui black button" >Go Back</button>
+																			<div class="or"></div>
                                                                             <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Answers</button>
-
+																			</div>
 
                                                                             </div>
                                                                 </div>
