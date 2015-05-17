@@ -29,7 +29,7 @@ class Student_m extends MY_Model
                     'college' => $collegex ,
                     'status' => 1
          );      
-         $sql = $this->db->insert_string('students', $data) . ' ON DUPLICATE KEY UPDATE status = 1';
+         $sql = $this->db->insert_string('students', $data) . " ON DUPLICATE KEY UPDATE status = 1, college = '$collegex'";
          $this->db->query($sql);
          $this->db->insert_id();
                        if($this->input->post('question')){                     
