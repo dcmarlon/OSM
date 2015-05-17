@@ -32,6 +32,8 @@
 				<?php $questions = $this->question_m->get_all_questions($survs->survey_id);   
 				if(count($questions)): foreach($questions as $i => $quest): 
 				?>      
+                                
+                                <?php if($i ==0){ ?>
                                         <div id="question_inner" class="four column row">
                                             <div id="question_inners" >
                                                 <div  id ="question_holder" class = "two fields">                               
@@ -59,8 +61,10 @@
                                                    <label><strong>C h o i c e s:</strong></label>
 
                                                         <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
-                                                               if(count($choices)): foreach($choices as $cho):
+                                                               if(count($choices)): foreach($choices as $y => $cho):
                                                                ?>
+                                                   
+                                                   <?php if($y!= 2){ ?>
 
                                                         <div id="choice_sub">                                                  
                                                             <div class="two fields ">
@@ -69,12 +73,97 @@
                                                                     <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
                                                                 </div>
                                                                 <div class="field">
+                                                                </div
+                                                            </div>   
+                                                        </div>
+                                                   </div>
+                                                   <?php }else{ ?>
+                                                          <div id="choice_sub">                                                  
+                                                            <div class="two fields">
+                                                                <div id ="choice_info" class="field">
+                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
+                                                                </div>
+                                                                <div class="field">
                                                                     <button id="remove_cho" type ="button" class="circular ui red icon button" value="<?php echo $cho->choice_id; ?>" ><i class="remove icon"></i></button>
                                                                 </div>
                                                             </div>   
+                                                                     
+                                                           </div>
+                                                           
+                                                   <?php }?>
+                                                                     
+                                                        <?php endforeach; ?>
+                                                        <?php endif; ?>    
+
+                                                        <button id="add_choiceItem"class="tiny ui green labelled icon button" type="button"><i class="add square icon"></i>Add Choice</button> 
+                                                        <input type="hidden" name="ctr" id="ctr"  value="<?php echo $quest->question_id ?>" />
+                                            </div>
+                                         <br>   
+
+                                            </div>
+                                            <br>
+                                        </div>
+                                <?php }else{ ?>
+                                 <div id="question_inner" class="four column row">
+                                            <div id="question_inners" >
+                                                <div  id ="question_holder" class = "two fields">                               
+                                                        <div class="field">
+                                                                <label>Q u e s t i o n </label> 
+                                                                <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
+                                                                <input name ="question[<?php echo $i; ?>][q_data]" type="text" maxlength="200" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
                                                         </div>
+                                                        <div class="field">
+                                                                <label>&nbsp;</label>
+                                                                <div>
+                                                                        <select class="form-group form-control" name="question[<?php echo $i; ?>][q_type]" required="required">
+                                                                                <option value="<?php echo $quest->question_type; ?>"> 
+                                                                                <?php if($quest->question_type == 'Single') echo "Single"; elseif ($quest->question_type == 'Multiple') echo "Multiple"; else echo "Combination";?> 
+                                                                                </option>
+                                                                                <option value="Single">Single</option>
+                                                                                <option value="Multiple">Multiple</option>
 
+                                                                        </select>
+                                                                </div>
+                                                        </div>                 	
 
+                                                </div>
+                                                <div id="choice_main" class="field">
+                                                   <label><strong>C h o i c e s:</strong></label>
+
+                                                        <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
+                                                               if(count($choices)): foreach($choices as $x => $cho):
+                                                               ?>
+
+                                                           <?php if($x!= 2){ ?>
+
+                                                        <div id="choice_sub">                                                  
+                                                            <div class="two fields ">
+                                                                <div id ="choice_info" class="field">
+                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
+                                                                </div>
+                                                                <div class="field">
+                                                                </div
+                                                            </div>   
+                                                        </div>
+                                                   </div>
+                                                   <?php }else{ ?>
+                                                          <div id="choice_sub">                                                  
+                                                            <div class="two fields">
+                                                                <div id ="choice_info" class="field">
+                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
+                                                                </div>
+                                                                <div class="field">
+                                                                    <button id="remove_cho" type ="button" class="circular ui red icon button" value="<?php echo $cho->choice_id; ?>" ><i class="remove icon"></i></button>
+                                                                </div>
+                                                            </div>   
+                                                                     
+                                                           </div>
+                                                           
+                                                   <?php }?>
+                                                                     
                                                         <?php endforeach; ?>
                                                         <?php endif; ?>    
 
@@ -90,6 +179,9 @@
                                                 </div>
                                             <br>
                                         </div>
+                                
+                                <?php } ?>
+                               
                                             <br>
 						<?php endforeach; ?>
 						<?php endif; ?>         	
