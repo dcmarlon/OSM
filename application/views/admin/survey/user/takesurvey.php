@@ -22,7 +22,7 @@
                                             <?php if(count($survs)): ?>
                                                     <br>
                                                     <div class="field">
-                                                        <h2 style="color: #ff3333">S U R V E Y : <br> <h3><strong><?php echo $survs->survey_name ?></strong></h3></h2>               
+                                                        <h2 style="color: #ff3333">S U R V E Y : <br> <h2><strong><?php echo $survs->survey_name ?></strong></h3></h2>               
                                                     </div>
                                             <?php endif; ?>
                                     <p>H E L L O, <strong> <?php echo $users;?></strong> </p>

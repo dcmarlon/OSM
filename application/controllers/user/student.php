@@ -59,9 +59,10 @@
        }
 
        //insert all the answers for the user
-       public function answers_add(){		
+       public function answers_add(){
+           
                 if($this->student_m->answers_insert() != false){	
-
+                        
                          $this->congrats();
 
                 }else{
@@ -71,7 +72,9 @@
        }    
        
        //validation for user
-       public function takesurvey(){           
+       public function takesurvey(){   
+           
+            if(!empty($this->input->post('idnum'))){
                 $idx = $this->input->post('idnum');
                 $coll = $this->input->post('coll');         
                 $info = array('student_id'=> $idx,
@@ -87,6 +90,9 @@
                         }else{
                              $this->take($id=null,$idx , $coll);
                         }
+            }else{
+                $this->index();
+            }
        }
        
 }

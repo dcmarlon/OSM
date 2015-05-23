@@ -28,35 +28,47 @@ class Student_m extends MY_Model
                     'student_id' => $this->input->post('person'),
                     'college' => $collegex ,
                     'status' => 1
-         );      
-         $sql = $this->db->insert_string('students', $data) . " ON DUPLICATE KEY UPDATE status = 1, college = '$collegex'";
-         $this->db->query($sql);
-         $this->db->insert_id();
-                       if($this->input->post('question')){                     
-                    	$question= $this->input->post('question');  
-                                foreach($question as $index => $quest){
-                                        if(isset($quest['choices_item'])){
-                                                foreach($quest['choices_item'] as  $choice){
+         ); 
+         
+         
+         $check = $this->log_validate($data);
+         
+         print($check);
+         
+         if($check == true){
+             $sql = $this->db->insert_string('students', $data) . " ON DUPLICATE KEY UPDATE status = 1, college = '$collegex'";
+            $this->db->query($sql);
+            $this->db->insert_id();
+                          if($this->input->post('question')){                     
+                           $question= $this->input->post('question');  
+                                   foreach($question as $index => $quest){
+                                           if(isset($quest['choices_item'])){
+                                                   foreach($quest['choices_item'] as  $choice){
 
 
-                                                            $data = array(
-                                                                    'student_id' => $this->input->post('person'),
-                                                                    'question_id' =>$quest['q_id'],
-                                                                    'choice_id'=> $choice			
-                                                                );
-                                                                   // echo $choice['choices_item'];
-                                                                $this->db->insert('answers',$data);
-                                                         } 
+                                                               $data = array(
+                                                                       'student_id' => $this->input->post('person'),
+                                                                       'question_id' =>$quest['q_id'],
+                                                                       'choice_id'=> $choice			
+                                                                   );
+                                                                      // echo $choice['choices_item'];
+                                                                   $this->db->insert('answers',$data);
+                                                            } 
 
-                                       }
-                                   
-                                }
-                                $query = true;
-                        }
-                
-               return $query;
-                     
+                                          }
+
+                                   }
+                                   $query = true;
+                           }
+
+                  return $query;
            
-            }
+         }else{
+             $this->load->view('admin/survey/user/taken');
+         }
+            
+    }
+           
+    
             
 }
