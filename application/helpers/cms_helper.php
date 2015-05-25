@@ -21,40 +21,11 @@ function btn_backd ($uri)
 
 function btn_report ($uri)
 {
-	return anchor($uri, '<button class="tiny ui blue button"> View Result</button>');
+	return anchor($uri, '<button class="tiny ui blue button"><i class="bar chart icon"></i>View Result</button>');
 }
-
-function btn_editFour ($uri)
-{
-	return anchor($uri, '<button class="tiny ui green button"></button>');
-}
-
-
-function btn_deactivate ($uri)
-{
-	return anchor($uri, '<button class="tiny ui red button">Deactivate Survey</button>');
-}
-
-function btn_activate ($uri)
-{
-	return anchor($uri, '<button class="tiny ui blue button">Activate Survey</button>');
-}
-
 
 function btn_back ($uri)
 {
 	return anchor($uri, '<button class="tiny ui button">View</button>');
 }
 
-function btn_survey($uri)
-{
-	return anchor($uri, '<i class="icon-hand-right"></i>');
-}
-
-
-function btn_delete ($uri)
-{
-	return anchor($uri, '<i class="icon-remove"></i>', array(
-		'onclick' => "return confirm('You are about to delete a record. This cannot be undone. Are you sure?');"
-	));
-}

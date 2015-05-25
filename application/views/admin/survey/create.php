@@ -68,7 +68,7 @@
                     <div class="two fields">
 
                                 <div class="left floated column"> 
-                                    <button id="back" type="button" class="ui button" >Back</button>
+                                    <button id="back" type="button" class="ui labeled icon button" ><i class="chevron left icon" ></i>Back</button>
                                     <button id="add_question" class="ui green labeled icon button" type="button"> <i class="add square icon"></i>Add Question</button>     
                                 </div>
                                 <div class="right floated column">
@@ -236,7 +236,7 @@ function field( i){
                                  '<input type="hidden" name="counter" id="ctr"  value="'+i+'" />'+
                             '</div>'+
                                   '<div class="right floated column">'+
-                                             '<button id="remove_question" type ="button" class="ui red labeled icon button"><i class="minus square icon"></i> Remove Question </button>'+
+                                             '<button id="remove_question" type ="button" class="ui red labeled icon button"><i class="remove icon"></i> Remove Question </button>'+
                                              '</div>'+
                                              '</br>'+
                                          

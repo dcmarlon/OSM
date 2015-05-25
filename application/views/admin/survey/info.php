@@ -33,30 +33,31 @@
        
     <div class="row">
         <div class="left floated right aligned six wide column">
-                     <?php echo anchor('/admin/survey', '<button class="tiny ui button">Back</button> '); ?>
+                     <?php echo anchor('/admin/survey', '<button class=" ui labeled icon button"> <i class="chevron left icon" ></i>Back</button> '); ?>
         </div>
              <div class ="right floated left aligned six wide column">
 
 
                          <?php if(($surv['status'] =='Available')):?>          
-                              <?php echo btn_editTwo('/admin/survey/edit/' . $surv['id']); ?>                  
+                             <?php echo anchor('/admin/survey/edit/'. $surv['id'], '<button class=" ui green labeled icon button" > <i class="edit icon"></i>Edit</button>'); ?>
+        </div>
                          <?php endif; ?>
 
                         <?php if(!($check =='Active')):?>
 
                              <?php if(($surv['status'] =='Available')):?>          
-                                <button id="survey_act"  class="tiny ui blue labeled icon button" type="button" value="<?php echo $surv['id']; ?>"  ><i class="unlock alternate icon"></i>Activate Survey</button>       
+                                <button id="survey_act"  class=" ui blue labeled icon button" type="button" value="<?php echo $surv['id']; ?>"  ><i class="unlock alternate icon"></i>Activate</button>       
                              <?php endif; ?>
 
                          <?php endif; ?>
 
                          <?php if(($surv['status'] =='Unavailable')):?>
-                             <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
+                                  <?php echo anchor('/admin/survey/view_results/'. $surv['id'], '<button class=" ui blue labeled icon button" > <i class="bar chart icon"></i></i>Result</button> '); ?>   
                          <?php endif; ?>
 
                           <?php if(($surv['status'] =='Active')):?>
-                             <?php echo btn_report('admin/survey/view_results/' . $surv['id']); ?>
-                              <button id="survey_deact" class="tiny ui red labeled icon button " type="button" value="<?php echo $surv['id']; ?>"  ><i class="lock icon"></i>Deactivate Survey</button>
+                             <?php echo anchor('/admin/survey/view_results/'. $surv['id'], '<button class=" ui blue labeled icon button" ><i class="bar chart icon"></i></i>Result</button> '); ?>   
+                              <button id="survey_deact" class=" ui red labeled icon button " type="button" value="<?php echo $surv['id']; ?>"  ><i class="lock icon"></i>Deactivate </button>
                          <?php endif; ?>
 
 
@@ -70,7 +71,6 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
         <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/js/jquery.confirm.js'); ?>"></script>
 
 <script>
     $(document).ready(function(){

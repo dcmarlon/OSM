@@ -1,38 +1,68 @@
 
 <div class="twelve wide column">
     <div class="row"><h2>Archives of Survey</h2></div>
-    			<h4><?php echo $meta_title; ?>
+    			<h4>
     			&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php echo anchor('admin/survey/add', '<button class="ui green labeled icon button"><i class="add square icon"></i>Add Survey</button> '); ?>
                         </h4> 
-
-<table id ="datatables" class="ui very basic table">
+<table id ="datatables" cellpadding="0" cellspacing="0" border="0"  width="100%" class="ui red table display" >
     <thead>
   	<tr>
             <th></th>
             <th>No.</th>
             <th>Name</th>
-            <th>Created</th>
-            <th>Issued</th>
+            <th>Created Date</th>
+            <th>Issued Date</th>
             <th>Status Code</th>
   	</tr>
     </thead>	
     <tbody>
         <?php if(count($survey)): foreach($survey as $sur): ?>	
-            <tr>
+
                    
-                     <td><?php echo btn_editThree('admin/survey/info_details/' . $sur->survey_id); ?></td>
+                       <?php if(($sur->status =='Active')):?>            
+                        <tr class="positive">
+                        <td> <?php echo anchor('admin/survey/info_details/'. $sur->survey_id, '<button class=" ui blue labeled icon button" ><i class="file text outline icon"></i>View Survey</button>'); ?></td>                 
+                        <td><?php echo $sur->survey_id; ?></td>
+                        <td><?php echo $sur->survey_name; ?></td>
+                        <td><?php echo date("m - d - Y ", strtotime($sur->created_date)); ?></td>
+                        <td><?php if(date("m - d - Y ", strtotime($sur->issued_date)) > "01 - 01 - 2000")
+                                    echo date("m - d - Y ", strtotime($sur->issued_date));
+                                  else
+                                      echo "N/A"; ?>   
+                        <td><?php echo $sur->status; ?></td>
+                        </tr> 
+                        <?php endif; ?>
+                        
+                        <?php if(($sur->status =='Available')):?>  
                    
-                    <td><?php echo $sur->survey_id; ?></td>
-                    <td><?php echo $sur->survey_name; ?></td>
-                    <td><?php echo date("m - d - Y ", strtotime($sur->created_date)); ?></td>
-                    <td><?php if(date("m - d - Y ", strtotime($sur->issued_date)) > "01 - 01 - 2000")
-                                echo date("m - d - Y ", strtotime($sur->issued_date));
-                              else
-                                  echo "N/A"; ?>    
-                    </td>
-                    <td><?php echo $sur->status; ?></td>
-            </tr>    
+                        <tr class="warning">
+                        <td> <?php echo anchor('admin/survey/info_details/'. $sur->survey_id, '<button class=" ui blue labeled icon button" ><i class="file text outline icon"></i>View Survey</button>'); ?></td>  
+                        <td><?php echo $sur->survey_id; ?></td>
+                        <td><?php echo $sur->survey_name; ?></td>
+                        <td><?php echo date("m - d - Y ", strtotime($sur->created_date)); ?></td>
+                        <td><?php if(date("m - d - Y ", strtotime($sur->issued_date)) > "01 - 01 - 2000")
+                                    echo date("m - d - Y ", strtotime($sur->issued_date));
+                                  else
+                                      echo "N/A"; ?>   
+                        <td><?php echo $sur->status; ?></td>
+                        </tr> 
+                        <?php endif; ?>
+                        
+                        <?php if(($sur->status =='Unavailable')):?>
+                   
+                        <tr class="active">
+                         <td> <?php echo anchor('admin/survey/info_details/'. $sur->survey_id, '<button class=" ui blue labeled icon button" ><i class="file text outline icon"></i>View Survey</button>'); ?></td>  
+                        <td><?php echo $sur->survey_id; ?></td>
+                        <td><?php echo $sur->survey_name; ?></td>
+                        <td><?php echo date("m - d - Y ", strtotime($sur->created_date)); ?></td>
+                        <td><?php if(date("m - d - Y ", strtotime($sur->issued_date)) > "01 - 01 - 2000")
+                                    echo date("m - d - Y ", strtotime($sur->issued_date));
+                                  else
+                                      echo "N/A"; ?>   
+                        <td><?php echo $sur->status; ?></td>
+                        </tr> 
+                        <?php endif; ?>  
          <?php endforeach; ?>
          <?php else: ?>
             <tr>
@@ -53,8 +83,6 @@
         <script type="text/javascript" src="<?php echo base_url('semantic/js/semantic.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
         <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
-	<script type="text/javascript" src="<?php echo base_url('semantic/js/app.js'); ?>"></script>
-        <script type="text/javascript" src="<?php echo base_url('semantic/js/testing.js'); ?>"></script> 
                  
 
         <script>

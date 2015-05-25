@@ -3,9 +3,11 @@
 <div class="three wide column"></div>
 <div class="ten wide column">
     <h2> <?php echo $surv['name']; ?> </h2>
+    
 	<div>
   <?php echo anchor('admin/survey', '<button class="tiny ui labeled icon button"> <i class="chevron left icon"></i>Back</button> '); ?>
   </div>
+    <br>
 <form method="post" accept-charset="utf-8" action="<?php echo base_url('/admin/survey/view_results/'.$surv['id'].'');?>"> 
 
 <div>
