@@ -163,14 +163,14 @@ $('.message .close').on('click', function() {
         $(document).on("click", "#add2_choiceItem", function(){
          
 		 var q_ctrs = $(this).siblings("#sctr2").val();
-		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" required placeholder="Choice" maxlength="150" ></div><div class="field"><button id="remove_field" type ="button" class=" circular ui red icon button"><i class="remove icon"></i></button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_two['+q_ctrs+'][choices2_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Choice" maxlength="150" ></div><div class="field"><button id="remove_field" type ="button" class=" circular ui red icon button"><i class="remove icon"></i></button></div></div>');
  
         });
 	
 	$(document).on("click", "#add_choiceItem", function(){
 
 	 var q_ctr = $(this).siblings("#ctr").val();          
-		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red icon button"> <i class="remove icon"></i></button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question_three['+q_ctr+'][choices3_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red icon button"> <i class="remove icon"></i></button></div></div>');
 	});
         
 

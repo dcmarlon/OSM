@@ -74,7 +74,7 @@
                                                                             <?php if(! is_null($msg)) echo $msg;?>
                                                                             <div class = "required field" id="nm">
                                                                                         <label>Enter ID Number:</label>
-                                                                                        <input id = "idnum" type="tel"  minlength ="8" maxlength="8"  class="form-control" placeholder="ID Number" name='idnum' required autofocus required><br>
+                                                                                        <input id = "idnum" type="tel"  minlength ="8" maxlength="8" pattern=".{8,}" required title="Only 8 numbers accepted!" class="form-control" placeholder="ID Number" name='idnum' required autofocus required><br>
                                                                             </div>
                                                                             <div class = "required field">
                                                                                         <label>College:</label>
