@@ -33,8 +33,6 @@ class Student_m extends MY_Model
          
          $check = $this->log_validate($data);
          
-         print($check);
-         
          if($check == true){
              $sql = $this->db->insert_string('students', $data) . " ON DUPLICATE KEY UPDATE status = 1, college = '$collegex'";
             $this->db->query($sql);

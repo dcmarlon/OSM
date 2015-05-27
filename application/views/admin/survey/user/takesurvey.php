@@ -32,8 +32,10 @@
                                                 ?>    
                                                                 <div class="grouped fields">
                                                                         <div class="field">
+                                                                            <?php $num = 1;
+                                                                            ?>
                                                                                 <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
-                                                                                <h3 name ="question[<?php echo $i; ?>][q_data]" ><?php echo $quest->question_data; ?></h3>
+                                                                                <h3 name ="question[<?php echo $i; ?>][q_data]" ><label>( <?php echo $i+1;?> )</label> <?php echo $quest->question_data; ?></h3>
                                                                         </div>
                                                                 <div class="grouped fields">
                                                                             <?php 
@@ -49,13 +51,13 @@
                                                                                        
                                                                                                
                                                                                                  <br>
-
+                                                                                                           
                                                                                                             <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
                                                                                                             if(count($choices)): foreach($choices as $x => $cho): 
                                                                                                             ?>
 
                                                                                                                 <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-                                                                                                                <input type="<?php echo $qs_type; ?>" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_id; ?>" >
+                                                                                                                <input type="<?php echo $qs_type; ?>" id="choicex"  name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_id; ?>" >
                                                                                                                 <label><?php echo $cho->choice_data; ?></label>
 
 
@@ -64,6 +66,7 @@
                                                                                                             <input type="text" placeholder="Please Specify" >
 
                                                                                                             <?php endif;?>
+                                                                                                         
 
 
                                                                                    <div class="ui divider"></div>   
@@ -72,7 +75,7 @@
                                                                                       </div>                       
                                                                                     
                                                                             </div>
-                                                                           
+                                                                   <?php $num+=1; ?>        
                                                     <?php endforeach; ?>
                                                     <?php endif; ?>
 
@@ -82,7 +85,7 @@
 																			<div class="ui buttons">
                                                                             <button id="back" type="button"  class="ui black button" >Go Back</button>
 																			<div class="or"></div>
-                                                                            <button id="submit_forms" type="submit"  class=" ui submit green button" onclick="return confirm('Do you want to submit?'); return false; ">Submit Answers</button>
+                                                                            <button id="submit" type="submit" name="addlist"  class=" ui submit green button">Submit Answers</button>
 																			</div>
 
                                                                             </div>
@@ -110,7 +113,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
     
+
         	$(document).on("click","#back", function(){
+                    
                     
                          if(confirm("Do you want to go back without submitting?" )){    
                                 
@@ -121,7 +126,31 @@ $(document).ready(function(){
                          }  
                     
                 });
-        
+               
+                    $('#submit').click(function(){
+                            if ($('#choicex:checked').length <= 0) {
+
+                           var admin_choice = window.confirm('You left some questions blanked, Do you want to proceed?');
+                                                   if(admin_choice==true) {
+
+                                                    alert("Successfully Saved!")
+
+                                                   } else {
+
+                                               return false;                                              }
+                        }
+                        else {
+                            var admin_choice = window.confirm('Are you sure you want to submit your answer(s)?');
+
+                                                    if(admin_choice==true) {
+
+                                                        alert("Successfully Saved!")
+                                                      } else {
+
+                                                    return false;                                                  }                                
+                        }
+                    });  
+
 });
 
 </script>	
