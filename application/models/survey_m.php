@@ -22,11 +22,22 @@
 
        
         //insert all survey and question with choices
-       public function add_survey_m(){     
+       public function add_survey_m(){  
+        //  $this->load->library('form_validation');
+           $query1 = false;
                 $data = array(
 			'survey_name' => $this->input->post('s_name')
 		);
-			
+                
+//           $this->form_validation->set_rules(
+//                's_name', 
+//                'Survey Title', 
+//                'trima|is_unique[survey.survey_name]');
+           
+           
+	//	if ($this->form_validation->run() == TRUE){
+           
+           
                 $query1 = $this->db->insert('survey',$data);
                 $survey_id = $this->db->insert_id();	
                 $question= $this->input->post('question');
@@ -52,6 +63,7 @@
 
                                         }	
 			 }
+         //       }
 
 			if($query1){
 				return true;	
@@ -66,7 +78,9 @@
       public function edit_survey_m() { 
              $data = array(    
 		     'survey_name' => $this->input->post('s_name')
-	     );
+	     ); 
+
+             
              $this->db->where('survey_id', $this->input->post('s_id'));
              $query1 = $this->db->update('survey',$data);
                      if($this->input->post('question')){
@@ -77,7 +91,8 @@
                                                                'question_type' => $quest['q_type']
 
                                         );
-                                        $this->db->where('question_id',$quest['q_id']);   
+                                        $this->db->where('question_id',$quest['q_id']);
+                                        $this->db->update('questions',$data);
                                                 $ctr=0;
                                                 foreach($quest['c_id'] as $choice){
                                                         if($quest['c_id']!=0){
@@ -129,12 +144,13 @@
                                              }
                                  } 
             }
+        
  
                         	if($query1){
 				return true;			
                                 }else
 				return false;
-      }  
+}  
       
       //delete question in edit survey
       public function delete_question_choices($id){
@@ -158,6 +174,17 @@
 		}else{ return false;}
 
       }
+      
+      	public function check_surveyTitle($title){
+		$this->db->where('survey_name',$title);
+		$query = $this->db->get('survey');
+		if($query->num_rows()>0){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
         
       //activate survey and update data info
      public function insert_activate($id){   

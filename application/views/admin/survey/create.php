@@ -18,14 +18,15 @@
           <form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/add_survey');?>" role="form">
 
                           <div class="ui input"> 
-                            <input type="text" name="s_name" class="required field" maxlength="40" required="required" placeholder="Survey Title" >
+                            <input type="text" name="s_name" class="required field" maxlength="40" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Survey Title" >
                           </div> 
                     <div class="question_main" class="field"> 
                              </br>   
                         <div class="questions">
                                 <div class = "two fields">
                                     <div class="field">
-                                        <label><strong>Q u e s t i o n</strong></label><input name ="question[0][q_data]" type="text" maxlength="200" required="required" placeholder="Question">
+                                        <label><strong>Q u e s t i o n</strong></label>
+                                        <input name ="question[0][q_data]" type="text" maxlength="200" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required  placeholder="Question">
                                     </div>
                                     <div class="field">
                                     <label>&nbsp;</label>
@@ -45,8 +46,8 @@
                                             <div  id ="choice_in"class="two fields">
 
                                             <div class="field">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice"><br>
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required  maxlength="150" placeholder="Choice"><br>
                                             </div>
 
                                             <div class="field">
@@ -82,16 +83,6 @@
             </form>  
 		     
        </div>
-	  <!-- <div class="three wide column">
-	    <div class="ui fixed bottom sticky">
-		<div class="scroll-top-wrapper ">
-		    
-		       <i class="chevron up icon"></i>
-		    
-		</div> 
-		</div>	
-	   </div>-->
-	   
 	   
 </div>
 
@@ -175,7 +166,7 @@ $('.ui.sticky')
         
         
         $(document).on("click","#back", function(){
-                 if(confirm("Do you want to go back without saving?" )){    
+                 if(confirm("Do you want to go back without creating?" )){    
                        window.history.back(-1);   
                  }else{
                      // do nothing
@@ -184,24 +175,22 @@ $('.ui.sticky')
                 
                 
         $(document).on("submit","form", function(){
-                    var admin_choice = window.confirm('Would you like to continue?');
+                    var admin_choice = window.confirm('Do you want to create the survey?');
                             if(admin_choice==true) {
                                 alert("Successfully Created!")
                                 } else {
                                     return false;
                                 }
          });
-        
-        
-
-
+         
 });
 
 function field( i){
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
                                 '<div class="field">'+
-                                        '<label>Q u e s t i o n</label> <input name ="question['+i+'][q_data]" type="text"  maxlength="200" required="required"placeholder="Question">'+
+                                        '<label>Q u e s t i o n</label>'+
+                                        '<input name ="question['+i+'][q_data]" type="text"  maxlength="200" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Question"/>'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -221,8 +210,8 @@ function field( i){
                                 '<div class=" two fields">'+
                         
                                 '<div class="field">'+
-                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+         
-                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+
+                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+         
+                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+
                                 '</div>'+ 
                                 
                                 '<div class="field">'+

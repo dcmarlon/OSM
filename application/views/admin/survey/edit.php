@@ -13,13 +13,13 @@
                                 <label> <h3><strong>[Edit] - S u r v e y</strong></h3></label>
                         </div>  
 
-		<form class="ui form" id="questionform" method="post" action="<?php echo base_url('/admin/survey/edit_survey');?>" role="form">
+		<form class="ui form" id="questionform" name="formx" method="post" action="<?php echo base_url('/admin/survey/edit_survey');?>" role="form">
 
 			<?php if(count($survs)): ?>
 			<div class ="field">
 				<div class ="field">
 					<div class="ui input"> 
-						<input type="text" name="s_name" maxlength="40" required="required" value="<?php echo $survs->survey_name ?>" placeholder="Survey Title" >
+						<input  type="text" name="s_name" maxlength="40" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required value="<?php echo $survs->survey_name ?>" placeholder="Survey Title"  />
 						<input type="hidden" name="s_id" value="<?php echo $survs->survey_id; ?>"/>	
 
 					</div> 
@@ -37,16 +37,17 @@
                                             <div id="question_inners" >
                                                 <div  id ="question_holder" class = "two fields">                               
                                                         <div class="field">
-                                                                <label>Q u e s t i o n </label> 
+                                                                <label>Q u e s t i o n </label>
                                                                 <input type="hidden" name="question[<?php echo $i; ?>][q_id]" value="<?php echo $quest->question_id; ?>"/>
-                                                                <input name ="question[<?php echo $i; ?>][q_data]" type="text" maxlength="200" required="required" value="<?php echo $quest->question_data; ?>" placeholder="Question">
+                                                                <input  name ="question[<?php echo $i; ?>][q_data]" type="text" maxlength="200" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required required  value="<?php echo $quest->question_data; ?>" placeholder="Question">
+                                                                
                                                         </div>
                                                         <div class="field">
                                                                 <label>&nbsp;</label>
                                                                 <div>
                                                                         <select class="form-group form-control" name="question[<?php echo $i; ?>][q_type]" required="required">
                                                                                 <option value="<?php echo $quest->question_type; ?>"> 
-                                                                                <?php if($quest->question_type == 'Single') echo "Single"; elseif ($quest->question_type == 'Multiple') echo "Multiple"; else echo "Combination";?> 
+                                                                                <?php if($quest->question_type == 'Single') echo "Single"; if ($quest->question_type == 'Multiple') echo "Multiple";?> 
                                                                                 </option>
                                                                                 <option value="Single">Single</option>
                                                                                 <option value="Multiple">Multiple</option>
@@ -62,26 +63,13 @@
                                                         <?php $choices = $this->choice_m->get_all_choices($quest->question_id); 
                                                                if(count($choices)): foreach($choices as $x => $cho):
                                                                ?>
-
-                                                           <?php if($x!= 2){ ?>
-
-                                                        <div id="choice_sub">                                                  
-                                                            <div class="two fields ">
-                                                                <div id ="choice_info" class="field">
-                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
-                                                                </div>
-                                                                <div class="field">
-                                                                </div
-                                                            </div>   
-                                                        </div>
-                                                   </div>
-                                                   <?php }else{ ?>
-                                                          <div id="choice_sub">                                                  
+                                                               
+                                                           <?php if($x != 0 && $x != 1 ){ ?>
+                                                         <div id="choice_sub">                                                  
                                                             <div class="two fields">
                                                                 <div id ="choice_info" class="field">
                                                                     <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
-                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150" required="required" placeholder="Choice"> 
+                                                                    <input  type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150"  pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Choice"/> 
                                                                 </div>
                                                                 <div class="field">
                                                                     <button id="remove_cho" type ="button" class="circular ui red icon button" value="<?php echo $cho->choice_id; ?>" ><i class="trash outline icon"></i></button>
@@ -89,6 +77,19 @@
                                                             </div>   
                                                                      
                                                            </div>
+                                             
+                                                   <?php }else{ ?>                                                                                 
+                                                  <div id="choice_sub">                                                  
+                                                            <div class="two fields ">
+                                                                <div id ="choice_info" class="field">
+                                                                    <input type="hidden" name="question[<?php echo $i; ?>][c_id][]" value="<?php echo $cho->choice_id; ?>"/> 
+                                                                    <input type="text" name="question[<?php echo $i; ?>][choices_item][]" value="<?php echo $cho->choice_data; ?>" class="form-group form-control" maxlength="150"  pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required  placeholder="Choice"> 
+                                                                </div>
+                                                                <div class="field">
+                                                                </div
+                                                            </div>   
+                                                        </div>
+                                                   </div>
                                                            
                                                    <?php }?>
                                                                      
@@ -260,11 +261,11 @@ $('.message .close').on('click', function() {
                  $(document).on("submit","form", function(){
 
 
-                        var admin_choice = window.confirm('Would you like to continue?');
+                        var admin_choice = window.confirm('Do you want to save?');
 
                         if(admin_choice==true) {
 
-                            alert("Save Changes!")
+                            alert("Successfully Saved!")
 
                             } else {
 
@@ -277,12 +278,14 @@ $('.message .close').on('click', function() {
  
   });
 
+
 function field(i){
 
 	var x =   '<div class="questions">'+
 			'<div class = "two fields">'+
                                 '<div class="field">'+
-                                        '<label>Q u e s t i o n</label> <input name ="question_two['+i+'][q2_data]" type="text" maxlength="200" required="required"placeholder="Question">'+
+                                        '<label>Q u e s t i o n</label>'+
+                            '<input name ="question_two['+i+'][q2_data]" type="text" maxlength="200" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Question">'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -302,8 +305,8 @@ function field(i){
                                 '<div class=" two fields">'+
                         
                                 '<div class="field">'+
-                            '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+  
-                               '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" required="required" maxlength="150" placeholder="Choice">'+
+                            '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+  
+                               '<input type="text" name="question_two['+i+'][choices2_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+
                                 '</div>'+  
                                 
                                  '<div class="field">'+

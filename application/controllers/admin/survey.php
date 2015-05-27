@@ -62,13 +62,17 @@
       //insert all data from create view
       public function add_survey(){
           
+            
             if($this->survey_m->add_survey_m() != false){	     
                     redirect('/admin/survey');
             }else{
-                    redirect('/admin/survey');
-            } 
-			 
-      } 
+   //               echo "<script>alert('This survey is already been created!');</script>";
+//			echo "<meta http-equiv=Refresh content=0;url=../survey/add>";
+                        
+                         redirect('/admin/survey');
+            }		 
+      }
+      
       
             //edit view
       public function edit ($id = NULL){
