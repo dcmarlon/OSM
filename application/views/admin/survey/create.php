@@ -18,7 +18,7 @@
           <form class="ui form" id="questionform" method="post" action="<?php echo base_url('index.php/admin/survey/add_survey');?>" role="form">
 
                           <div class="ui input"> 
-                            <input type="text" name="s_name" class="required field" maxlength="40" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Survey Title" >
+                            <input type="text" name="s_name" class="required field" maxlength="40" pattern="[a-zA-Z0-9'.,@:?!()$#/\\%*]+[a-zA-Z0-9'.,@:?!()$#/\\%* ]+" title=" Please input atleast two alpha-numeric or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required placeholder="Survey Title" >
                           </div> 
                     <div class="question_main" class="field"> 
                              </br>   
@@ -26,7 +26,7 @@
                                 <div class = "two fields">
                                     <div class="field">
                                         <label><strong>Q u e s t i o n</strong></label>
-                                        <input name ="question[0][q_data]" type="text" maxlength="200" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required  placeholder="Question">
+                                        <input name ="question[0][q_data]" type="text" maxlength="200" pattern="[a-zA-Z0-9'.,@:?!()$#/\\%*]+[a-zA-Z0-9'.,@:?!()$#/\\%* ]+" title=" Please input atleast two alpha-numeric or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required  placeholder="Question">
                                     </div>
                                     <div class="field">
                                     <label>&nbsp;</label>
@@ -46,8 +46,8 @@
                                             <div  id ="choice_in"class="two fields">
 
                                             <div class="field">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">
-                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\]+[a-zA-Z0-9'.,@:?!()$#/\\ ]+" title=" Please input atleast two characters or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required  maxlength="150" placeholder="Choice"><br>
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\%*]+[a-zA-Z0-9'.,@:?!()$#/\\%* ]+" title=" Please input atleast two alpha-numeric or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">
+                                                    <input type="text" name="question[0][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9'.,@:?!()$#/\\%*]+[a-zA-Z0-9'.,@:?!()$#/\\%* ]+" title=" Please input atleast two alpha-numeric or don't input leading white space(s) or special character(s) that are not listed( '.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required  maxlength="150" placeholder="Choice"><br>
                                             </div>
 
                                             <div class="field">
@@ -99,23 +99,7 @@
             <script type="text/javascript" src="<?php echo base_url('semantic/components/modal.js'); ?>"></script>
             <script type="text/javascript" src="<?php echo base_url('dtables/media/js/jquery.dataTables.js'); ?>"></script>
 			<script type="text/javascript" src="<?php echo base_url('semantic/js/smoothscroll.js'); ?>"></script>
-  <script type="text/javascript">
-   $(function(){
- 
-   
- 
-    $('.scroll-top-wrapper').on('click', scrollToTop);
-});
- 
-function scrollToTop() {
-    verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
-    element = $('body');
-    offset = element.offset();
-    offsetTop = offset.top;
-    $('html, body').animate({scrollTop: offsetTop}, 500, 'linear');
-}
-</script>         
-
+      
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -143,7 +127,7 @@ $('.ui.sticky')
 
        $(document).on("click", "#add_choiceItem", function(){
 	 var q_ctr = $(this).siblings("#ctr").val();          
-		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red icon button"><i class="remove icon"></i></button></div></div>');
+		$(this).siblings("#choice_sub").last().append('<div class="two fields"><div class="field"><input type="text" name="question['+q_ctr+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\%\*\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two alpha-numeric or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required placeholder="Choice" maxlength="150"></div><div class="field"><button id="remove_field" type ="button" class="circular ui red icon button"><i class="remove icon"></i></button></div></div>');
 	
         });
         
@@ -190,7 +174,7 @@ function field( i){
 			'<div class = "two fields">'+
                                 '<div class="field">'+
                                         '<label>Q u e s t i o n</label>'+
-                                        '<input name ="question['+i+'][q_data]" type="text"  maxlength="200" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required placeholder="Question"/>'+
+                                        '<input name ="question['+i+'][q_data]" type="text"  maxlength="200" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\%\*\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two alpha-numeric or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required placeholder="Question"/>'+
                                 '</div>'+
                                  '<div class="field">'+
                                         '<label>&nbsp;</label>'+
@@ -210,8 +194,8 @@ function field( i){
                                 '<div class=" two fields">'+
                         
                                 '<div class="field">'+
-                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+         
-                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two characters or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\ ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+
+                            '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\%\*\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two alpha-numeric or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+         
+                               '<input type="text" name="question['+i+'][choices_item][]" class="form-group form-control" pattern="[a-zA-Z0-9\'\.\,\@\:\?\!\(\)\$\#\/\\\\]+[a-zA-Z0-9\'\.\,\@\%\*\:\?\!\(\)\$\#\/\\\\ ]+" title=" Please input atleast two alpha-numeric or dont input leading white space(s) or special character(s) that are not listed(\'.,@:?!()$#/\\%* ) on beginning,end or middle/beside the data!" required maxlength="150" placeholder="Choice">'+
                                 '</div>'+ 
                                 
                                 '<div class="field">'+

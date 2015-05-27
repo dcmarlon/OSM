@@ -130,10 +130,10 @@ $(document).ready(function(){
                     $('#submit').click(function(){
                             if ($('#choicex:checked').length <= 0) {
 
-                           var admin_choice = window.confirm('You left some questions blanked, Do you want to proceed?');
+                           var admin_choice = window.confirm('You left some questions unanswered, Do you want to proceed?');
                                                    if(admin_choice==true) {
 
-                                                    alert("Thank you!")
+                                                 
 
                                                    } else {
 
@@ -144,7 +144,7 @@ $(document).ready(function(){
 
                                                     if(admin_choice==true) {
 
-                                                        alert("Thank you for taking time answering the survey!")
+                                                  
                                                       } else {
 
                                                     return false;                                                  }                                

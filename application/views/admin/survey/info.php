@@ -40,7 +40,7 @@
 
                          <?php if(($surv['status'] =='Available')):?>          
                              <?php echo anchor('/admin/survey/edit/'. $surv['id'], '<button class=" ui green labeled icon button" > <i class="edit icon"></i>Edit</button>'); ?>
-        </div>
+        
                          <?php endif; ?>
 
                         <?php if(!($check =='Active')):?>
@@ -60,7 +60,7 @@
                               <button id="survey_deact" class=" ui red labeled icon button " type="button" value="<?php echo $surv['id']; ?>"  ><i class="lock icon"></i>Deactivate </button>
                          <?php endif; ?>
 
-
+                    </div>          
 
                 </div>
         </div>  
