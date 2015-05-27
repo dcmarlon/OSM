@@ -133,7 +133,7 @@ $(document).ready(function(){
                            var admin_choice = window.confirm('You left some questions blanked, Do you want to proceed?');
                                                    if(admin_choice==true) {
 
-                                                    alert("Successfully Saved!")
+                                                    alert("Thank you!")
 
                                                    } else {
 
@@ -144,7 +144,7 @@ $(document).ready(function(){
 
                                                     if(admin_choice==true) {
 
-                                                        alert("Successfully Saved!")
+                                                        alert("Thank you for taking time answering the survey!")
                                                       } else {
 
                                                     return false;                                                  }                                
