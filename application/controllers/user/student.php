@@ -61,12 +61,14 @@
        //insert all the answers for the user
        public function answers_add(){
            
+           
                 if($this->student_m->answers_insert() != false){	
-                        
+                       
                          $this->congrats();
 
                 }else{
-                        $this->congrats();
+                    
+                        $this->taken();
                 } 
 			 
        }    

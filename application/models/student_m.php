@@ -22,20 +22,27 @@ class Student_m extends MY_Model
     
             //insert users answer based on the activated survey
      public function answers_insert(){
-         $query = false;
-         $collegex = strtoupper($this->input->post('school'));             
-         $data = array(
+        $query = false;
+       
+        $this->db->select('*');
+        $this->db->where('student_id',$this->input->post('person') ); 
+        $querys = $this->db->get('students');
+        $row = $querys->row();
+        
+        if(!($row) || $row->status == 0){
+         
+         //$check = $this->log_validate($data);
+         
+        // print($check);
+         
+        //if($check == true){
+               $collegex = strtoupper($this->input->post('school'));             
+               $data = array(
                     'student_id' => $this->input->post('person'),
                     'college' => $collegex ,
                     'status' => 1
-         ); 
+                ); 
          
-         
-         $check = $this->log_validate($data);
-         
-         print($check);
-         
-         if($check == true){
              $sql = $this->db->insert_string('students', $data) . " ON DUPLICATE KEY UPDATE status = 1, college = '$collegex'";
             $this->db->query($sql);
             $this->db->insert_id();
@@ -61,12 +68,8 @@ class Student_m extends MY_Model
                                    $query = true;
                            }
 
-                  return $query;
-           
-         }else{
-             $this->load->view('admin/survey/user/taken');
-         }
-            
+        }
+          return $query;  
     }
            
     
